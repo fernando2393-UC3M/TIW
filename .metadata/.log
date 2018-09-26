@@ -26,3 +26,98 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.springsourc
 
 !ENTRY org.eclipse.wst.common.project.facet.core 4 0 2018-09-26 15:20:24.011
 !MESSAGE Project facet grails.app has not been defined. It is used in plugin com.vmware.vfabric.ide.eclipse.tcserver.core.
+!SESSION 2018-09-26 18:19:29.350 -----------------------------------------------
+eclipse.buildId=3.8.1.201607290850-RELEASE-e46
+java.version=1.8.0_101
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.springsource.sts.ide
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.springsource.sts.ide
+
+!ENTRY org.eclipse.core.resources 2 10035 2018-09-26 18:19:33.715
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.wst.common.project.facet.core 4 0 2018-09-26 18:19:35.326
+!MESSAGE Project facet grails.app has not been defined. It is used in plugin com.vmware.vfabric.ide.eclipse.tcserver.core.
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-26 18:19:42.273
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-26 18:19:42.279
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.wst.validation 4 0 2018-09-26 18:20:04.827
+!MESSAGE IWAE0027E Could not retrieve the validation configuration for resource TIWbnb.
+!STACK 0
+java.lang.reflect.InvocationTargetException: IWAE0027E Could not retrieve the validation configuration for resource TIWbnb.
+	at org.eclipse.wst.validation.internal.ConfigurationManager.getProjectConfiguration(ConfigurationManager.java:135)
+	at org.eclipse.wst.validation.internal.ConfigurationManager.getConfiguration(ConfigurationManager.java:251)
+	at org.eclipse.wst.validation.internal.ValManager.getValidatorsNotCached(ValManager.java:226)
+	at org.eclipse.wst.validation.internal.ValManager.access$1(ValManager.java:220)
+	at org.eclipse.wst.validation.internal.ValManager$ValidatorCache.getValidatorsCached(ValManager.java:1263)
+	at org.eclipse.wst.validation.internal.ValManager.getValidators(ValManager.java:197)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:668)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:299)
+	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:120)
+	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:84)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:129)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:94)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:52)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:117)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:105)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.fullBuild(ValBuilderJob.java:219)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:178)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.internal.resources.ResourceException: Resource '/TIWbnb' does not exist.
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:335)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Resource.java:209)
+	at org.eclipse.core.internal.resources.Project.checkAccessible(Project.java:141)
+	at org.eclipse.core.internal.resources.Resource.checkAccessibleAndLocal(Resource.java:215)
+	at org.eclipse.core.internal.resources.Resource.getSessionProperty(Resource.java:1207)
+	at org.eclipse.wst.validation.internal.ConfigurationManager.getProjectConfiguration(ConfigurationManager.java:126)
+	... 22 more
+Root exception:
+org.eclipse.core.internal.resources.ResourceException: Resource '/TIWbnb' does not exist.
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:335)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Resource.java:209)
+	at org.eclipse.core.internal.resources.Project.checkAccessible(Project.java:141)
+	at org.eclipse.core.internal.resources.Resource.checkAccessibleAndLocal(Resource.java:215)
+	at org.eclipse.core.internal.resources.Resource.getSessionProperty(Resource.java:1207)
+	at org.eclipse.wst.validation.internal.ConfigurationManager.getProjectConfiguration(ConfigurationManager.java:126)
+	at org.eclipse.wst.validation.internal.ConfigurationManager.getConfiguration(ConfigurationManager.java:251)
+	at org.eclipse.wst.validation.internal.ValManager.getValidatorsNotCached(ValManager.java:226)
+	at org.eclipse.wst.validation.internal.ValManager.access$1(ValManager.java:220)
+	at org.eclipse.wst.validation.internal.ValManager$ValidatorCache.getValidatorsCached(ValManager.java:1263)
+	at org.eclipse.wst.validation.internal.ValManager.getValidators(ValManager.java:197)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:668)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:299)
+	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:120)
+	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:84)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:129)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:94)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:52)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:117)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:105)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.fullBuild(ValBuilderJob.java:219)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:178)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SESSION 2018-09-26 18:31:29.534 -----------------------------------------------
+eclipse.buildId=3.8.1.201607290850-RELEASE-e46
+java.version=1.8.0_101
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.springsource.sts.ide
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.springsource.sts.ide
+
+!ENTRY org.eclipse.wst.common.project.facet.core 4 0 2018-09-26 18:31:47.337
+!MESSAGE Project facet grails.app has not been defined. It is used in plugin com.vmware.vfabric.ide.eclipse.tcserver.core.

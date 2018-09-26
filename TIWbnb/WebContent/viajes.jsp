@@ -78,13 +78,13 @@
 			<div class="container">
 				<div class="nav-header">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-					<h1 id="fh5co-logo"><a href="index.html"><i class="icon-airplane"></i>TIWbnb</a></h1>
+					<h1 id="fh5co-logo"><a href="index.jsp"><i class="icon-airplane"></i>TIWbnb</a></h1>
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li ><a href="index.html">Home</a></li>
-							<li class="active"><a href="viajes.html">Viajes</a></li>
-							<li ><a href="mensajes.html">Mensajes</a></li>                              
+							<li ><a href="index.jsp">Home</a></li>
+							<li class="active"><a href="viajes.jsp">Viajes</a></li>
+							<li ><a href="mensajes.jsp">Mensajes</a></li>                              
 						</ul>
 					</nav>
 				</div>
@@ -112,7 +112,7 @@
 								<h3>Estudio en Sol</h3>
 								<span>Apartamento entero. 2 camas</span>
                                 <span>Fechas: 1/12/2016 hasta 5/12/2016</span>                
-								<a class="btn btn-primary btn-outline" href="#">Más Info <i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="#">M�s Info <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
@@ -123,7 +123,7 @@
 								<h3>Apartamento junto a Gran Via</h3>
 								<span>Apartamento entero. 1 cama</span>
                                 <span>Fechas: 1/12/2016 hasta 5/12/2016</span>       
-								<a class="btn btn-primary btn-outline" href="#">Más Info<i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="#">M�s Info<i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
@@ -134,7 +134,7 @@
 								<h3>Piso frente al Palacio Real</h3>
 								<span>Loft entero. 2 camas</span>
                                 <span>Fechas: 1/12/2016 hasta 5/12/2016</span>       
-								<a class="btn btn-primary btn-outline" href="#">Más Info <i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="#">M�s Info <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
@@ -145,7 +145,7 @@
 								<h3>Céntrico y tranquilo</h3>
 								<span>Apartamento entero. 2 camas</span>
                                 <span>Fechas: 1/12/2016 hasta 5/12/2016</span>       
-								<a class="btn btn-primary btn-outline" href="#">Más Info <i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="#">M�s Info <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
@@ -156,7 +156,7 @@
 								<h3>Stunning Apartment in Sol</h3>
 								<span>Apartamento entero. 2 camas</span>
                                 <span>Fechas: 1/12/2016 hasta 5/12/2016</span>       
-								<a class="btn btn-primary btn-outline" href="#">Más Info <i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="#">M�s Info <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
@@ -167,7 +167,7 @@
 								<h3>Pretty Apartment in Plaza Mayor</h3>
 								<span>Apartamento entero. 1 cama</span>
                                 <span>Fechas: 1/12/2016 hasta 5/12/2016</span>       
-								<a class="btn btn-primary btn-outline" href="#">Más Info <i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="#">M�s Info <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>

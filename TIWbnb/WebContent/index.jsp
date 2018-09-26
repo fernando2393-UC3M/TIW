@@ -78,15 +78,15 @@
 			<div class="container">
 				<div class="nav-header">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-					<h1 id="fh5co-logo"><a href="index.html"><i class="icon-airplane"></i>TIWbnb</a></h1>
+					<h1 id="fh5co-logo"><a href="index.jsp"><i class="icon-airplane"></i>TIWbnb</a></h1>
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li class="active"><a href="index.html">Home</a></li>
-							<li ><a href="viajes.html">Viajes</a></li>
-							<li ><a href="mensajes.html">Mensajes</a></li>                              
-							<li><a href="#" id="Registro">RegÃ­strate</a></li>                            
-							<li><a href="#" id="Login">Inicia sesiÃ³n</a></li>                            
+							<li class="active"><a href="index.jsp">Home</a></li>
+							<li ><a href="viajes.jsp">Viajes</a></li>
+							<li ><a href="mensajes.jsp">Mensajes</a></li>                              
+							<li><a href="#" id="Registro">Regí­strate</a></li>                            
+							<li><a href="#" id="Login">Inicia sesión</a></li>                            
 						</ul>
 					</nav>
 				</div>
@@ -102,7 +102,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-sm-5 col-md-5">
-								<!-- <a href="index.html" id="main-logo">Travel</a> -->
+								<!-- <a href="index.jsp" id="main-logo">Travel</a> -->
 								<div class="tabulation animate-box">
 
 								  <!-- Nav tabs -->
@@ -154,8 +154,8 @@
 													<select class="cs-select cs-skin-border">
 														<option value="" disabled selected>Alojamiento entero</option>
 														<option value="entero">Alojamiento entero</option>
-														<option value="privada">HabitaciÃ³n privada</option>
-														<option value="compartida">HabitaciÃ³n compartida</option>
+														<option value="privada">Habitación privada</option>
+														<option value="compartida">Habitación compartida</option>
 													</select>
 												</section>
 											</div>
@@ -174,7 +174,7 @@
 											</div>
 											<div class="col-xxs-12 col-xs-6 mt">
 												<section>
-													<label for="class">NiÃ±os:</label>
+													<label for="class">Niños:</label>
 													<select class="cs-select cs-skin-border">
 														<option value="" disabled selected>1</option>
 														<option value="1">1</option>
@@ -198,7 +198,7 @@
 								<div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1">
 									<h3>TIWbnb</h3>
 									<h2>Planea tu estancia</h2>
-									<h3>Escoge entre miles de alojamientos disponiles</h3>
+									<h3>Escoge entre miles de alojamientos disponibles</h3>
 									<p>Desde <span class="price">35â‚¬</span> por noche</p>
 									<!-- <p><a class="btn btn-primary btn-lg" href="#">Get Started</a></p> -->
 								</div>
@@ -220,25 +220,25 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h1 class="h3 mb-3 font-weight-normal">Iniciar sesiÃ³n para continuar</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Iniciar sesión para continuar</h1>
       </div>
       <div class="modal-body">
           <form class="form-signin">
-      <input type="email" id="loginEmail" class="form-control" placeholder="DirecciÃ³n de correo electrÃ³nico" required autofocus>
-      <input type="password" id="loginPassword" class="form-control" placeholder="ContraseÃ±a" required>
+      <input type="email" id="loginEmail" class="form-control" placeholder="Dirección de correo electrónico" required autofocus>
+      <input type="password" id="loginPassword" class="form-control" placeholder="Contraseña" required>
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Recordarme
         </label>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" id="IniciaSesion">Inicia sesiÃ³n</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" id="IniciaSesion">Inicia sesión</button>
     </form>
 
       </div>
 
       <div class="modal-footer">
-        <p class="text-center">Â¿No tienes cuenta?<a href="index.html">  RegÃ­strate</a></p>
-        <p class="text-center"><a href="index.html"> AtrÃ¡s </a></p>
+        <p class="text-center">¿No tienes cuenta?<a href="index.jsp">  Regístrate</a></p>
+        <p class="text-center"><a href="index.jsp"> Atrás </a></p>
       </div>
 
     </div>
@@ -259,17 +259,17 @@
       </div>
       <div class="modal-body">
           <form class="form-registro">
-      <input type="email" id="inputEmail" class="form-control" placeholder="DirecciÃ³n de correo electrÃ³nico" required autofocus>
+      <input type="email" id="inputEmail" class="form-control" placeholder="DirecciÃ³n de correo electrónico" required autofocus>
       <input type="name" id="inputName" class="form-control" placeholder="Nombre" required>
       <input type="surname" id="inputSurname" class="form-control" placeholder="Apellidos" required>              
-      <input type="password" id="inputPassword" class="form-control" placeholder="Establece una contraseÃ±a" required>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Establece una contraseña" required>
       <button class="btn btn-lg btn-primary btn-block" type="submit" id="Registrate">Registrate</button>
     </form>
 
       </div>
 
       <div class="modal-footer">
-        <p class="text-center">Â¿Ya tienes una cuenta TIWbnb?<a href="#" id="goRegistroLogin">  Inicia sesiÃ³n</a></p>
+        <p class="text-center">¿Ya tienes una cuenta TIWbnb?<a href="#" id="goRegistroLogin">  Inicia sesión</a></p>
       </div>
 
     </div>
