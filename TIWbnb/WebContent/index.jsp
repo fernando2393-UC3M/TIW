@@ -5,6 +5,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
+	<%@ page contentType="text/html; charset=UTF-8" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>TIWbnb</title>
@@ -85,8 +86,8 @@
 							<li class="active"><a href="index.jsp">Home</a></li>
 							<li ><a href="viajes.jsp">Viajes</a></li>
 							<li ><a href="mensajes.jsp">Mensajes</a></li>                              
-							<li><a href="#" id="Registro">Reg憝strate</a></li>                            
-							<li><a href="#" id="Login">Inicia sesi髇</a></li>                            
+							<li><a href="#" id="Registro">Reg铆颅strate</a></li>                            
+							<li><a href="#" id="Login">Inicia sesi贸n</a></li>                            
 						</ul>
 					</nav>
 				</div>
@@ -154,8 +155,8 @@
 													<select class="cs-select cs-skin-border">
 														<option value="" disabled selected>Alojamiento entero</option>
 														<option value="entero">Alojamiento entero</option>
-														<option value="privada">Habitaci髇 privada</option>
-														<option value="compartida">Habitaci髇 compartida</option>
+														<option value="privada">Habitaci贸n privada</option>
+														<option value="compartida">Habitaci贸n compartida</option>
 													</select>
 												</section>
 											</div>
@@ -174,7 +175,7 @@
 											</div>
 											<div class="col-xxs-12 col-xs-6 mt">
 												<section>
-													<label for="class">Ni駉s:</label>
+													<label for="class">Ni帽os:</label>
 													<select class="cs-select cs-skin-border">
 														<option value="" disabled selected>1</option>
 														<option value="1">1</option>
@@ -220,25 +221,25 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h1 class="h3 mb-3 font-weight-normal">Iniciar sesi髇 para continuar</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Iniciar sesi贸n para continuar</h1>
       </div>
       <div class="modal-body">
           <form class="form-signin">
-      <input type="email" id="loginEmail" class="form-control" placeholder="Direcci髇 de correo electr髇ico" required autofocus>
-      <input type="password" id="loginPassword" class="form-control" placeholder="Contrase馻" required>
+      <input type="email" id="loginEmail" class="form-control" placeholder="Direcci贸n de correo electr贸nico" required autofocus>
+      <input type="password" id="loginPassword" class="form-control" placeholder="Contrase帽a" required>
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Recordarme
         </label>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" id="IniciaSesion">Inicia sesi髇</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" id="IniciaSesion">Inicia sesi贸n</button>
     </form>
 
       </div>
 
       <div class="modal-footer">
-        <p class="text-center">縉o tienes cuenta?<a href="index.jsp">  Reg韘trate</a></p>
-        <p class="text-center"><a href="index.jsp"> Atr醩 </a></p>
+        <p class="text-center">驴No tienes cuenta?<a href="index.jsp">  Reg铆strate</a></p>
+        <p class="text-center"><a href="index.jsp"> Atr谩s </a></p>
       </div>
 
     </div>
@@ -259,17 +260,17 @@
       </div>
       <div class="modal-body">
           <form class="form-registro">
-      <input type="email" id="inputEmail" class="form-control" placeholder="Direcci贸n de correo electr髇ico" required autofocus>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Direcci脙鲁n de correo electr贸nico" required autofocus>
       <input type="name" id="inputName" class="form-control" placeholder="Nombre" required>
       <input type="surname" id="inputSurname" class="form-control" placeholder="Apellidos" required>              
-      <input type="password" id="inputPassword" class="form-control" placeholder="Establece una contrase馻" required>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Establece una contrase帽a" required>
       <button class="btn btn-lg btn-primary btn-block" type="submit" id="Registrate">Registrate</button>
     </form>
 
       </div>
 
       <div class="modal-footer">
-        <p class="text-center">縔a tienes una cuenta TIWbnb?<a href="#" id="goRegistroLogin">  Inicia sesi髇</a></p>
+        <p class="text-center">驴Ya tienes una cuenta TIWbnb?<a href="#" id="goRegistroLogin">  Inicia sesi贸n</a></p>
       </div>
 
     </div>

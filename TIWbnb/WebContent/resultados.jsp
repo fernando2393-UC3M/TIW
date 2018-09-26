@@ -5,6 +5,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
+	<%@ page contentType="text/html; charset=UTF-8" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>TIWbnb</title>
@@ -85,8 +86,8 @@
 							<li class="active"><a href="index.jsp">Home</a></li>
 							<li ><a href="viajes.jsp">Viajes</a></li>
 							<li ><a href="mensajes.jsp">Mensajes</a></li>                              
-							<li><a href="#" id="Registro">Reg�strate</a></li>                            
-							<li><a href="#" id="Login">Inicia sesi�n</a></li>                            
+							<li><a href="#" id="Registro">Regístrate</a></li>                            
+							<li><a href="#" id="Login">Inicia sesión</a></li>                            
 						</ul>
 					</nav>
 				</div>
@@ -140,7 +141,7 @@
 						<div href="#"><img src="images/place-1.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
 							<div class="desc">
 								<span></span>
-								<h3>Céntrico y tranquilo</h3>
+								<h3>CÃ©ntrico y tranquilo</h3>
 								<span>Apartamento entero. 2 camas</span>
 								<span class="price">65€</span>
 								<a class="btn btn-primary btn-outline" href="#">Seleccionar <i class="icon-arrow-right22"></i></a>

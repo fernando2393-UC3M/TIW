@@ -5,6 +5,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
+	<%@ page contentType="text/html; charset=UTF-8" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>TIWbnb</title>
@@ -85,7 +86,7 @@
 							<li class="active"><a href="index.jsp">Home</a></li>
 							<li ><a href="viajes.jsp">Viajes</a></li>
 							<li ><a href="mensajes.jsp">Mensajes</a></li>                                                                              							
-							<li><a href="#" id="Registro">Regístrate</a></li>                            
+							<li><a href="#" id="Registro">RegÃ­strate</a></li>                            
 							<li><a href="#" id="Login">Inicia sesión</a></li>                            
 						</ul>
 					</nav>
@@ -104,13 +105,13 @@
 					</div>
 					<div class="col-md-6 animate-box">
                         <span class="description">
-						<p>Estudio en Sol es un acogedor alojamiento en pleno centro de Madrid, donde en cada esquina se encuentra la diversión debido a los innumerables bares, restaurantes, tiendas y mercados de la zona.
-						El apartamento cuenta con cocina americana, wifi gratis en todas las zonas, televisión, horno y microondas, lavadora, secador de pelo, cafetera y tostadora. Se facilitan sábanas y toallas a la llegada.</p> 
+						<p>Estudio en Sol es un acogedor alojamiento en pleno centro de Madrid, donde en cada esquina se encuentra la diversiÃ³n debido a los innumerables bares, restaurantes, tiendas y mercados de la zona.
+						El apartamento cuenta con cocina americana, wifi gratis en todas las zonas, televisión, horno y microondas, lavadora, secador de pelo, cafetera y tostadora. Se facilitan sÃ¡banas y toallas a la llegada.</p> 
                         </span>
                         <table class="table">
                             <tbody>
                                 <tr>                                
-                                    <th scope="row">Anfitrión:</th>
+                                    <th scope="row">AnfitriÃ³n:</th>
                                     <td><span class="host">Pepe</span></td>
                                 </tr>
                                 
