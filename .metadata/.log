@@ -121,3 +121,15 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.springsourc
 
 !ENTRY org.eclipse.wst.common.project.facet.core 4 0 2018-09-26 18:31:47.337
 !MESSAGE Project facet grails.app has not been defined. It is used in plugin com.vmware.vfabric.ide.eclipse.tcserver.core.
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-27 18:29:49.554
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-27 18:29:49.559
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-27 18:34:14.792
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-27 18:34:14.792
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'

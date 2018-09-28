@@ -87,7 +87,8 @@
 							<li ><a href="viajes.jsp">Viajes</a></li>
 							<li ><a href="mensajes.jsp">Mensajes</a></li>                              
 							<li><a href="#" id="Registro">Regí­strate</a></li>                            
-							<li><a href="#" id="Login">Inicia sesión</a></li>                            
+							<li><a href="#" id="Login">Inicia sesión</a></li>    
+							<li><a href="registrado.jsp">Perfil</a></li>
 						</ul>
 					</nav>
 				</div>

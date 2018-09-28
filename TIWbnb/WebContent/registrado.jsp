@@ -1,4 +1,4 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -63,8 +63,6 @@
 	<link rel="stylesheet" href="css/style.css">
 
 	<link rel="stylesheet" href="css/messaging.css">
-	
-	<link rel="stylesheet" href="css/tooltip.css">
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -72,9 +70,8 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
 	</head>
-	<body>
+<body>
 		<div id="fh5co-wrapper">
 		<div id="fh5co-page">
 
@@ -86,9 +83,12 @@
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li ><a href="index.jsp">Home</a></li>
+							<li class="active"><a href="registrado.jsp">Home</a></li>
 							<li ><a href="viajes.jsp">Viajes</a></li>
-							<li class="active" ><a href="mensajes.jsp">Mensajes</a></li>                              
+							<li ><a href="casa.jsp">Ofrece Alojamiento</a></li>
+							<li ><a href="mensajes.jsp">Mensajes</a></li>                                
+							<li><a href="registrado.jsp">Perfil</a></li>
+							<li><a href="index.jsp">Cerrar Sesión</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -96,144 +96,122 @@
 		</header>
 
 		<!-- end:header-top -->
+	
+		<div class="fh5co-hero">
+			<div class="fh5co-overlay"></div>
+			<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_5.jpg);">
+				<div class="desc">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-5 col-md-5">
+								<!-- <a href="index.jsp" id="main-logo">Travel</a> -->
+								<div class="tabulation animate-box">
 
-		<!-- end:header-top -->
-     <div id="message-container" class="fh5co-section-gray">	
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-						<h3>Mensajes</h3>
-						<p>Estos son los mensajes que has recibido hasta ahora.</p>
-				</div>
-			</div>
-			
-			<div class="row row-bottom-padded-md">			
-				<div class="col-md-8 col-md-offset-2">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<div class="pull-right">
-								<div class="btn-group">
-									<button type="button" class="btn btn-success btn-filter" data-target="leido">Leidos</button>
-									<button type="button" class="btn btn-warning btn-filter" data-target="no-leido">No Leidos</button>
-									<button type="button" class="btn btn-default btn-filter" data-target="all">Todos</button>
+								  <!-- Nav tabs -->
+								   <ul class="nav nav-tabs" role="tablist">
+								      <li role="presentation" class="active">
+								    	   <a href="#alojamientos" aria-controls="alojamientos" role="tab" data-toggle="tab">Modifica tu Información</a>
+								      </li>
+								   </ul>
+
+								   <!-- Tab panes -->
+									<div class="tab-content">
+									 <div role="tabpanel" class="tab-pane active" id="hotels">
+									 	<div class="row">
+													<div class="col-xxs-12 col-xs-12 mt">
+														<div class="input-field">
+															<label for="name">Nombre:</label> <input type="text"
+																class="form-control" id="name" placeholder="John" />
+														</div>
+													</div>
+													<div class="col-xxs-12 col-xs-12 mt alternate">
+														<div class="input-field">
+															<label for="surname">Apellidos:</label> <input
+																type="text" class="form-control" id="surname"
+																placeholder="Doe" />
+														</div>
+													</div>
+													<div class="col-xxs-12 col-xs-12 mt alternate">
+														<div class="input-field">
+															<label for="birthdate">Fecha de Nacimiento:</label> <input
+																type="date" class="form-control" id="birthdate" />
+														</div>
+													</div>
+													<div class="col-xxs-12 col-xs-6 mt alternate">
+														<div class="input-field">
+															<label for="psw">Nueva Contraseña:</label> <input
+																type="password" class="form-control" id="psw" />
+														</div>
+													</div>
+													<div class="col-xxs-12 col-xs-6 mt alternate">
+														<div class="input-field">
+															<label for="psw1">Reintroduce Contraseña:</label> <input
+																type="password" class="form-control" id="psw1"/>
+														</div>
+													</div>                                            
+
+											<div class="col-xs-12">
+												<input type="button" class="btn btn-primary btn-block" value="Actualizar Información" onclick="savedInfo()">
+											</div>
+                                        </div>
+				                    </div>
+								 </div>
+
+
 								</div>
 							</div>
-							<div class="table-container">
-								<table class="table table-filter">
-									<tbody>
-										<tr data-status="no-leido" class="no-leido">
-											<td>
-												<a href="javascript:;" class="star">
-													<i class="glyphicon glyphicon-star"></i>
-												</a>
-											</td>
-											<td>
-												<div class="media">
-													<h4 class="title">
-																User Identifier
-													</h4>
-												</div>
-											</td>                                        
-											<td>      
-													<div class="media">
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-														<p class="meta">Febrero 13, 2018</p>                                                
+							
+							
+							
+							
+							
+							<div class="col-sm-5 col-sm-push-2 col-md-5 col-md-push-2">
+								<!-- <a href="index.jsp" id="main-logo">Travel</a> -->
+								<div class="tabulation animate-box">
+
+								  <!-- Nav tabs -->
+								   <ul class="nav nav-tabs" role="tablist">
+								      <li role="presentation" class="active">
+								    	   <a href="#alojamientos" aria-controls="alojamientos" role="tab" data-toggle="tab">Eliminar Perfil</a>
+								      </li>
+								   </ul>
+
+								   <!-- Tab panes -->
+									<div class="tab-content">
+									 <div role="tabpanel" class="tab-pane active" id="hotels">
+									 	<div class="row">
+									 	
+													<div class="col-xxs-12 col-xs-12 mt">
+														<div class="input-field">
+															<label for="name">Elimina tu perfil: <br>(Cambio no reversible)</label> 
+														</div>
 													</div>
-											</td>
-										</tr>    
-										<tr data-status="no-leido" class="no-leido">
-											<td>
-												<a href="javascript:;" class="star">
-													<i class="glyphicon glyphicon-star"></i>
-												</a>
-											</td>
-											<td>
-												<div class="media">
-													<h4 class="title">
-																User Identifier
-													</h4>
-												</div>
-											</td>                                        
-											<td>      
-													<div class="media">
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-														<p class="meta">Febrero 13, 2018</p>                                                
-													</div>
-											</td>
-										</tr>    
-										<tr data-status="leido" class="leido">
-											<td>
-												<a href="javascript:;" class="star">
-													<i class="glyphicon glyphicon-star"></i>
-												</a>
-											</td>
-											<td>
-												<div class="media">
-													<h4 class="title">
-																User Identifier
-													</h4>
-												</div>
-											</td>                                        
-											<td>      
-													<div class="media">
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-														<p class="meta">Febrero 13, 2018</p>                                                
-													</div>
-											</td>
-										</tr> 
-										<tr data-status="leido" class="leido">
-											<td>
-												<a href="javascript:;" class="star">
-													<i class="glyphicon glyphicon-star"></i>
-												</a>
-											</td>
-											<td>
-												<div class="media">
-													<h4 class="title">
-																User Identifier
-													</h4>
-												</div>
-											</td>                                        
-											<td>      
-													<div class="media">
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-														<p class="meta">Febrero 13, 2018</p>                                                
-													</div>
-											</td>
-										</tr>    
-										<tr data-status="leido" class="leido">
-											<td>
-												<a href="javascript:;" class="star">
-													<i class="glyphicon glyphicon-star"></i>
-												</a>
-											</td>
-											<td>
-												<div class="media">
-													<h4 class="title">
-																User Identifier
-													</h4>
-												</div>
-											</td>                                        
-											<td>      
-													<div class="media">
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-														<p class="meta">Febrero 13, 2018</p>                                                
-													</div>
-											</td>
-										</tr>                                        
-									</tbody>
-								</table>
+                                    
+
+											<div class="col-xs-12">
+												<input type="button" class="btn btn-primary btn-block" value="Eliminar Perfil" onclick="eraseInfo()">
+											</div>
+                                        </div>
+				                    </div>
+								 </div>
+
+
+								</div>
 							</div>
+							
+							
+							
+							
+							
+
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	 
 
-		
-            <footer>
+		</div>                   
+            
+		<footer>
 			<div id="footer">
 				<div class="container">
 					<div class="row row-bottom-padded-md">
@@ -336,33 +314,18 @@
 	
 	<!-- Main JS -->
 	<script src="js/main.js"></script>
+	
+	<script>
+	
+	function savedInfo() {
+		alert("Información actualizada con éxito.");
+	}
+	
+	function eraseInfo() {
+		alert("Perfil borrado. Sentimos que te vayas.");
+	}
+	</script>
 
-        
-<!-- Main JS -->
-	<script src="js/main.js"></script>
-
-
-     <script type="text/javascript">
-        $(document).ready(function () {
-
-	$('.star').on('click', function () {
-      $(this).toggleClass('star-checked');
-    });
-
-
-    $('.btn-filter').on('click', function () {
-      var $target = $(this).data('target');
-      if ($target != 'all') {
-        $('.table tr').css('display', 'none');
-        $('.table tr[data-status="' + $target + '"]').fadeIn('slow');
-      } else {
-        $('.table tr').css('display', 'none').fadeIn('slow');
-      }
-    });
-
- });
-</script>
         
 	</body>
 </html>
-

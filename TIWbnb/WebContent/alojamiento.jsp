@@ -86,7 +86,7 @@
 							<li class="active"><a href="index.jsp">Home</a></li>
 							<li ><a href="viajes.jsp">Viajes</a></li>
 							<li ><a href="mensajes.jsp">Mensajes</a></li>                                                                              							
-							<li><a href="#" id="Registro">RegÃ­strate</a></li>                            
+							<li><a href="#" id="Registro">Regístrate</a></li>                            
 							<li><a href="#" id="Login">Inicia sesión</a></li>                            
 						</ul>
 					</nav>
@@ -111,7 +111,7 @@
                         <table class="table">
                             <tbody>
                                 <tr>                                
-                                    <th scope="row">AnfitriÃ³n:</th>
+                                    <th scope="row">Anfitrión:</th>
                                     <td><span class="host">Pepe</span></td>
                                 </tr>
                                 
