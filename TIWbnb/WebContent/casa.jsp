@@ -85,6 +85,7 @@
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li class="active"><a href="registrado.jsp">Home</a></li>
 							<li ><a href="viajes.jsp">Viajes</a></li>
+							<li ><a href="renting.jsp">Mis Alojamientos</a></li>
 							<li ><a href="mensajes.jsp">Mensajes</a></li>                                
 							<li><a href="registrado.jsp">Perfil</a></li>
 							<li><a href="index.jsp">Cerrar Sesión</a></li>
@@ -156,7 +157,7 @@
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="picture">Foto:</label> <input
-																type="number" class="form-control" id="picture"/>
+																type="file" class="form-control" id="picture" accept="image/*"/>
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">

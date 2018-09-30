@@ -1,4 +1,4 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -62,6 +62,8 @@
 	
 	<link rel="stylesheet" href="css/style.css">
 
+	<link rel="stylesheet" href="css/messaging.css">
+	<link rel="stylesheet" href="css/renting.css">
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -69,9 +71,8 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
 	</head>
-	<body>
+<body>
 		<div id="fh5co-wrapper">
 		<div id="fh5co-page">
 
@@ -79,15 +80,16 @@
 			<div class="container">
 				<div class="nav-header">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-					<h1 id="fh5co-logo"><a href="index.jsp"><i class="icon-airplane"></i>TIWbnb</a></h1>
+					<h1 id="fh5co-logo"><a href="registrado.jsp"><i class="icon-airplane"></i>TIWbnb</a></h1>
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li class="active"><a href="index.jsp">Home</a></li>
+							<li class="active"><a href="registrado.jsp">Home</a></li>
 							<li ><a href="viajes.jsp">Viajes</a></li>
-							<li ><a href="mensajes.jsp">Mensajes</a></li>                                                                              							
-							<li><a href="#" id="Registro">Regístrate</a></li>                            
-							<li><a href="#" id="Login">Inicia sesión</a></li>                            
+							<li ><a href="casa.jsp">Ofrece Alojamiento</a></li>
+							<li ><a href="mensajes.jsp">Mensajes</a></li>                                
+							<li><a href="registrado.jsp">Perfil</a></li>
+							<li><a href="index.jsp">Cerrar Sesión</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -95,57 +97,108 @@
 		</header>
 
 		<!-- end:header-top -->
+	
+		<div class="fh5co-hero">
+			<div class="fh5co-overlay"></div>
+			<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_5.jpg);">
+				<div class="desc">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-6 col-md-6">
+								<!-- <a href="index.jsp" id="main-logo">Travel</a> -->
+								<div class="tabulation animate-box">
 
-		<div id="fh5co-tours" class="fh5co-section-gray">
-			<div class="container">
-		
-				<div class="row">
-					<div class="col-md-12 animate-box">
-						<h2 class="heading-title">Estudio en Sol</h2>
-					</div>
-					<div class="col-md-6 animate-box">
-                        <span class="description">
-						<p>Estudio en Sol es un acogedor alojamiento en pleno centro de Madrid, donde en cada esquina se encuentra la diversión debido a los innumerables bares, restaurantes, tiendas y mercados de la zona.
-						El apartamento cuenta con cocina americana, wifi gratis en todas las zonas, televisión, horno y microondas, lavadora, secador de pelo, cafetera y tostadora. Se facilitan sÃ¡banas y toallas a la llegada.</p> 
-                        </span>
-                        <table class="table">
-                            <tbody>
-                                <tr>                                
-                                    <th scope="row">Anfitrión:</th>
-                                    <td><span class="host">Pepe</span></td>
-                                </tr>
-                                
-                                <tr>                                
-                                        <th scope="row">Precio:</th>
-                                    <td><span class="price">30€</span></td>
-                                </tr>
-                                <tr>
-                                        <th scope="row">Nº Camas:</th>
-                                        <td><span class="beds">2</span></td>
-                                </tr>
-                                <tr>
-                                        <th scope="row">Tipo Alojamiento:</th>
-                                        <td><span class="type">Alojamiento Entero</span></td>
-                                </tr>                                
-                            </tbody>
-                        </table>
-                        <div class="col-xxs-12 col-xs-6 mt">
-                            <input type="button" class="btn btn-primary btn-block" value="Reservar">
-                        </div>
-                        <div class="col-xxs-12 col-xs-6 mt">
-                            <input type="button" class="btn btn-primary btn-block" value="Contactar">
-                        </div>
-                                                                        
-                    </div>
-					<div class="col-md-6 animate-box">
-						<img class="img-responsive" src="images/cover_bg_2.jpg" alt="travel">
+								  <!-- Nav tabs -->
+								   <ul class="nav nav-tabs" role="tablist">
+								      <li role="presentation" class="active">
+								    	   <a href="#alojamientos" aria-controls="alojamientos" role="tab" data-toggle="tab">Alojamiento</a>
+								      </li>
+								   </ul>
+
+								   <!-- Tab panes -->
+									<div class="tab-content">
+									 <div role="tabpanel" class="tab-pane active" id="hotels">
+									 	<div class="row">
+													<div class="col-xxs-12 col-xs-12 mt">
+														<div class="input-field">
+															<label>Casa en C/ Preciados, 12</label>
+															<a class="info" href="casa.jsp">Modificar Información</a>
+															<br>
+															<img alt="Casa-Preciados" src="images/Airbnb.jpg" max>
+														</div>
+														<br>
+														<div class="col-xxs-12 col-xs-12 mt">
+															<label>Alquilada:</label><font class="rented" color="green">Alquilada</font>
+														</div>
+														<div class="col-xxs-12 col-xs-12 mt">
+															<label>Descripción:</label>
+															<p><font color="black">Impresionante ático en Calle Preciados, en el mismo centro de Madrid. A 5 minutos andando de Sol y 
+															rodeado de comercios y zonas turísticas. Un alojamiento encantador para cualquier persona.</font>
+															</p>															
+														</div>
+													</div>                                     
+
+											<div class="col-xs-12">
+												<input type="button" class="btn btn-primary btn-block" value="Eliminar Alojamiento" onclick="errorDel()">
+											</div>
+                                        </div>
+				                    </div>
+								 </div>
+								</div>
+							</div>
+							
+							
+							<div class="col-sm-6 col-md-6">
+								<!-- <a href="index.jsp" id="main-logo">Travel</a> -->
+								<div class="tabulation animate-box">
+
+								  <!-- Nav tabs -->
+								   <ul class="nav nav-tabs" role="tablist">
+								      <li role="presentation" class="active">
+								    	   <a href="#alojamientos" aria-controls="alojamientos" role="tab" data-toggle="tab">Alojamiento</a>
+								      </li>
+								   </ul>
+
+								   <!-- Tab panes -->
+									<div class="tab-content">
+									 <div role="tabpanel" class="tab-pane active" id="hotels">
+									 	<div class="row">
+													<div class="col-xxs-12 col-xs-12 mt">
+														<div class="input-field">
+															<label>Casa en C/ Preciados, 12</label>
+															<a class="info" href="casa.jsp">Modificar Información</a>
+															<br>
+															<img alt="Casa-Preciados" src="images/Airbnb.jpg" max>
+														</div>
+														<br>
+														<div class="col-xxs-12 col-xs-12 mt">
+															<label>Alquilada:</label><font class="rented" color="red">No Alquilada</font>
+														</div>
+														<div class="col-xxs-12 col-xs-12 mt">
+															<label>Descripción:</label>
+															<p><font color="black">Impresionante ático en Calle Preciados, en el mismo centro de Madrid. A 5 minutos andando de Sol y 
+															rodeado de comercios y zonas turísticas. Un alojamiento encantador para cualquier persona.</font>
+															</p>															
+														</div>
+													</div>                                     
+
+											<div class="col-xs-12">
+												<input type="button" class="btn btn-primary btn-block" value="Eliminar Alojamiento" onclick="deleted()">
+											</div>
+                                        </div>
+				                    </div>
+								 </div>
+								</div>
+							</div>		
+							
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-  
-         
-           <footer>
+
+		</div>                   
+            
+		<footer>
 			<div id="footer">
 				<div class="container">
 					<div class="row row-bottom-padded-md">
@@ -248,12 +301,18 @@
 	
 	<!-- Main JS -->
 	<script src="js/main.js"></script>
+	
+	<script>
+	
+	function errorDel() {
+		alert("Este alojamiento está alquilado, no se puede borrar.");
+	}
+	
+	function deleted() {
+		alert("Alojamiento borrado. Sentimos que te vayas.");
+	}
+	</script>
 
-        
-    <script>
-		
-    </script>
         
 	</body>
 </html>
-
