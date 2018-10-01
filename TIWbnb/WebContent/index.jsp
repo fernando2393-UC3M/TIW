@@ -88,7 +88,6 @@
 							<li ><a href="mensajes.jsp">Mensajes</a></li>                              
 							<li><a href="#" id="Registro">Regí­strate</a></li>                            
 							<li><a href="#" id="Login">Inicia sesión</a></li>    
-							<li><a href="registrado.jsp">Perfil</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -233,7 +232,7 @@
           <input type="checkbox" value="remember-me"> Recordarme
         </label>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" id="IniciaSesion">Inicia sesión</button>
+      <button class="btn btn-lg btn-primary btn-block" type="button" id="IniciaSesion"  onclick="window.location.href = 'registrado.jsp'">Inicia sesión</button>
     </form>
 
       </div>
@@ -261,7 +260,7 @@
       </div>
       <div class="modal-body">
           <form class="form-registro">
-      <input type="email" id="inputEmail" class="form-control" placeholder="DirecciÃ³n de correo electrónico" required autofocus>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Dirección de correo electrónico" required autofocus>
       <input type="name" id="inputName" class="form-control" placeholder="Nombre" required>
       <input type="surname" id="inputSurname" class="form-control" placeholder="Apellidos" required>              
       <input type="password" id="inputPassword" class="form-control" placeholder="Establece una contraseña" required>
@@ -397,7 +396,7 @@
            });
 		
     </script>
-        
+    
 	</body>
 </html>
 
