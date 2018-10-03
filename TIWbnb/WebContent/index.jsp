@@ -1,4 +1,3 @@
-<!--GIT TEST <![endif]-->
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -14,12 +13,12 @@
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FREEHTML5.CO" />
 
-  <!-- 
+  <!--
 	//////////////////////////////////////////////////////
 
-	FREE HTML5 TEMPLATE 
+	FREE HTML5 TEMPLATE
 	DESIGNED & DEVELOPED by FREEHTML5.CO
-		
+
 	Website: 		http://freehtml5.co/
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
@@ -43,7 +42,7 @@
 	<link rel="shortcut icon" href="favicon.ico">
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
-	
+
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -59,7 +58,7 @@
 	<!-- CS Select -->
 	<link rel="stylesheet" href="css/cs-select.css">
 	<link rel="stylesheet" href="css/cs-skin-border.css">
-	
+
 	<link rel="stylesheet" href="css/style.css">
 
 
@@ -85,9 +84,9 @@
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li class="active"><a href="index.jsp">Home</a></li>
 							<li ><a href="viajes.jsp">Viajes</a></li>
-							<li ><a href="mensajes.jsp">Mensajes</a></li>                              
-							<li><a href="#" id="Registro">Regí­strate</a></li>                            
-							<li><a href="#" id="Login">Inicia sesión</a></li>    
+							<li ><a href="mensajes.jsp">Mensajes</a></li>
+							<li><a href="#" id="Registro">Regí­strate</a></li>
+							<li><a href="#" id="Login">Inicia sesión</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -95,7 +94,7 @@
 		</header>
 
 		<!-- end:header-top -->
-	
+
 		<div class="fh5co-hero">
 			<div class="fh5co-overlay"></div>
 			<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_5.jpg);">
@@ -135,20 +134,20 @@
 													<input type="text" class="form-control" id="date-end" placeholder="mm/dd/yyyy"/>
 												</div>
 											</div>
-                                            
+
 											<div class="col-sm-12 mt">
 												<section>
 													<label for="class">Precio</label>
 													<select class="cs-select cs-skin-border">
 														<option value="" disabled selected>Hasta 35€</option>
-														<option value="P1">Hasta 35€</option>            
+														<option value="P1">Hasta 35€</option>
 														<option value="P2">36€ - 69€</option>
 														<option value="P3">70€ - 130€</option>
 														<option value="P4">131€ o más</option>
 													</select>
 												</section>
 											</div>
-                                            
+
         									<div class="col-sm-12 mt">
 												<section>
 													<label for="class">Tipo de alojamiento</label>
@@ -160,7 +159,7 @@
 													</select>
 												</section>
 											</div>
-                                            
+
 											<div class="col-xxs-12 col-xs-6 mt">
 												<section>
 													<label for="class">Adultos:</label>
@@ -210,13 +209,13 @@
 			</div>
 
 		</div>
-		            
+
 
 <!-- Login Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-    
+
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -245,13 +244,13 @@
     </div>
   </div>
 </div>
-            
-            
+
+
 <!-- Registro Modal -->
 <div class="modal fade" id="RegistroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-    
+
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -262,7 +261,7 @@
           <form class="form-registro">
       <input type="email" id="inputEmail" class="form-control" placeholder="Dirección de correo electrónico" required autofocus>
       <input type="name" id="inputName" class="form-control" placeholder="Nombre" required>
-      <input type="surname" id="inputSurname" class="form-control" placeholder="Apellidos" required>              
+      <input type="surname" id="inputSurname" class="form-control" placeholder="Apellidos" required>
       <input type="password" id="inputPassword" class="form-control" placeholder="Establece una contraseña" required>
       <button class="btn btn-lg btn-primary btn-block" type="submit" id="Registrate">Registrate</button>
     </form>
@@ -275,8 +274,8 @@
 
     </div>
   </div>
-</div>            
-            
+</div>
+
 		<footer>
 			<div id="footer">
 				<div class="container">
@@ -344,7 +343,7 @@
 			</div>
 		</footer>
 
-	
+
 
 	</div>
 	<!-- END fh5co-page -->
@@ -352,7 +351,7 @@
 	</div>
 	<!-- END fh5co-wrapper -->
 
-                
+
 	<!-- jQuery -->
 
 	<script src="js/jquery.min.js"></script>
@@ -377,11 +376,11 @@
 	<!-- CS Select -->
 	<script src="js/classie.js"></script>
 	<script src="js/selectFx.js"></script>
-	
+
 	<!-- Main JS -->
 	<script src="js/main.js"></script>
 
-        
+
     <script>
           $(document).on('click', '#Login', function () {
               $("#loginModal").modal("show");
@@ -389,14 +388,13 @@
           $(document).on('click', '#Registro', function () {
               $("#RegistroModal").modal("show");
            });
-        
+
         $(document).on('click', '#goRegistroLogin', function () {
               $("#RegistroModal").modal("hide");
-              $("#loginModal").modal("show");              
+              $("#loginModal").modal("show");
            });
-		
+
     </script>
-    
+
 	</body>
 </html>
-
