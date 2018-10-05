@@ -127,7 +127,7 @@ figure {
   -o-transform: scale(1.2);
   transform: scale(1.2);
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 2560px) {
   .header-top .fh5co-social {
     text-align: center !important;
   }
@@ -136,12 +136,12 @@ figure {
 .fh5co-cover,
 .fh5co-hero {
   position: relative;
-  height: 800px;
+  min-height: 950px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 2560px) {
   .fh5co-cover,
   .fh5co-hero {
-    height: 700px;
+    min-height: 950px;
   }
 }
 .fh5co-cover .fh5co-overlay,
@@ -167,7 +167,7 @@ figure {
   background-size: cover;
   position: relative;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 2560px) {
   .fh5co-cover {
     heifght: inherit;
     padding: 3em 0;
@@ -180,7 +180,7 @@ figure {
 .fh5co-cover.fh5co-cover_2 {
   height: 600px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 2560px) {
   .fh5co-cover.fh5co-cover_2 {
     heifght: inherit;
     padding: 3em 0;
@@ -190,7 +190,7 @@ figure {
   top: 40%;
   position: absolute;
   width: 100%;
-  margin-top: -80px;
+  margin-top: -160px;
   z-index: 2;
   color: #fff;
 }
