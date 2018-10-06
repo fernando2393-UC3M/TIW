@@ -231,7 +231,7 @@
           <input type="checkbox" value="remember-me"> Recordarme
         </label>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="button" id="IniciaSesion"  onclick="window.location.href = 'registrado.jsp'">Inicia sesión</button>
+      <button class="btn btn-lg btn-primary btn-block" type="button" id="IniciaSesion"  onclick="admin()">Inicia sesión</button>
     </form>
 
       </div>
@@ -394,6 +394,20 @@
               $("#loginModal").modal("show");
            });
 
+    </script>
+    
+    <script>
+    function admin(){
+    	var mail = document.getElementById("loginEmail").value;
+    	var password = document.getElementById("loginPassword").value;
+    	
+    	if (mail === "admin@tiw.com" && password === "admin") {
+    		window.location.href = "admin.jsp";
+    	}
+    	else {
+    		window.location.href = "registrado.jsp";
+    	}
+    }
     </script>
 
 	</body>
