@@ -141,7 +141,7 @@
 						<div href="#"><img src="images/place-1.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
 							<div class="desc">
 								<span></span>
-								<h3>CÃ©ntrico y tranquilo</h3>
+								<h3>Céntrico y tranquilo</h3>
 								<span>Apartamento entero. 2 camas</span>
 								<span class="price">65€</span>
 								<a class="btn btn-primary btn-outline" href="#">Seleccionar <i class="icon-arrow-right22"></i></a>
