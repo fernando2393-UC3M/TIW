@@ -107,6 +107,7 @@
 					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
 						<div href="#"><img src="images/place-1.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
 							<div class="desc">
+							<a>Modificar Información</a>
 								<span></span>
 								<h3>Estudio en Sol</h3>
 								<span>Apartamento entero. 2 camas</span>
