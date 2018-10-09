@@ -185,7 +185,7 @@
 												</section>
 											</div>
 											<div class="col-xs-12">
-												<input type="submit" class="btn btn-primary btn-block" value="Buscar">
+												<input onclick="location.href='resultados.jsp'" type="submit" class="btn btn-primary btn-block" value="Buscar">
 											</div>
                                         </div>
 				                    </div>
