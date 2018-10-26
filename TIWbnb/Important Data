@@ -21,6 +21,10 @@ For DB:
 	
 	name: tiwbnb_ds
 	
+persistence.xml (TIWbnb):
+	@General
+	name: TIWbnb
+	
 	
 Database name in SPS (JPA Connection): TIWMySQL
 	
