@@ -111,7 +111,7 @@
 								<h3>Estudio en Sol</h3>
 								<span>Apartamento entero. 2 camas</span>
 								<span class="price">60€</span>
-								<a class="btn btn-primary btn-outline" href="#">Seleccionar <i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
@@ -122,7 +122,7 @@
 								<h3>Apartamento junto a Gran Via</h3>
 								<span>Apartamento entero. 1 cama</span>
 								<span class="price">70€</span>
-								<a class="btn btn-primary btn-outline" href="#">Seleccionar <i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
@@ -133,7 +133,7 @@
 								<h3>Piso frente al Palacio Real</h3>
 								<span>Loft entero. 2 camas</span>
 								<span class="price">80€</span>
-								<a class="btn btn-primary btn-outline" href="#">Seleccionar <i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
@@ -144,7 +144,7 @@
 								<h3>Céntrico y tranquilo</h3>
 								<span>Apartamento entero. 2 camas</span>
 								<span class="price">65€</span>
-								<a class="btn btn-primary btn-outline" href="#">Seleccionar <i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
@@ -155,7 +155,7 @@
 								<h3>Stunning Apartment in Sol</h3>
 								<span>Apartamento entero. 2 camas</span>
 								<span class="price">50€</span>
-								<a class="btn btn-primary btn-outline" href="#">Seleccionar <i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
@@ -166,7 +166,7 @@
 								<h3>Pretty Apartment in Plaza Mayor</h3>
 								<span>Apartamento entero. 1 cama</span>
 								<span class="price">30€</span>
-								<a class="btn btn-primary btn-outline" href="#">Seleccionar <i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
