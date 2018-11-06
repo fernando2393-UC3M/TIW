@@ -1,4 +1,4 @@
-
+package testing;
 
 import java.io.IOException;
 import java.util.List;
@@ -62,9 +62,7 @@ ServletContext context = getServletContext();
 ////////////////////////////////////////////////////////////////////////////////////////
 public void doGet(HttpServletRequest req, HttpServletResponse res) 
 throws IOException, ServletException {
-
-	
-
+/*
 	// Establece el Content Type
 	PrintWriter out = res.getWriter();
 	
@@ -94,7 +92,7 @@ throws IOException, ServletException {
 		// TODO Auto-generated catch block
 		e1.printStackTrace();
 	}
-	
+	*/
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////  	
