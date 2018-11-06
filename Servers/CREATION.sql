@@ -34,7 +34,7 @@ CREATE TABLE HOME (
   HOME_TYPE VARCHAR(3) NOT NULL,
   HOME_GUESTS INT(3) NOT NULL,
   HOME_PHOTOS VARCHAR(45),
-  HOME_PRICE_NIGHT DECIMAL(3,2) NOT NULL,
+  HOME_PRICE_NIGHT DECIMAL(6,2) NOT NULL,
   HOME_AV_DATE_INIT DATE NOT NULL,
   HOME_AV_DATE_FIN DATE NOT NULL,
   CONSTRAINT PK_HOME PRIMARY KEY (HOME_ID),
@@ -59,4 +59,20 @@ CREATE TABLE BOOKING (
   CONSTRAINT FK_BOOKING2 FOREIGN KEY (BOOKING_NAME_HOME, BOOKING_EMAIL_HOME) REFERENCES HOME (HOME_NAME, HOME_EMAIL) ON DELETE CASCADE
 );
 
-INSERT INTO `USER` (user_id, user_email, user_name, user_surname, user_password) VALUES (1, 'mail@ibm.com', 'Fernando', 'Surname', 'secret');
+INSERT INTO `USER` VALUES (1, 'mail@ibm.com', 'Fernando', 'Garcia', 'secret');
+INSERT INTO `USER` VALUES (2, 'mail@redsys.es', 'Fernando', 'Piqueras', 'password');
+INSERT INTO `USER` VALUES (3, 'toni@ibm.com', 'Toni', 'Surname', 'tony');
+INSERT INTO `USER` VALUES (4, 'guille@ibm.com', 'Guille', 'Surname', 'guille');
+INSERT INTO `USER` VALUES (5, 'example@ibm.com', 'dummy', 'Insert', 'secret');
+INSERT INTO `USER` VALUES (6, 'example@amazon.com', 'user', 'Surname', 'user');
+
+INSERT INTO `ADMIN` VALUE (1, 'sysadmin');
+INSERT INTO `ADMIN` VALUE (2, 'ibm');
+INSERT INTO `ADMIN` VALUE (3, 'tzarraon@inf.uc3m.es');
+
+INSERT INTO `HOME` VALUE (1, 'Loft', 'mail@ibm.com', 'Madrid', 'Full Description', 'Short Description', 
+'apt', 5, 'path/image/loft', 420, '20180101', '20181231');
+INSERT INTO `HOME` VALUE (2, 'Condo', 'mail@ibm.com', 'NY', 'Full Description', 'Short Description', 
+'pri', 1, 'path/image/condo', 70, '20180101', '20181231');
+INSERT INTO `HOME` VALUE (3, 'Suite', 'mail@redsys.es', 'Madrid', 'Full Description', 'Short Description', 
+'apt', 3, 'path/image/suite', 1337.70, '20180101', '20181231');
