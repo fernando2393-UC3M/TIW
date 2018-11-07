@@ -223,7 +223,7 @@
         <h1 class="h3 mb-3 font-weight-normal">Iniciar sesión para continuar</h1>
       </div>
       <div class="modal-body">
-          <form class="form-signin">
+          <form class="form-signin" METHOD="POST" ACTION="/main/LoginServlet">
       <input type="email" id="loginEmail" class="form-control" placeholder="Dirección de correo electrónico" required autofocus>
       <input type="password" id="loginPassword" class="form-control" placeholder="Contraseña" required>
       <div class="checkbox mb-3">
