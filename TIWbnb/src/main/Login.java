@@ -30,7 +30,7 @@ public class Login {
 			// Load Driver
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			// Connect to the database
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tiwbnb");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tiwbnb", "root", "admin");
 			System.out.println("Sucessful connection");
 		} catch (Exception e) {
 			System.out.println("Error when connecting to the database ");
@@ -53,20 +53,18 @@ public class Login {
 		}
 	}
 
-	public void Check() {
+	public int Check(String input_mail, String input_password) {
+		int ret = -1;
 		try {
 			while (rs.next()) {
 				String mail = rs.getString("USER_EMAIL");
 				String password = rs.getString("USER_PASSWORD");
 
-				String input_mail = "";
-				String input_password = "";
-
 				// Check for login
 
 				if (input_mail.equals(mail)) {
 					if (input_password.equals(password)) {
-
+						ret = 0;
 						//Login performed
 					}
 				}
@@ -77,5 +75,7 @@ public class Login {
 		catch (Exception e) {
 			System.out.println("Error when visualizing information");
 		}
+		
+		return ret;
 	}
 }

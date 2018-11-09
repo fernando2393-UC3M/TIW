@@ -223,15 +223,15 @@
         <h1 class="h3 mb-3 font-weight-normal">Iniciar sesión para continuar</h1>
       </div>
       <div class="modal-body">
-          <form class="form-signin" METHOD="POST" ACTION="/main/LoginServlet">
-      <input type="email" id="loginEmail" class="form-control" placeholder="Dirección de correo electrónico" required autofocus>
-      <input type="password" id="loginPassword" class="form-control" placeholder="Contraseña" required>
+          <form class="form-signin" METHOD="POST" ACTION="login">
+      <input type="email" id="loginEmail" name="loginEmail" class="form-control" placeholder="Dirección de correo electrónico" required autofocus>
+      <input type="password" id="loginPassword" name="loginPassword" class="form-control" placeholder="Contraseña" required>
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Recordarme
         </label>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="button" id="IniciaSesion"  onclick="admin()">Inicia sesión</button>
+      <input class="btn btn-lg btn-primary btn-block" type="submit" id="IniciaSesion" value="Inicia sesión">
     </form>
 
       </div>
@@ -396,19 +396,6 @@
 
     </script>
     
-    <script>
-    function admin(){
-    	var mail = document.getElementById("loginEmail").value;
-    	var password = document.getElementById("loginPassword").value;
-    	
-    	if (mail === "admin@tiw.com" && password === "admin") {
-    		window.location.href = "admin.jsp";
-    	}
-    	else {
-    		window.location.href = "registrado.jsp";
-    	}
-    }
-    </script>
 
 	</body>
 </html>

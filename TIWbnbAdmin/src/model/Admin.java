@@ -22,6 +22,9 @@ public class Admin implements Serializable {
 	@Column(name="ADMIN_EMAIL")
 	private String adminEmail;
 
+	@Column(name="USER_PASSWORD")
+	private String userPassword;
+
 	public Admin() {
 	}
 
@@ -39,6 +42,14 @@ public class Admin implements Serializable {
 
 	public void setAdminEmail(String adminEmail) {
 		this.adminEmail = adminEmail;
+	}
+
+	public String getUserPassword() {
+		return this.userPassword;
+	}
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
 
 }

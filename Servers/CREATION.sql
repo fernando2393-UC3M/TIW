@@ -20,6 +20,7 @@ CREATE TABLE USER (
 CREATE TABLE ADMIN (
   ADMIN_ID INT NOT NULL,
   ADMIN_EMAIL VARCHAR(25) NOT NULL,
+  USER_PASSWORD VARCHAR(20) NOT NULL,
   CONSTRAINT PK_ADMIN PRIMARY KEY (ADMIN_ID),
   CONSTRAINT UNIQUE_ADMIN UNIQUE (ADMIN_EMAIL)
 );
@@ -64,9 +65,9 @@ INSERT INTO `USER` VALUES (4, 'guille@ibm.com', 'Guille', 'Surname', 'guille');
 INSERT INTO `USER` VALUES (5, 'example@ibm.com', 'dummy', 'Insert', 'secret');
 INSERT INTO `USER` VALUES (6, 'example@amazon.com', 'user', 'Surname', 'user');
 
-INSERT INTO `ADMIN` VALUE (1, 'sysadmin');
-INSERT INTO `ADMIN` VALUE (2, 'ibm');
-INSERT INTO `ADMIN` VALUE (3, 'tzarraon@inf.uc3m.es');
+INSERT INTO `ADMIN` VALUE (1, 'sysadmin', 'admin');
+INSERT INTO `ADMIN` VALUE (2, 'ibm', 'admin');
+INSERT INTO `ADMIN` VALUE (3, 'tzarraon@inf.uc3m.es', 'admin');
 
 INSERT INTO `HOME` VALUE (1, 'Loft', 'mail@ibm.com', 'Madrid', 'Full Description', 'Short Description', 
 'apt', 5, 'path/image/loft', 420, '20180101', '20181231');
