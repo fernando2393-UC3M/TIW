@@ -145,7 +145,6 @@ throws IOException, ServletException {
 		if(requestURL.toString().equals(path+"login")){
 			Login loginInstance = new Login();
 			loginInstance.openConnection();
-			loginInstance.retrieveTableData();
 			int ret = loginInstance.Check(req.getParameter("loginEmail"), req.getParameter("loginPassword"));
 			
 			if(ret == 0){
