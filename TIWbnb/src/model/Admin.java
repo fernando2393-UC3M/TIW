@@ -22,8 +22,8 @@ public class Admin implements Serializable {
 	@Column(name="ADMIN_EMAIL")
 	private String adminEmail;
 
-	@Column(name="USER_PASSWORD")
-	private String userPassword;
+	@Column(name="ADMIN_PASSWORD")
+	private String adminPassword;
 
 	public Admin() {
 	}
