@@ -44,12 +44,12 @@ public class Admin implements Serializable {
 		this.adminEmail = adminEmail;
 	}
 
-	public String getUserPassword() {
-		return this.userPassword;
+	public String getAdminPassword() {
+		return this.adminPassword;
 	}
 
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+	public void setAdminPassword(String adminPassword) {
+		this.adminPassword = adminPassword;
 	}
 
 }

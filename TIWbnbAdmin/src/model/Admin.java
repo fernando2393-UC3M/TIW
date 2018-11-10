@@ -22,8 +22,8 @@ public class Admin implements Serializable {
 	@Column(name="ADMIN_EMAIL")
 	private String adminEmail;
 
-	@Column(name="USER_PASSWORD")
-	private String userPassword;
+	@Column(name="ADMIN_PASSWORD")
+	private String adminPassword;
 
 	public Admin() {
 	}
@@ -44,12 +44,12 @@ public class Admin implements Serializable {
 		this.adminEmail = adminEmail;
 	}
 
-	public String getUserPassword() {
-		return this.userPassword;
+	public String getAdminPassword() {
+		return this.adminPassword;
 	}
 
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+	public void setAdminPassword(String adminPassword) {
+		this.adminPassword = adminPassword;
 	}
 
 }
