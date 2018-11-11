@@ -122,32 +122,32 @@
 													<div class="col-xxs-12 col-xs-12 mt">
 														<div class="input-field">
 															<label for="name">Nombre:</label> <input type="text"
-																class="form-control" id="name" placeholder="John" />
+																class="form-control" id="name" name="name" placeholder="John" />
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-12 mt alternate">
 														<div class="input-field">
 															<label for="surname">Apellidos:</label> <input
-																type="text" class="form-control" id="surname"
+																type="text" class="form-control" id="surname" name="surname"
 																placeholder="Doe" />
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-12 mt alternate">
 														<div class="input-field">
 															<label for="birthdate">Fecha de Nacimiento:</label> <input
-																type="date" class="form-control" id="birthdate" />
+																type="date" class="form-control" id="birthdate" name="birthdate"/>
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="psw">Nueva Contraseña:</label> <input
-																type="password" class="form-control" id="psw" />
+																type="password" class="form-control" id="psw" name="password"/>
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="psw1">Reintroduce Contraseña:</label> <input
-																type="password" class="form-control" id="psw1"/>
+																type="password" class="form-control" id="psw1" name="password1"/>
 														</div>
 													</div>                                            
 

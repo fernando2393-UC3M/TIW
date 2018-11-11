@@ -31,6 +31,9 @@ public class User implements Serializable {
 
 	@Column(name="USER_SURNAME")
 	private String userSurname;
+	
+	@Column(name="USER_BIRTHDATE")
+	private String userBirthdate;
 
 	//bi-directional many-to-one association to Booking
 	@OneToMany(mappedBy="user")
@@ -81,6 +84,14 @@ public class User implements Serializable {
 
 	public void setUserSurname(String userSurname) {
 		this.userSurname = userSurname;
+	}
+	
+	public String getUserBirthdate() {
+		return this.userBirthdate;
+	}
+
+	public void setUserBirthdate(String userBirthdate) {
+		this.userBirthdate = userBirthdate;
 	}
 
 	public List<Booking> getBookings() {

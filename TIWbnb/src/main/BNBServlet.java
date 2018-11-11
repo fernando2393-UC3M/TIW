@@ -90,6 +90,20 @@ throws IOException, ServletException {
 	}
 	else if(requestURL.equals(path+"registrado")){
 		ReqDispatcher =req.getRequestDispatcher("registrado.jsp");
+		
+		// Execute method to get registered user information and fill the form with it
+		
+//		Registrado registrado = new Registrado();
+//		
+//		
+//		  String a = registrado.email;
+//		  String b = registrado.name;
+//		  String c = registrado.surname;
+//		  String d = registrado.password;
+//		  String e = registrado.birthdate;
+		
+		
+		
 	}
 	else if(requestURL.equals(path+"login")){
 		ReqDispatcher =req.getRequestDispatcher("index.jsp");
@@ -140,7 +154,7 @@ throws IOException, ServletException {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) 
 	throws IOException, ServletException {
 
-		RequestDispatcher dispatcher;
+		RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
 
 		// Here we get the current URL requested by the user
 		
@@ -161,10 +175,22 @@ throws IOException, ServletException {
 				dispatcher = req.getRequestDispatcher("index.jsp");				
 			}
 		}
-		else {
-			dispatcher =req.getRequestDispatcher("index.jsp");
-		}
 		
+		else if(requestURL.toString().equals(path+"registrado.jsp")){
+
+			// First get introduced values
+			
+//			String name = req.getParameter("name");
+//			String surname = req.getParameter("surname");
+//			String password = req.getParameter("password");
+//			String password1 = req.getParameter("password1");
+//			String birthdate = req.getParameter("birthdate");
+			
+			// Password equality check
+			
+			// Save new data in DB
+			
+		}
 		// Forward to requested URL by user
 		
 		dispatcher.forward(req, res);

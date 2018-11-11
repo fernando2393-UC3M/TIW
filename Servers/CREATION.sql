@@ -13,6 +13,7 @@ CREATE TABLE USER (
   USER_NAME VARCHAR(50) NOT NULL,
   USER_SURNAME VARCHAR(20) NOT NULL,
   USER_PASSWORD VARCHAR(20) NOT NULL,
+  USER_BIRTHDATE DATE NOT NULL,
   CONSTRAINT PK_USER PRIMARY KEY (USER_ID),
   CONSTRAINT UNIQUE_USER UNIQUE (USER_EMAIL)
 );
@@ -58,12 +59,12 @@ CREATE TABLE BOOKING (
   CONSTRAINT FK_BOOKING2 FOREIGN KEY (BOOKING_HOME_ID) REFERENCES HOME (HOME_ID) ON DELETE CASCADE
 );
 
-INSERT INTO `USER` VALUES (1, 'mail@ibm.com', 'Fernando', 'Garcia', 'secret');
-INSERT INTO `USER` VALUES (2, 'mail@redsys.es', 'Fernando', 'Piqueras', 'password');
-INSERT INTO `USER` VALUES (3, 'toni@ibm.com', 'Toni', 'Surname', 'tony');
-INSERT INTO `USER` VALUES (4, 'guille@ibm.com', 'Guille', 'Surname', 'guille');
-INSERT INTO `USER` VALUES (5, 'example@ibm.com', 'dummy', 'Insert', 'secret');
-INSERT INTO `USER` VALUES (6, 'example@amazon.com', 'user', 'Surname', 'user');
+INSERT INTO `USER` VALUES (1, 'mail@ibm.com', 'Fernando', 'Garcia', 'secret', '1997-07-18');
+INSERT INTO `USER` VALUES (2, 'mail@redsys.es', 'Fernando', 'Piqueras', 'password', '1997-06-15');
+INSERT INTO `USER` VALUES (3, 'toni@ibm.com', 'Toni', 'Surname', 'tony', '1997-06-11');
+INSERT INTO `USER` VALUES (4, 'guille@ibm.com', 'Guille', 'Surname', 'guille', '1997-03-15');
+INSERT INTO `USER` VALUES (5, 'example@ibm.com', 'dummy', 'Insert', 'secret', '2017-06-15');
+INSERT INTO `USER` VALUES (6, 'example@amazon.com', 'user', 'Surname', 'user', '2011-09-19');
 
 INSERT INTO `ADMIN` VALUE (1, 'sysadmin', 'admin');
 INSERT INTO `ADMIN` VALUE (2, 'ibm', 'admin');
