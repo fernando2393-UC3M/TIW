@@ -63,7 +63,8 @@ public class BNBServlet extends HttpServlet {
 ////////////////////////////////////////////////////////////////////////////////////////
 public void init() {
 
-// Lee del contexto de servlet
+// It reads servelt's context
+	
 ServletContext context = getServletContext();
 }
 
@@ -141,7 +142,12 @@ throws IOException, ServletException {
 
 		RequestDispatcher dispatcher;
 
+		// Here we get the current URL requested by the user
+		
 		String requestURL = req.getRequestURL().toString();
+		
+		// Login case
+		
 		if(requestURL.toString().equals(path+"login")){
 			Login loginInstance = new Login();
 			loginInstance.openConnection();
@@ -158,6 +164,9 @@ throws IOException, ServletException {
 		else {
 			dispatcher =req.getRequestDispatcher("index.jsp");
 		}
+		
+		// Forward to requested URL by user
+		
 		dispatcher.forward(req, res);
 	}
 }
