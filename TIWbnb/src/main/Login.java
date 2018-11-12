@@ -24,6 +24,7 @@ public class Login {
 	Connection con;
 	Statement st;
 	ResultSet rs;
+	int id;
 
 	public void openConnection () {
 		try {
@@ -87,6 +88,7 @@ public class Login {
 
 				if (input_mail.equals(mail)) {
 					if (input_password.equals(password)) {
+						id = rs.getInt("USER_ID");
 						return ret = 0;
 						//Login performed
 					}
@@ -115,6 +117,7 @@ public class Login {
 
 				if (input_mail.equals(mail)) {
 					if (input_password.equals(password)) {
+						id = rs.getInt("ADMIN_ID");
 						return ret = 1;
 						//Login performed
 					}

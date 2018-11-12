@@ -76,6 +76,7 @@ throws IOException, ServletException {
 	RequestDispatcher ReqDispatcher;
 
 	String requestURL = req.getRequestURL().toString();
+	
 	if(requestURL.toString().equals(path+"admin")){
 		ReqDispatcher =req.getRequestDispatcher("admin.jsp");
 	}
@@ -89,21 +90,7 @@ throws IOException, ServletException {
 		ReqDispatcher =req.getRequestDispatcher("mensajes.jsp");
 	}
 	else if(requestURL.equals(path+"registrado")){
-		ReqDispatcher =req.getRequestDispatcher("registrado.jsp");
-		
-		// Execute method to get registered user information and fill the form with it
-		
-//		Registrado registrado = new Registrado();
-//		
-//		
-//		  String a = registrado.email;
-//		  String b = registrado.name;
-//		  String c = registrado.surname;
-//		  String d = registrado.password;
-//		  String e = registrado.birthdate;
-		
-		
-		
+		ReqDispatcher =req.getRequestDispatcher("registrado.jsp");		
 	}
 	else if(requestURL.equals(path+"login")){
 		ReqDispatcher =req.getRequestDispatcher("index.jsp");
@@ -166,13 +153,27 @@ throws IOException, ServletException {
 			Login loginInstance = new Login();
 			loginInstance.openConnection();
 			int ret = loginInstance.Check(req.getParameter("loginEmail"), req.getParameter("loginPassword"));
+			int id = loginInstance.id;
 			
 			if(ret == 0){
-				dispatcher = req.getRequestDispatcher("registrado.jsp");				
+				dispatcher = req.getRequestDispatcher("registrado.jsp");
+				// Forward to requested URL by user
+				
+				Registrado registrado = new Registrado();
+				registrado.getUserData(id);
+				
+				dispatcher.forward(req, res);
+				
 			} else if(ret == 1){
-				dispatcher = req.getRequestDispatcher("admin.jsp");	
+				dispatcher = req.getRequestDispatcher("admin.jsp");
+				// Forward to requested URL by user
+				dispatcher.forward(req, res);
+				
 			} else {
-				dispatcher = req.getRequestDispatcher("index.jsp");				
+				dispatcher = req.getRequestDispatcher("index.jsp");
+				// Forward to requested URL by user
+				dispatcher.forward(req, res);
+				
 			}
 		}
 		
@@ -191,8 +192,5 @@ throws IOException, ServletException {
 			// Save new data in DB
 			
 		}
-		// Forward to requested URL by user
-		
-		dispatcher.forward(req, res);
 	}
 }
