@@ -14,12 +14,12 @@
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FREEHTML5.CO" />
 
-  <!-- 
+  <!--
 	//////////////////////////////////////////////////////
 
-	FREE HTML5 TEMPLATE 
+	FREE HTML5 TEMPLATE
 	DESIGNED & DEVELOPED by FREEHTML5.CO
-		
+
 	Website: 		http://freehtml5.co/
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
@@ -43,7 +43,7 @@
 	<link rel="shortcut icon" href="favicon.ico">
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
-	
+
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -59,7 +59,7 @@
 	<!-- CS Select -->
 	<link rel="stylesheet" href="css/cs-select.css">
 	<link rel="stylesheet" href="css/cs-skin-border.css">
-	
+
 	<link rel="stylesheet" href="css/style.css">
 
 	<link rel="stylesheet" href="css/messaging.css">
@@ -86,7 +86,7 @@
 							<li class="active"><a href="registrado.jsp">Home</a></li>
 							<li ><a href="viajes.jsp">Viajes</a></li>
 							<li ><a href="renting.jsp">Mis Alojamientos</a></li>
-							<li ><a href="mensajes.jsp">Mensajes</a></li>                                
+							<li ><a href="mensajes.jsp">Mensajes</a></li>
 							<li><a href="registrado.jsp">Perfil</a></li>
 							<li><a href="index.jsp">Cerrar Sesión</a></li>
 						</ul>
@@ -96,7 +96,7 @@
 		</header>
 
 		<!-- end:header-top -->
-	
+
 		<div class="fh5co-hero">
 			<div class="fh5co-overlay"></div>
 			<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_5.jpg);">
@@ -119,6 +119,9 @@
 									 <div role="tabpanel" class="tab-pane active" id="hotels">
 									 	<div class="row">
 													<div class="col-xxs-12 col-xs-12 mt">
+
+													<form class="form-signin" METHOD="POST" ACTION="registerHouse">
+
 														<div class="input-field">
 															<label for="name">Nombre:</label> <input type="text"
 																class="form-control" id="name" placeholder="Casa en Sol" />
@@ -165,24 +168,25 @@
 															<label for="price">Precio por Noche:</label> <input
 																type="number" class="form-control" id="price" placeholder="40€"/>
 														</div>
-													</div>         
+													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="date0">Fecha Inicial:</label> <input
 																type="date" class="form-control" id="date0"/>
 														</div>
-													</div>            
+													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="date1">Fecha Final:</label> <input
 																type="date" class="form-control" id="date1"/>
 														</div>
-													</div>                                               
+													</div>
 
 											<div class="col-xs-12">
-												<input type="button" class="btn btn-primary btn-block" value="Registrar Alojamiento" onclick="savedInfo()">
+												<input type="submit" class="btn btn-primary btn-block" value="Registrar Alojamiento" onclick="savedInfo()">
 											</div>
-                                        </div>
+										</form>
+                  </div>
 				                    </div>
 								 </div>
 
@@ -194,8 +198,8 @@
 				</div>
 			</div>
 
-		</div>                   
-            
+		</div>
+
 		<footer>
 			<div id="footer">
 				<div class="container">
@@ -263,7 +267,7 @@
 			</div>
 		</footer>
 
-	
+
 
 	</div>
 	<!-- END fh5co-page -->
@@ -271,7 +275,7 @@
 	</div>
 	<!-- END fh5co-wrapper -->
 
-                
+
 	<!-- jQuery -->
 
 	<script src="js/jquery.min.js"></script>
@@ -296,16 +300,16 @@
 	<!-- CS Select -->
 	<script src="js/classie.js"></script>
 	<script src="js/selectFx.js"></script>
-	
+
 	<!-- Main JS -->
 	<script src="js/main.js"></script>
-	
+
 	<script>
 	function savedInfo() {
 		alert("Alojamiento registrado con éxito.");
 	}
 	</script>
 
-        
+
 	</body>
 </html>
