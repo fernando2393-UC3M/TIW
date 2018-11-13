@@ -120,7 +120,7 @@
 									 	<div class="row">
 													<div class="col-xxs-12 col-xs-12 mt">
 
-													<form class="form-signin" METHOD="POST" ACTION="registerHouse">
+
 
 														<div class="input-field">
 															<label for="name">Nombre:</label> <input type="text"
@@ -175,6 +175,7 @@
 																type="date" class="form-control" id="date0"/>
 														</div>
 													</div>
+													<form class="form-signin" METHOD="POST" ACTION="casa">
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="date1">Fecha Final:</label> <input
