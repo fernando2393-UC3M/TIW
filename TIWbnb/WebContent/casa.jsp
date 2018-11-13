@@ -118,6 +118,7 @@
 								   <!-- Tab panes -->
 									<div class="tab-content">
 									 <div role="tabpanel" class="tab-pane active" id="hotels">
+									 <form class="form-signin" METHOD="POST" ACTION="casa">
 									 	<div class="row">
 													<div class="col-xxs-12 col-xs-12 mt">
 
@@ -125,13 +126,13 @@
 
 														<div class="input-field">
 															<label for="name">Nombre:</label> <input type="text"
-																class="form-control" id="name" placeholder="Casa en Sol" />
+																class="form-control" id="name" name="houseName" placeholder="Casa en Sol" />
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-12 mt alternate">
 														<div class="input-field">
 															<label for="desc">Descripción:</label> <input
-																type="text" class="form-control" id="desc"
+																type="text" class="form-control" id="desc" name="houseDesc"
 																placeholder="Casa muy luminosa..." />
 														</div>
 													</div>
@@ -176,7 +177,7 @@
 																type="date" class="form-control" id="date0"/>
 														</div>
 													</div>
-													<form class="form-signin" METHOD="POST" ACTION="casa">
+													<!-- <form class="form-signin" METHOD="POST" ACTION="casa"> -->
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="date1">Fecha Final:</label> <input
@@ -185,8 +186,9 @@
 													</div>
 
 											<div class="col-xs-12">
-												<input type="submit" class="btn btn-primary btn-block" value="Registrar Alojamiento" onclick="savedInfo()">
+												<input type="submit" name="submitHouse" class="btn btn-primary btn-block" value="Registrar Alojamiento">
 											</div>
+										<!-- </form> -->
 										</form>
                   </div>
 				                    </div>

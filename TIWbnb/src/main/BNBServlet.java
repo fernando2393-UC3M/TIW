@@ -209,5 +209,22 @@ public class BNBServlet extends HttpServlet {
 			dispatcher.forward(req, res);			
 			
 		}
+
+		else if(requestURL.toString().equals(path+"casa")){
+			dispatcher = req.getRequestDispatcher("casa.jsp");
+			AddHouse houseInstance = new AddHouse();
+			String str= houseInstance.RegisterHouse(req.getParameter("houseName"), req.getParameter("housePass"));
+			System.out.println(str);
+			
+			if(str != null){
+				dispatcher = req.getRequestDispatcher("viajes.jsp");
+				dispatcher.forward(req, res);
+			}
+			else{
+				dispatcher = req.getRequestDispatcher("mensajes.jsp");
+				dispatcher.forward(req, res);
+			}
+			
+		}
 	}
 }
