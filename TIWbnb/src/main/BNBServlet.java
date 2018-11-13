@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import javax.persistence.Query;
+import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.EntityManagerFactory;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -58,59 +59,61 @@ public class BNBServlet extends HttpServlet {
 	
 	String path = "http://localhost:8080/TIWbnb/";
 	
+	ServletContext context;
+	
 	 
 ////////////////////////////////////////////////////////////////////////////////////////
-public void init() {
+	public void init() {
 
-// It reads servelt's context
-	
-ServletContext context = getServletContext();
-}
+		// It reads servelt's context
+
+		context = getServletContext();
+	}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-public void doGet(HttpServletRequest req, HttpServletResponse res) 
-throws IOException, ServletException {
+	public void doGet(HttpServletRequest req, HttpServletResponse res) 
+			throws IOException, ServletException {
 
-	RequestDispatcher ReqDispatcher;
+		RequestDispatcher ReqDispatcher;
 
-	String requestURL = req.getRequestURL().toString();
-	
-	if(requestURL.toString().equals(path+"admin")){
-		ReqDispatcher =req.getRequestDispatcher("admin.jsp");
-	}
-	else if(requestURL.equals(path+"alojamiento")){
-		ReqDispatcher =req.getRequestDispatcher("alojamiento.jsp");
-	}
-	else if(requestURL.equals(path+"casa")){
-		ReqDispatcher =req.getRequestDispatcher("casa.jsp");
-	}
-	else if(requestURL.equals(path+"mensajes")){
-		ReqDispatcher =req.getRequestDispatcher("mensajes.jsp");
-	}
-	else if(requestURL.equals(path+"registrado")){
-		ReqDispatcher =req.getRequestDispatcher("registrado.jsp");		
-	}
-	else if(requestURL.equals(path+"login")){
-		ReqDispatcher =req.getRequestDispatcher("index.jsp");
-	}
-	else if(requestURL.equals(path+"renting")){
-		ReqDispatcher =req.getRequestDispatcher("renting.jsp");					
-	}
-	else if(requestURL.equals(path+"resultados")){
-		ReqDispatcher =req.getRequestDispatcher("resultados.jsp");				
-	}
-	else {
-		ReqDispatcher =req.getRequestDispatcher("index.jsp");
-	}
-	ReqDispatcher.forward(req, res);
-	
-	
-	/* Standard Query*/
-	/*
+		String requestURL = req.getRequestURL().toString();
+
+		if(requestURL.toString().equals(path+"admin")){
+			ReqDispatcher =req.getRequestDispatcher("admin.jsp");
+		}
+		else if(requestURL.equals(path+"alojamiento")){
+			ReqDispatcher =req.getRequestDispatcher("alojamiento.jsp");
+		}
+		else if(requestURL.equals(path+"casa")){
+			ReqDispatcher =req.getRequestDispatcher("casa.jsp");
+		}
+		else if(requestURL.equals(path+"mensajes")){
+			ReqDispatcher =req.getRequestDispatcher("mensajes.jsp");
+		}
+		else if(requestURL.equals(path+"registrado")){
+			ReqDispatcher =req.getRequestDispatcher("registrado.jsp");		
+		}
+		else if(requestURL.equals(path+"login")){
+			ReqDispatcher =req.getRequestDispatcher("index.jsp");
+		}
+		else if(requestURL.equals(path+"renting")){
+			ReqDispatcher =req.getRequestDispatcher("renting.jsp");					
+		}
+		else if(requestURL.equals(path+"resultados")){
+			ReqDispatcher =req.getRequestDispatcher("resultados.jsp");				
+		}
+		else {
+			ReqDispatcher =req.getRequestDispatcher("index.jsp");
+		}
+		ReqDispatcher.forward(req, res);
+
+
+		/* Standard Query*/
+		/*
 	// Establece el Content Type
 	PrintWriter out = res.getWriter();
-	
+
 	try {
 		ut.begin();
 	} catch (NotSupportedException | SystemException e2) {
@@ -119,14 +122,14 @@ throws IOException, ServletException {
 	}
 	String stringQ1 = "SELECT s FROM User s";
 	Query query1 = em.createQuery(stringQ1);
-	
+
 	List results = query1.getResultList();
 	out.println("Query1:");
 	for(Object obj: results){
 		out.println( ((User) obj).getUserName() );
 	}
-	
-	
+
+
 	try {
 		ut.commit();
 	} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
@@ -138,7 +141,7 @@ throws IOException, ServletException {
 
 	////////////////////////////////////////////////////////////////////////////////////////  	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) 
-	throws IOException, ServletException {
+			throws IOException, ServletException {
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
 
@@ -155,6 +158,10 @@ throws IOException, ServletException {
 
 			if (result != null) { //User match
 				dispatcher = req.getRequestDispatcher("registrado.jsp");
+				
+				// Save user in servlet context
+				context.setAttribute("User", result); 
+
 				// Forward to requested URL by user
 				dispatcher.forward(req, res);				
 			}
@@ -164,6 +171,10 @@ throws IOException, ServletException {
 
 				if (result != null) { //Admin match
 					dispatcher = req.getRequestDispatcher("admin.jsp");
+					
+					// Save admin in servlet context
+					context.setAttribute("Admin", result); 
+					
 					// Forward to requested URL by user
 					dispatcher.forward(req, res);
 				}
@@ -175,52 +186,6 @@ throws IOException, ServletException {
 				}
 
 			}
-			
-			
-//			try {
-//				String mail = result.getString("USER_EMAIL");
-//				String password = result.getString("USER_PASSWORD");
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-
-//			if(ret == 0){
-//				dispatcher = req.getRequestDispatcher("registrado.jsp");
-//				// Forward to requested URL by user
-//				
-//				Registrado registrado = new Registrado();
-//				registrado.getUserData(id);
-//				
-//				dispatcher.forward(req, res);
-//				
-//			} else if(ret == 1){
-//				dispatcher = req.getRequestDispatcher("admin.jsp");
-//				// Forward to requested URL by user
-//				dispatcher.forward(req, res);
-//				
-//			} else {
-//				dispatcher = req.getRequestDispatcher("index.jsp");
-//				// Forward to requested URL by user
-//				dispatcher.forward(req, res);
-//				
-//			}
-		}
-		
-		else if(requestURL.toString().equals(path+"registrado.jsp")){
-
-			// First get introduced values
-			
-//			String name = req.getParameter("name");
-//			String surname = req.getParameter("surname");
-//			String password = req.getParameter("password");
-//			String password1 = req.getParameter("password1");
-//			String birthdate = req.getParameter("birthdate");
-			
-			// Password equality check
-			
-			// Save new data in DB
-			
 		}
 	}
 }

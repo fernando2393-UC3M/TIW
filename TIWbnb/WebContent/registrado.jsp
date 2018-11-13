@@ -117,31 +117,32 @@
 
 								   <!-- Tab panes -->
 									<div class="tab-content">
-									 <div role="tabpanel" class="tab-pane active" id="hotels">
+									 <div role="tabpanel" class="tab-pane active">
+									 <form class="form-signin" METHOD="GET" ACTION="BNBServlet">
 									 	<div class="row">
 													<div class="col-xxs-12 col-xs-12 mt">
 														<div class="input-field">
 															<label for="name">Nombre:</label> <input type="text"
-																class="form-control" id="name" name="name" placeholder="John" />
+																class="form-control" id="name" name="name" value="John" />
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-12 mt alternate">
 														<div class="input-field">
 															<label for="surname">Apellidos:</label> <input
 																type="text" class="form-control" id="surname" name="surname"
-																placeholder="Doe" />
+																value="Doe" /> 
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-12 mt alternate">
 														<div class="input-field">
 															<label for="birthdate">Fecha de Nacimiento:</label> <input
-																type="date" class="form-control" id="birthdate" name="birthdate"/>
+																type="date" class="form-control" id="birthdate" name="birthdate" value="1997-07-18"/>
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="psw">Nueva Contraseña:</label> <input
-																type="password" class="form-control" id="psw" name="password"/>
+																type="password" class="form-control" id="psw" name="password" value="secret"/>
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
@@ -155,6 +156,7 @@
 												<input type="button" class="btn btn-primary btn-block" value="Actualizar Información" onclick="savedInfo()">
 											</div>
                                         </div>
+                                        </form>
 				                    </div>
 								 </div>
 
