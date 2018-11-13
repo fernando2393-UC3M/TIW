@@ -118,37 +118,37 @@
 								   <!-- Tab panes -->
 									<div class="tab-content">
 									 <div role="tabpanel" class="tab-pane active">
-									 <form class="form-signin" METHOD="GET" ACTION="BNBServlet">
+									 <form class="form-signin" >
 									 	<div class="row">
 													<div class="col-xxs-12 col-xs-12 mt">
 														<div class="input-field">
 															<label for="name">Nombre:</label> <input type="text"
-																class="form-control" id="name" name="name" value="John" />
+																class="form-control" id="name" name="name" value="<%=request.getAttribute("Name")%>" />
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-12 mt alternate">
 														<div class="input-field">
 															<label for="surname">Apellidos:</label> <input
 																type="text" class="form-control" id="surname" name="surname"
-																value="Doe" /> 
+																value="<%=request.getAttribute("Surname")%>" /> 
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-12 mt alternate">
 														<div class="input-field">
 															<label for="birthdate">Fecha de Nacimiento:</label> <input
-																type="date" class="form-control" id="birthdate" name="birthdate" value="1997-07-18"/>
+																type="date" class="form-control" id="birthdate" name="birthdate" value="<%=request.getAttribute("Birthdate")%>"/>
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="psw">Nueva Contraseña:</label> <input
-																type="password" class="form-control" id="psw" name="password" value="secret"/>
+																type="password" class="form-control" id="psw" name="password" value="<%=request.getAttribute("Password")%>"/>
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="psw1">Reintroduce Contraseña:</label> <input
-																type="password" class="form-control" id="psw1" name="password1"/>
+																type="password" class="form-control" id="psw1" name="password1" value="<%=request.getAttribute("Password")%>"/>
 														</div>
 													</div>                                            
 

@@ -133,3 +133,117 @@ org.eclipse.core.runtime.CoreException: No property tester contributes a propert
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 !SUBENTRY 1 org.eclipse.core.expressions 4 201 2018-11-13 18:38:22.328
 !MESSAGE No property tester contributes a property oracle.eclipse.tools.common.wtp.core.fproj.containsRuntimeComponentType to type class org.eclipse.wst.common.project.facet.core.runtime.internal.BridgedRuntime
+
+!ENTRY org.eclipse.jst.common.project.facet.core 4 -1 2018-11-13 18:48:04.929
+!MESSAGE No property tester contributes a property oracle.eclipse.tools.common.wtp.core.fproj.containsRuntimeComponentType to type class org.eclipse.wst.common.project.facet.core.runtime.internal.BridgedRuntime
+!STACK 1
+org.eclipse.core.runtime.CoreException: No property tester contributes a property oracle.eclipse.tools.common.wtp.core.fproj.containsRuntimeComponentType to type class org.eclipse.wst.common.project.facet.core.runtime.internal.BridgedRuntime
+	at org.eclipse.core.internal.expressions.TypeExtensionManager.getProperty(TypeExtensionManager.java:127)
+	at org.eclipse.core.internal.expressions.TestExpression.evaluate(TestExpression.java:97)
+	at org.eclipse.core.internal.expressions.CompositeExpression.evaluateAnd(CompositeExpression.java:53)
+	at org.eclipse.core.internal.expressions.IterateExpression.evaluate(IterateExpression.java:174)
+	at org.eclipse.core.internal.expressions.CompositeExpression.evaluateAnd(CompositeExpression.java:53)
+	at org.eclipse.core.internal.expressions.WithExpression.evaluate(WithExpression.java:75)
+	at org.eclipse.core.internal.expressions.CompositeExpression.evaluateAnd(CompositeExpression.java:53)
+	at org.eclipse.core.internal.expressions.EnablementExpression.evaluate(EnablementExpression.java:55)
+	at org.eclipse.jst.common.project.facet.core.libprov.internal.LibraryProvider.isEnabledFor(LibraryProvider.java:287)
+	at org.eclipse.jpt.jpa.core.internal.AbstractJpaProject.validateLibraryProvider_(AbstractJpaProject.java:1480)
+	at org.eclipse.jpt.jpa.core.internal.AbstractJpaProject.validateLibraryProvider(AbstractJpaProject.java:1466)
+	at org.eclipse.jpt.jpa.core.internal.AbstractJpaProject.validate(AbstractJpaProject.java:1459)
+	at org.eclipse.jpt.jpa.core.internal.AbstractJpaProject.getValidationMessages(AbstractJpaProject.java:1449)
+	at org.eclipse.jpt.jpa.core.internal.InternalJpaProjectManager.buildValidationMessages_(InternalJpaProjectManager.java:585)
+	at org.eclipse.jpt.jpa.core.internal.InternalJpaProjectManager$BuildValidationMessagesCommand.execute(InternalJpaProjectManager.java:573)
+	at org.eclipse.jpt.common.core.internal.utility.command.CommandJobCommandAdapter.execute(CommandJobCommandAdapter.java:50)
+	at org.eclipse.jpt.common.core.internal.utility.command.JobCommandJob.run(JobCommandJob.java:42)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2018-11-13 18:48:04.930
+!MESSAGE No property tester contributes a property oracle.eclipse.tools.common.wtp.core.fproj.containsRuntimeComponentType to type class org.eclipse.wst.common.project.facet.core.runtime.internal.BridgedRuntime
+
+!ENTRY org.eclipse.jst.common.project.facet.core 4 -1 2018-11-13 18:48:55.061
+!MESSAGE No property tester contributes a property oracle.eclipse.tools.common.wtp.core.fproj.containsRuntimeComponentType to type class org.eclipse.wst.common.project.facet.core.runtime.internal.BridgedRuntime
+!STACK 1
+org.eclipse.core.runtime.CoreException: No property tester contributes a property oracle.eclipse.tools.common.wtp.core.fproj.containsRuntimeComponentType to type class org.eclipse.wst.common.project.facet.core.runtime.internal.BridgedRuntime
+	at org.eclipse.core.internal.expressions.TypeExtensionManager.getProperty(TypeExtensionManager.java:127)
+	at org.eclipse.core.internal.expressions.TestExpression.evaluate(TestExpression.java:97)
+	at org.eclipse.core.internal.expressions.CompositeExpression.evaluateAnd(CompositeExpression.java:53)
+	at org.eclipse.core.internal.expressions.IterateExpression.evaluate(IterateExpression.java:174)
+	at org.eclipse.core.internal.expressions.CompositeExpression.evaluateAnd(CompositeExpression.java:53)
+	at org.eclipse.core.internal.expressions.WithExpression.evaluate(WithExpression.java:75)
+	at org.eclipse.core.internal.expressions.CompositeExpression.evaluateAnd(CompositeExpression.java:53)
+	at org.eclipse.core.internal.expressions.EnablementExpression.evaluate(EnablementExpression.java:55)
+	at org.eclipse.jst.common.project.facet.core.libprov.internal.LibraryProvider.isEnabledFor(LibraryProvider.java:287)
+	at org.eclipse.jpt.jpa.core.internal.AbstractJpaProject.validateLibraryProvider_(AbstractJpaProject.java:1480)
+	at org.eclipse.jpt.jpa.core.internal.AbstractJpaProject.validateLibraryProvider(AbstractJpaProject.java:1466)
+	at org.eclipse.jpt.jpa.core.internal.AbstractJpaProject.validate(AbstractJpaProject.java:1459)
+	at org.eclipse.jpt.jpa.core.internal.AbstractJpaProject.getValidationMessages(AbstractJpaProject.java:1449)
+	at org.eclipse.jpt.jpa.core.internal.InternalJpaProjectManager.buildValidationMessages_(InternalJpaProjectManager.java:585)
+	at org.eclipse.jpt.jpa.core.internal.InternalJpaProjectManager$BuildValidationMessagesCommand.execute(InternalJpaProjectManager.java:573)
+	at org.eclipse.jpt.common.core.internal.utility.command.CommandJobCommandAdapter.execute(CommandJobCommandAdapter.java:50)
+	at org.eclipse.jpt.common.core.internal.utility.command.JobCommandJob.run(JobCommandJob.java:42)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2018-11-13 18:48:55.061
+!MESSAGE No property tester contributes a property oracle.eclipse.tools.common.wtp.core.fproj.containsRuntimeComponentType to type class org.eclipse.wst.common.project.facet.core.runtime.internal.BridgedRuntime
+
+!ENTRY oracle.eclipse.tools.glassfish 4 0 2018-11-13 18:50:25.961
+!MESSAGE Unable to retrieve server http port for target 
+!STACK 0
+java.util.concurrent.TimeoutException
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at oracle.eclipse.tools.glassfish.GlassFishServerBehaviour.updateHttpPort(GlassFishServerBehaviour.java:627)
+	at oracle.eclipse.tools.glassfish.GlassFishServerBehaviour.serverStateChanged(GlassFishServerBehaviour.java:174)
+	at oracle.eclipse.tools.glassfish.GlassFishServerBehaviour.serverStatusChanged(GlassFishServerBehaviour.java:163)
+	at oracle.eclipse.tools.glassfish.internal.ServerStatusMonitor.notifyListeners(ServerStatusMonitor.java:102)
+	at oracle.eclipse.tools.glassfish.internal.ServerStatusMonitor.run(ServerStatusMonitor.java:79)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+!ENTRY oracle.eclipse.tools.glassfish 4 0 2018-11-13 18:50:25.962
+!MESSAGE Unable to update HTTP port for server startedoutside of IDE!
+!STACK 0
+oracle.eclipse.tools.glassfish.exceptions.HttpPortUpdateException: java.util.concurrent.TimeoutException
+	at oracle.eclipse.tools.glassfish.GlassFishServerBehaviour.updateHttpPort(GlassFishServerBehaviour.java:636)
+	at oracle.eclipse.tools.glassfish.GlassFishServerBehaviour.serverStateChanged(GlassFishServerBehaviour.java:174)
+	at oracle.eclipse.tools.glassfish.GlassFishServerBehaviour.serverStatusChanged(GlassFishServerBehaviour.java:163)
+	at oracle.eclipse.tools.glassfish.internal.ServerStatusMonitor.notifyListeners(ServerStatusMonitor.java:102)
+	at oracle.eclipse.tools.glassfish.internal.ServerStatusMonitor.run(ServerStatusMonitor.java:79)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.util.concurrent.TimeoutException
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at oracle.eclipse.tools.glassfish.GlassFishServerBehaviour.updateHttpPort(GlassFishServerBehaviour.java:627)
+	... 11 more
+
+!ENTRY org.eclipse.jst.common.project.facet.core 4 -1 2018-11-13 18:58:48.367
+!MESSAGE No property tester contributes a property oracle.eclipse.tools.common.wtp.core.fproj.containsRuntimeComponentType to type class org.eclipse.wst.common.project.facet.core.runtime.internal.BridgedRuntime
+!STACK 1
+org.eclipse.core.runtime.CoreException: No property tester contributes a property oracle.eclipse.tools.common.wtp.core.fproj.containsRuntimeComponentType to type class org.eclipse.wst.common.project.facet.core.runtime.internal.BridgedRuntime
+	at org.eclipse.core.internal.expressions.TypeExtensionManager.getProperty(TypeExtensionManager.java:127)
+	at org.eclipse.core.internal.expressions.TestExpression.evaluate(TestExpression.java:97)
+	at org.eclipse.core.internal.expressions.CompositeExpression.evaluateAnd(CompositeExpression.java:53)
+	at org.eclipse.core.internal.expressions.IterateExpression.evaluate(IterateExpression.java:174)
+	at org.eclipse.core.internal.expressions.CompositeExpression.evaluateAnd(CompositeExpression.java:53)
+	at org.eclipse.core.internal.expressions.WithExpression.evaluate(WithExpression.java:75)
+	at org.eclipse.core.internal.expressions.CompositeExpression.evaluateAnd(CompositeExpression.java:53)
+	at org.eclipse.core.internal.expressions.EnablementExpression.evaluate(EnablementExpression.java:55)
+	at org.eclipse.jst.common.project.facet.core.libprov.internal.LibraryProvider.isEnabledFor(LibraryProvider.java:287)
+	at org.eclipse.jpt.jpa.core.internal.AbstractJpaProject.validateLibraryProvider_(AbstractJpaProject.java:1480)
+	at org.eclipse.jpt.jpa.core.internal.AbstractJpaProject.validateLibraryProvider(AbstractJpaProject.java:1466)
+	at org.eclipse.jpt.jpa.core.internal.AbstractJpaProject.validate(AbstractJpaProject.java:1459)
+	at org.eclipse.jpt.jpa.core.internal.AbstractJpaProject.getValidationMessages(AbstractJpaProject.java:1449)
+	at org.eclipse.jpt.jpa.core.internal.InternalJpaProjectManager.buildValidationMessages_(InternalJpaProjectManager.java:585)
+	at org.eclipse.jpt.jpa.core.internal.InternalJpaProjectManager$BuildValidationMessagesCommand.execute(InternalJpaProjectManager.java:573)
+	at org.eclipse.jpt.common.core.internal.utility.command.CommandJobCommandAdapter.execute(CommandJobCommandAdapter.java:50)
+	at org.eclipse.jpt.common.core.internal.utility.command.JobCommandJob.run(JobCommandJob.java:42)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2018-11-13 18:58:48.368
+!MESSAGE No property tester contributes a property oracle.eclipse.tools.common.wtp.core.fproj.containsRuntimeComponentType to type class org.eclipse.wst.common.project.facet.core.runtime.internal.BridgedRuntime
