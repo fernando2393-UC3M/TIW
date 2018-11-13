@@ -23,8 +23,6 @@ public class Login {
 
 	Connection con;
 	Statement st;
-	ResultSet rs;
-	int id;
 
 	public void openConnection () {
 		try {
@@ -34,11 +32,15 @@ public class Login {
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tiwbnb", "root", "admin");
 			System.out.println("Sucessful connection");
 		} catch (Exception e) {
-			System.out.println("Error when connecting to the database ");
+			System.out.println("Ertzarraon@inf.uc3m.esror when connecting to the database ");
 		}
 	}
 
-	public void retrieveTableDataUser() {
+
+	public ResultSet CheckUser(String input_mail, String input_password) {
+		
+		ResultSet rs = null;
+		
 		try {
 			// Create statement
 			st =con.createStatement();
@@ -46,15 +48,26 @@ public class Login {
 			//Once the statement is created, we need to get the user input for both user email and password
 
 			// Execute statement
-			// Here we obtain the full User table 
-			rs = st.executeQuery("SELECT * FROM USER ORDER BY USER_ID");
+			// Here we obtain the full User table
+			String query = "SELECT * FROM USER WHERE USER_EMAIL = '"+input_mail+"' AND USER_PASSWORD = '"+input_password+"'";
+			rs = st.executeQuery(query);
+			
+			if (rs.next() == false){ // Empty rs check
+				rs = null;
+			}
+	
 
 		} catch (SQLException e) {
 			System.out.println("Error when opening table ");
 		}
+		
+		return rs;		
 	}
 	
-	public void retrieveTableDataAdmin() {
+public ResultSet CheckAdmin(String input_mail, String input_password) {
+		
+		ResultSet rs = null;
+		
 		try {
 			// Create statement
 			st =con.createStatement();
@@ -63,74 +76,17 @@ public class Login {
 
 			// Execute statement
 			// Here we obtain the full User table 
-			rs = st.executeQuery("SELECT * FROM ADMIN ORDER BY ADMIN_ID");
+			rs = st.executeQuery("SELECT * FROM ADMIN WHERE ADMIN_EMAIL = '"+input_mail+"' AND ADMIN_PASSWORD = '"+input_password+"'");
+			
+			if (rs.next() == false){ // Empty rs check
+				rs = null;
+			}
+	
 
 		} catch (SQLException e) {
 			System.out.println("Error when opening table ");
 		}
-	}
-
-	public int Check(String input_mail, String input_password) {
 		
-		// Default value --> No match found
-		int ret = -1;
-		
-		// Retrieve table for users
-		
-		retrieveTableDataUser();
-		
-		try {
-			while (rs.next()) { // Iterate for all the entries of the User table
-				String mail = rs.getString("USER_EMAIL");
-				String password = rs.getString("USER_PASSWORD");
-
-				// Check for login
-
-				if (input_mail.equals(mail)) {
-					if (input_password.equals(password)) {
-						id = rs.getInt("USER_ID");
-						return ret = 0;
-						//Login performed
-					}
-				}
-			}
-			
-			System.out.println("No user with match");			
-			
-		}
-		catch (Exception e) {
-			System.out.println("Error when visualizing information");
-		}
-		
-		// Check for administrator
-		
-		// Retrieve table for administrator
-		
-		retrieveTableDataAdmin();
-		
-		try {
-			while (rs.next()) { // Iterate for all the entries of the User table
-				String mail = rs.getString("ADMIN_EMAIL");
-				String password = rs.getString("ADMIN_PASSWORD");
-
-				// Check for login
-
-				if (input_mail.equals(mail)) {
-					if (input_password.equals(password)) {
-						id = rs.getInt("ADMIN_ID");
-						return ret = 1;
-						//Login performed
-					}
-				}
-			}
-			
-			System.out.println("No admin with match");			
-			
-		}
-		catch (Exception e) {
-			System.out.println("Error when visualizing information");
-		}
-		
-		return ret;
+		return rs;		
 	}
 }

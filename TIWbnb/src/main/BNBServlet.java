@@ -33,8 +33,7 @@ import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
-
-
+import java.sql.SQLException;
 // To be used for Glassfish
 import java.util.Properties;
 
@@ -144,37 +143,68 @@ throws IOException, ServletException {
 		RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
 
 		// Here we get the current URL requested by the user
-		
+
 		String requestURL = req.getRequestURL().toString();
-		
+
 		// Login case
-		
+
 		if(requestURL.toString().equals(path+"login")){
 			Login loginInstance = new Login();
 			loginInstance.openConnection();
-			int ret = loginInstance.Check(req.getParameter("loginEmail"), req.getParameter("loginPassword"));
-			int id = loginInstance.id;
-			
-			if(ret == 0){
+			ResultSet result = loginInstance.CheckUser(req.getParameter("loginEmail"), req.getParameter("loginPassword"));
+
+			if (result != null) { //User match
 				dispatcher = req.getRequestDispatcher("registrado.jsp");
 				// Forward to requested URL by user
-				
-				Registrado registrado = new Registrado();
-				registrado.getUserData(id);
-				
-				dispatcher.forward(req, res);
-				
-			} else if(ret == 1){
-				dispatcher = req.getRequestDispatcher("admin.jsp");
-				// Forward to requested URL by user
-				dispatcher.forward(req, res);
-				
-			} else {
-				dispatcher = req.getRequestDispatcher("index.jsp");
-				// Forward to requested URL by user
-				dispatcher.forward(req, res);
-				
+				dispatcher.forward(req, res);				
 			}
+
+			else {				
+				result = loginInstance.CheckAdmin(req.getParameter("loginEmail"), req.getParameter("loginPassword"));
+
+				if (result != null) { //Admin match
+					dispatcher = req.getRequestDispatcher("admin.jsp");
+					// Forward to requested URL by user
+					dispatcher.forward(req, res);
+				}
+
+				else { //No match possible --> Not letting in
+					dispatcher = req.getRequestDispatcher("index.jsp");
+					// Forward to requested URL by user
+					dispatcher.forward(req, res);
+				}
+
+			}
+			
+			
+//			try {
+//				String mail = result.getString("USER_EMAIL");
+//				String password = result.getString("USER_PASSWORD");
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+
+//			if(ret == 0){
+//				dispatcher = req.getRequestDispatcher("registrado.jsp");
+//				// Forward to requested URL by user
+//				
+//				Registrado registrado = new Registrado();
+//				registrado.getUserData(id);
+//				
+//				dispatcher.forward(req, res);
+//				
+//			} else if(ret == 1){
+//				dispatcher = req.getRequestDispatcher("admin.jsp");
+//				// Forward to requested URL by user
+//				dispatcher.forward(req, res);
+//				
+//			} else {
+//				dispatcher = req.getRequestDispatcher("index.jsp");
+//				// Forward to requested URL by user
+//				dispatcher.forward(req, res);
+//				
+//			}
 		}
 		
 		else if(requestURL.toString().equals(path+"registrado.jsp")){
