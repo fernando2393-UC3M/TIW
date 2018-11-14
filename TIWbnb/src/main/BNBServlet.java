@@ -181,5 +181,32 @@ public class BNBServlet extends HttpServlet {
 				dispatcher.forward(req, res);
 			}
 		}
+		
+		else if(requestURL.toString().equals(path+"registrado")) {
+			dispatcher = req.getRequestDispatcher("registrado.jsp");
+			ResultSet result = (ResultSet) context.getAttribute("User");
+			
+			int id = 0;
+			
+			try {
+				id = result.getInt("USER_ID");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			Registrado registradoInstance = new Registrado();
+			User user = registradoInstance.updateUserData(id, req.getParameter("name"), req.getParameter("surname"), 
+					req.getParameter("birthdate"), req.getParameter("password"), req.getParameter("password1"));
+			
+			if(user!=null) {
+				context.removeAttribute("User");
+				context.setAttribute("User", user);
+			}
+			
+			dispatcher.forward(req, res);			
+			
+		}
 	}
 }

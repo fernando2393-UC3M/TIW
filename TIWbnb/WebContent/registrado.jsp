@@ -118,7 +118,7 @@
 								   <!-- Tab panes -->
 									<div class="tab-content">
 									 <div role="tabpanel" class="tab-pane active">
-									 <form class="form-signin" >
+									 <form class="form-signin" METHOD="POST" ACTION="registrado" >
 									 	<div class="row">
 													<div class="col-xxs-12 col-xs-12 mt">
 														<div class="input-field">
@@ -153,7 +153,7 @@
 													</div>                                            
 
 											<div class="col-xs-12">
-												<input type="button" class="btn btn-primary btn-block" value="Actualizar Información" onclick="savedInfo()">
+												<input type="submit" class="btn btn-primary btn-block" value="Actualizar Información">
 											</div>
                                         </div>
                                         </form>
@@ -319,11 +319,7 @@
 	<script src="js/main.js"></script>
 	
 	<script>
-	
-	function savedInfo() {
-		alert("Información actualizada con éxito.");
-	}
-	
+    	
 	function eraseInfo() {
 		alert("Perfil borrado. Sentimos que te vayas.");
 	}
