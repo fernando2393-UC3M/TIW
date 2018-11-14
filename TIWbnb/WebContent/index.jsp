@@ -83,8 +83,6 @@
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li class="active"><a href="index.jsp">Home</a></li>
-							<li ><a href="viajes.jsp">Viajes</a></li>
-							<li ><a href="mensajes.jsp">Mensajes</a></li>
 							<li><a href="#" id="Registro">Regí­strate</a></li>
 							<li><a href="#" id="Login">Inicia sesión</a></li>
 						</ul>

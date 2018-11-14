@@ -12,13 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class AdminServlet
- */
 @WebServlet(urlPatterns = {"/index", "/admin", 
 		"/resultados", "/renting", 
-		"/registrado", "/mensajes", 
-		"/alojamiento", "/casa", "/login"})
+		"/registrado", "/alojamiento", "/casa", "/login"})
 
 public class AdminServlet extends HttpServlet {
 	
@@ -28,7 +24,7 @@ public class AdminServlet extends HttpServlet {
 	
 	public void init() {
 
-		// It reads servelt's context
+		// It reads servlet's context
 
 		context = getServletContext();
 	}

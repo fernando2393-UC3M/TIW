@@ -82,7 +82,7 @@
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li class="active"><a href="admin.jsp">Home</a></li>
-							<li ><a href="#">Administrar Usuarios</a></li>
+							<li ><a href="manage_users.jsp">Administrar Usuarios</a></li>
 							<li ><a href="resultados.jsp">Administrar Alojamientos</a></li>
 							<li ><a href="mensajes.jsp">Mensajes</a></li>
 							<li><a href="index.jsp" id="Login">Cerrar sesión</a></li>
@@ -97,12 +97,17 @@
 		<div class="fh5co-hero">
 			<div class="fh5co-overlay"></div>
 			<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_5.jpg);">
+						<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="users">
+					<div class="row"><h1 style="color: white">Bienvenido administrador!</h1></div>					
+				</div>
+			</div>
 			</div>
 
 		</div>
 
 
-		<footer>
+			<footer>
 			<div id="footer">
 				<div class="container">
 					<div class="row row-bottom-padded-md">
