@@ -167,7 +167,7 @@ public class BNBServlet extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+
 				// Save user in servlet context
 				context.setAttribute("User", result); 
 
@@ -175,25 +175,10 @@ public class BNBServlet extends HttpServlet {
 				dispatcher.forward(req, res);				
 			}
 
-			else {				
-				result = loginInstance.CheckAdmin(req.getParameter("loginEmail"), req.getParameter("loginPassword"));
-
-				if (result != null) { //Admin match
-					dispatcher = req.getRequestDispatcher("admin.jsp");
-					
-					// Save admin in servlet context
-					context.setAttribute("Admin", result); 
-					
-					// Forward to requested URL by user
-					dispatcher.forward(req, res);
-				}
-
-				else { //No match possible --> Not letting in
-					dispatcher = req.getRequestDispatcher("index.jsp");
-					// Forward to requested URL by user
-					dispatcher.forward(req, res);
-				}
-
+			else { // No user match
+				dispatcher = req.getRequestDispatcher("index.jsp");
+				// Forward to requested URL by user
+				dispatcher.forward(req, res);
 			}
 		}
 	}

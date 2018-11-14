@@ -35,34 +35,6 @@ public class Login {
 			System.out.println("Error when connecting to the database ");
 		}
 	}
-
-
-	public ResultSet CheckUser(String input_mail, String input_password) {
-		
-		ResultSet rs = null;
-		
-		try {
-			// Create statement
-			st =con.createStatement();
-
-			//Once the statement is created, we need to get the user input for both user email and password
-
-			// Execute statement
-			// Here we obtain the full User table
-			String query = "SELECT * FROM USER WHERE USER_EMAIL = '"+input_mail+"' AND USER_PASSWORD = '"+input_password+"'";
-			rs = st.executeQuery(query);
-			
-			if (rs.next() == false){ // Empty rs check
-				rs = null;
-			}
-	
-
-		} catch (SQLException e) {
-			System.out.println("Error when opening table ");
-		}
-		
-		return rs;		
-	}
 	
 public ResultSet CheckAdmin(String input_mail, String input_password) {
 		
