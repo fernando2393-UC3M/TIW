@@ -1,11 +1,13 @@
 package main;
 
 import java.util.List;
+
 import java.util.Locale.Category;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.transaction.HeuristicMixedException;
@@ -44,13 +46,9 @@ public class Registrado {
 		if(password.equals(password1)) {
 			
 			
-			String stringQ1 = "SELECT s FROM User s WHERE s.userId = '"+id+"'";
+			user = em.find(User.class, id); //Find the proper user
 			
-			Query query = em.createQuery(stringQ1);
-			
-			List<User> results = query.getResultList();
-			
-			user = results.get(0);
+			// Begin transaction (crashes here)
 			
 			try {
 				ut.begin();
@@ -65,6 +63,8 @@ public class Registrado {
 			user.setUserPassword(password);
 			
 			em.refresh(user);
+			
+			// Commit transaction changes to DB
 			
 			try {
 				ut.commit();

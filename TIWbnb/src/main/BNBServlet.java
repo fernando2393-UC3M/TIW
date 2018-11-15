@@ -169,6 +169,7 @@ public class BNBServlet extends HttpServlet {
 				}
 
 				// Save user in servlet context
+
 				context.setAttribute("User", result); 
 
 				// Forward to requested URL by user
