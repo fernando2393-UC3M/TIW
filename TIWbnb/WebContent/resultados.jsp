@@ -79,13 +79,13 @@
 			<div class="container">
 				<div class="nav-header">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-					<h1 id="fh5co-logo"><a href="index.jsp"><i class="icon-airplane"></i>TIWbnb</a></h1>
+					<h1 id="fh5co-logo"><a href="index"><i class="icon-airplane"></i>TIWbnb</a></h1>
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li class="active"><a href="index.jsp">Home</a></li>
-							<li ><a href="viajes.jsp">Viajes</a></li>
-							<li ><a href="mensajes.jsp">Mensajes</a></li>                              
+							<li class="active"><a href="index">Home</a></li>
+							<li ><a href="viajes">Viajes</a></li>
+							<li ><a href="mensajes">Mensajes</a></li>                              
 							<li><a href="#" id="Registro">Regístrate</a></li>                            
 							<li><a href="#" id="Login">Inicia sesión</a></li>                            
 						</ul>
@@ -111,7 +111,7 @@
 								<h3>Estudio en Sol</h3>
 								<span>Apartamento entero. 2 camas</span>
 								<span class="price">60€</span>
-								<a class="btn btn-primary btn-outline" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="alojamiento">Seleccionar <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
@@ -122,7 +122,7 @@
 								<h3>Apartamento junto a Gran Via</h3>
 								<span>Apartamento entero. 1 cama</span>
 								<span class="price">70€</span>
-								<a class="btn btn-primary btn-outline" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="alojamiento">Seleccionar <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
@@ -133,7 +133,7 @@
 								<h3>Piso frente al Palacio Real</h3>
 								<span>Loft entero. 2 camas</span>
 								<span class="price">80€</span>
-								<a class="btn btn-primary btn-outline" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="alojamiento">Seleccionar <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
@@ -144,7 +144,7 @@
 								<h3>Céntrico y tranquilo</h3>
 								<span>Apartamento entero. 2 camas</span>
 								<span class="price">65€</span>
-								<a class="btn btn-primary btn-outline" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="alojamiento">Seleccionar <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
@@ -155,7 +155,7 @@
 								<h3>Stunning Apartment in Sol</h3>
 								<span>Apartamento entero. 2 camas</span>
 								<span class="price">50€</span>
-								<a class="btn btn-primary btn-outline" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="alojamiento">Seleccionar <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
@@ -166,7 +166,7 @@
 								<h3>Pretty Apartment in Plaza Mayor</h3>
 								<span>Apartamento entero. 1 cama</span>
 								<span class="price">30€</span>
-								<a class="btn btn-primary btn-outline" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
+								<a class="btn btn-primary btn-outline" href="alojamiento">Seleccionar <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>

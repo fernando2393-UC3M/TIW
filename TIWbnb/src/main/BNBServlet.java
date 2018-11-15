@@ -48,7 +48,7 @@ import model.User;
 @WebServlet(urlPatterns = {"/index", "/admin", 
 				"/resultados", "/renting", 
 				"/registrado", "/mensajes", 
-				"/alojamiento", "/casa", "/login"})
+				"/alojamiento", "/casa", "/login", "/viajes"})
 public class BNBServlet extends HttpServlet {
 	
 	@PersistenceContext(unitName="TIWbnb")
@@ -103,40 +103,13 @@ public class BNBServlet extends HttpServlet {
 		else if(requestURL.equals(path+"resultados")){
 			ReqDispatcher =req.getRequestDispatcher("resultados.jsp");				
 		}
+		else if(requestURL.equals(path+"viajes")){
+			ReqDispatcher =req.getRequestDispatcher("viajes.jsp");
+		} 
 		else {
 			ReqDispatcher =req.getRequestDispatcher("index.jsp");
 		}
 		ReqDispatcher.forward(req, res);
-
-
-		/* Standard Query*/
-		/*
-	// Establece el Content Type
-	PrintWriter out = res.getWriter();
-
-	try {
-		ut.begin();
-	} catch (NotSupportedException | SystemException e2) {
-		// TODO Auto-generated catch block
-		e2.printStackTrace();
-	}
-	String stringQ1 = "SELECT s FROM User s";
-	Query query1 = em.createQuery(stringQ1);
-
-	List results = query1.getResultList();
-	out.println("Query1:");
-	for(Object obj: results){
-		out.println( ((User) obj).getUserName() );
-	}
-
-
-	try {
-		ut.commit();
-	} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
-			| HeuristicRollbackException | SystemException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	}*/
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////  	
@@ -159,24 +132,17 @@ public class BNBServlet extends HttpServlet {
 			if (result != null) { //User match
 				dispatcher = req.getRequestDispatcher("registrado.jsp");
 				try {
-					// req.setAttribute("Name", result.getString("USER_NAME"));
-					// req.setAttribute("Surname", result.getString("USER_SURNAME"));
-					// req.setAttribute("Birthdate", result.getString("USER_BIRTHDATE"));
-					// req.setAttribute("Password", result.getString("USER_PASSWORD"));
 					User user = new User();
 					user.setUserName(result.getString("USER_NAME"));
 					user.setUserSurname(result.getString("USER_SURNAME"));
 					user.setUserBirthdate(result.getString("USER_BIRTHDATE"));
 					
-					req.getSession().setAttribute("currentUser", user);
+					// Save user in servlet context
+					context.setAttribute("user", user);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
-				// Save user in servlet context
-				// context.setAttribute("User", result); 
-				context.setAttribute("User", result); 
 
 				// Forward to requested URL by user
 				dispatcher.forward(req, res);				

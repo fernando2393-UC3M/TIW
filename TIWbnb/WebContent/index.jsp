@@ -78,11 +78,11 @@
 			<div class="container">
 				<div class="nav-header">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-					<h1 id="fh5co-logo"><a href="index.jsp"><i class="icon-airplane"></i>TIWbnb</a></h1>
+					<h1 id="fh5co-logo"><a href="index"><i class="icon-airplane"></i>TIWbnb</a></h1>
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li class="active"><a href="index.jsp">Home</a></li>
+							<li class="active"><a href="index">Home</a></li>
 							<li><a href="#" id="Registro">Regí­strate</a></li>
 							<li><a href="#" id="Login">Inicia sesión</a></li>
 						</ul>
@@ -100,7 +100,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-sm-5 col-md-5">
-								<!-- <a href="index.jsp" id="main-logo">Travel</a> -->
+								<!-- <a href="index" id="main-logo">Travel</a> -->
 								<div class="tabulation animate-box">
 
 								  <!-- Nav tabs -->
@@ -183,7 +183,7 @@
 												</section>
 											</div>
 											<div class="col-xs-12">
-												<input onclick="location.href='resultados.jsp'" type="submit" class="btn btn-primary btn-block" value="Buscar">
+												<input onclick="location.href='resultados'" type="submit" class="btn btn-primary btn-block" value="Buscar">
 											</div>
                                         </div>
 				                    </div>
@@ -235,8 +235,8 @@
       </div>
 
       <div class="modal-footer">
-        <p class="text-center">¿No tienes cuenta?<a href="index.jsp">  Regístrate</a></p>
-        <p class="text-center"><a href="index.jsp"> Atrás </a></p>
+        <p class="text-center">¿No tienes cuenta?<a href="index">  Regístrate</a></p>
+        <p class="text-center"><a href="index"> Atrás </a></p>
       </div>
 
     </div>
