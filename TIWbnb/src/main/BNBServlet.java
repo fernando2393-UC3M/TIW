@@ -149,7 +149,12 @@ public class BNBServlet extends HttpServlet {
 				
 				session = req.getSession();
 
-				session.setAttribute("user", result); 
+				try {
+					session.setAttribute("user", result.getInt("USER_ID"));
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
 
 				// Forward to requested URL by user
 				dispatcher.forward(req, res);				
@@ -169,23 +174,7 @@ public class BNBServlet extends HttpServlet {
 			
 			dispatcher = req.getRequestDispatcher("registrado.jsp");
 			
-			int id = 0;
-			
-			if (session.getAttribute("user") instanceof ResultSet) {
-				ResultSet result = (ResultSet) session.getAttribute("user");
-				
-				try {
-					id = result.getInt("USER_ID");
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			
-			else {
-				User result = (User) session.getAttribute("user");
-				id = result.getUserId();
-			}
+			int id = (int) session.getAttribute("user");
 			
 			
 			Registrado registradoInstance = new Registrado();
@@ -214,10 +203,6 @@ public class BNBServlet extends HttpServlet {
 			req.setAttribute("Surname", user.getUserSurname());
 			req.setAttribute("Birthdate", user.getUserBirthdate());
 			req.setAttribute("Password", user.getUserPassword());
-
-			session.removeAttribute("user");
-			session.setAttribute("user", user);
-
 
 			dispatcher.forward(req, res);			
 			
