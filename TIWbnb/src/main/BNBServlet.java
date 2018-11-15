@@ -63,6 +63,8 @@ public class BNBServlet extends HttpServlet {
 	
 	ServletContext context;
 	
+	HttpSession session;
+	
 	 
 ////////////////////////////////////////////////////////////////////////////////////////
 	public void init() {
@@ -143,7 +145,7 @@ public class BNBServlet extends HttpServlet {
 
 				// Save user in servlet session
 				
-				HttpSession session = req.getSession();
+				session = req.getSession();
 
 				session.setAttribute("user", result); 
 
@@ -161,7 +163,6 @@ public class BNBServlet extends HttpServlet {
 
 		else if(requestURL.toString().equals(path+"registrado")) {
 			
-			HttpSession session = req.getSession();
 			
 			dispatcher = req.getRequestDispatcher("registrado.jsp");
 			ResultSet result = (ResultSet) session.getAttribute("user");
@@ -187,9 +188,10 @@ public class BNBServlet extends HttpServlet {
 			}
 			
 			User user = registradoInstance.updateUserData(id, req.getParameter("name"), req.getParameter("surname"), 
-					req.getParameter("birthdate"), req.getParameter("password"), req.getParameter("password1"), em);
+					req.getParameter("birthdate"), req.getParameter("password"), req.getParameter("password1"), em);			
 			
-			if(user!=null) {
+			if(user!=null) { // Here we know that as the user != null, user was found and changes were made
+				
 				
 				try {
 					ut.commit();
@@ -198,6 +200,13 @@ public class BNBServlet extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
+				user = em.find(User.class, id); // Select the user after commit
+				
+				req.setAttribute("Name", user.getUserName());
+				req.setAttribute("Surname", user.getUserSurname());
+				req.setAttribute("Birthdate", user.getUserBirthdate());
+				req.setAttribute("Password", user.getUserPassword());
 				
 				session.removeAttribute("user");
 				session.setAttribute("user", user);

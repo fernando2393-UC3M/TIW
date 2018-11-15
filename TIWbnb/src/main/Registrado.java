@@ -48,7 +48,8 @@ public class Registrado {
 			user.setUserBirthdate(birthdate);
 			user.setUserPassword(password);
 			
-			em.refresh(user);
+			em.merge(user);
+		
 			
 		}
 		
