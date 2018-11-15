@@ -192,7 +192,9 @@
                                     
 
 											<div class="col-xs-12">
-												<input type="button" class="btn btn-primary btn-block" value="Eliminar Perfil" onclick="eraseInfo()">
+											<form ACTION="delete" METHOD="POST">
+												<input type="submit" class="btn btn-primary btn-block" value="Eliminar Perfil">
+											</form>
 											</div>
                                         </div>
 				                    </div>
