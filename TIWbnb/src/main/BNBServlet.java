@@ -159,17 +159,23 @@ public class BNBServlet extends HttpServlet {
 			if (result != null) { //User match
 				dispatcher = req.getRequestDispatcher("registrado.jsp");
 				try {
-					req.setAttribute("Name", result.getString("USER_NAME"));
-					req.setAttribute("Surname", result.getString("USER_SURNAME"));
-					req.setAttribute("Birthdate", result.getString("USER_BIRTHDATE"));
-					req.setAttribute("Password", result.getString("USER_PASSWORD"));
+					// req.setAttribute("Name", result.getString("USER_NAME"));
+					// req.setAttribute("Surname", result.getString("USER_SURNAME"));
+					// req.setAttribute("Birthdate", result.getString("USER_BIRTHDATE"));
+					// req.setAttribute("Password", result.getString("USER_PASSWORD"));
+					User user = new User();
+					user.setUserName(result.getString("USER_NAME"));
+					user.setUserSurname(result.getString("USER_SURNAME"));
+					user.setUserBirthdate(result.getString("USER_BIRTHDATE"));
+					
+					req.getSession().setAttribute("currentUser", user);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
 				// Save user in servlet context
-				context.setAttribute("User", result); 
+				// context.setAttribute("User", result); 
 
 				// Forward to requested URL by user
 				dispatcher.forward(req, res);				
