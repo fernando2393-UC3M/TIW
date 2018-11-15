@@ -148,7 +148,7 @@
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="psw1">Reintroduce Contraseña:</label> <input
-																type="password" class="form-control" id="psw1" name="password1" value="<%=request.getAttribute("Password")%>"/>
+																type="password" class="form-control" id="psw1" name="password1"/>
 														</div>
 													</div>                                            
 

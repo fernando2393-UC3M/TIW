@@ -165,16 +165,23 @@ public class BNBServlet extends HttpServlet {
 			
 			
 			dispatcher = req.getRequestDispatcher("registrado.jsp");
-			ResultSet result = (ResultSet) session.getAttribute("user");
-			
 			
 			int id = 0;
 			
-			try {
-				id = result.getInt("USER_ID");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (session.getAttribute("user") instanceof ResultSet) {
+				ResultSet result = (ResultSet) session.getAttribute("user");
+				
+				try {
+					id = result.getInt("USER_ID");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			else {
+				User result = (User) session.getAttribute("user");
+				id = result.getUserId();
 			}
 			
 			
@@ -186,32 +193,29 @@ public class BNBServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			User user = registradoInstance.updateUserData(id, req.getParameter("name"), req.getParameter("surname"), 
+
+			registradoInstance.updateUserData(id, req.getParameter("name"), req.getParameter("surname"), 
 					req.getParameter("birthdate"), req.getParameter("password"), req.getParameter("password1"), em);			
-			
-			if(user!=null) { // Here we know that as the user != null, user was found and changes were made
-				
-				
-				try {
-					ut.commit();
-				} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
-						| HeuristicRollbackException | SystemException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				user = em.find(User.class, id); // Select the user after commit
-				
-				req.setAttribute("Name", user.getUserName());
-				req.setAttribute("Surname", user.getUserSurname());
-				req.setAttribute("Birthdate", user.getUserBirthdate());
-				req.setAttribute("Password", user.getUserPassword());
-				
-				session.removeAttribute("user");
-				session.setAttribute("user", user);
+
+			try {
+				ut.commit();
+			} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+					| HeuristicRollbackException | SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
+
+			User user = em.find(User.class, id); // Select the user after commit
+
+			req.setAttribute("Name", user.getUserName());
+			req.setAttribute("Surname", user.getUserSurname());
+			req.setAttribute("Birthdate", user.getUserBirthdate());
+			req.setAttribute("Password", user.getUserPassword());
+
+			session.removeAttribute("user");
+			session.setAttribute("user", user);
+
+
 			dispatcher.forward(req, res);			
 			
 		}
