@@ -219,7 +219,7 @@ public class BNBServlet extends HttpServlet {
 		else if(requestURL.toString().equals(path+"casa")){
 			dispatcher = req.getRequestDispatcher("casa.jsp");
 			AddHouse houseInstance = new AddHouse();
-			String str= houseInstance.RegisterHouse(req.getParameter("houseName"), req.getParameter("housePass"));
+			String str= houseInstance.RegisterHouse(req.getParameter("houseName"), req.getParameter("houseDesc"));
 			System.out.println(str);
 			
 			if(str != null){
