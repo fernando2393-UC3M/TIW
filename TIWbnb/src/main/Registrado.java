@@ -32,14 +32,9 @@ public class Registrado {
 	// Here we obtain registered user information and post it into the information form
 	
 	// It is needed a way of data storage of introduced user to get its information from DB
+
 	
-	EntityManagerFactory factory = Persistence.createEntityManagerFactory("TIWbnb");
-	EntityManager em = factory.createEntityManager();
-	
-	@Resource
-	UserTransaction ut;
-	
-	public User updateUserData(int id, String name, String surname, String birthdate, String password, String password1) {
+	public User updateUserData(int id, String name, String surname, String birthdate, String password, String password1, EntityManager em) {
 		
 		User user = null;
 		
@@ -48,31 +43,12 @@ public class Registrado {
 			
 			user = em.find(User.class, id); //Find the proper user
 			
-			// Begin transaction (crashes here)
-			
-			try {
-				ut.begin();
-			} catch (NotSupportedException | SystemException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
 			user.setUserName(name);
 			user.setUserSurname(surname);
 			user.setUserBirthdate(birthdate);
 			user.setUserPassword(password);
 			
 			em.refresh(user);
-			
-			// Commit transaction changes to DB
-			
-			try {
-				ut.commit();
-			} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
-					| HeuristicRollbackException | SystemException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			
 		}
 		

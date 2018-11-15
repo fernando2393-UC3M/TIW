@@ -49,7 +49,7 @@ import model.User;
  */
 @WebServlet(urlPatterns = {"/index", "/admin", 
 				"/resultados", "/renting", 
-				"/registrado", "/mensajes", 
+				"/registrado", "/mensajes", "/login",
 				"/alojamiento", "/casa", "/viajes"})
 public class BNBServlet extends HttpServlet {
 	
@@ -123,12 +123,49 @@ public class BNBServlet extends HttpServlet {
 		// Here we get the current URL requested by the user
 
 		String requestURL = req.getRequestURL().toString();
+		
+		if(requestURL.toString().equals(path+"login")){
+			Login loginInstance = new Login();
+			loginInstance.openConnection();
+			ResultSet result = loginInstance.CheckUser(req.getParameter("loginEmail"), req.getParameter("loginPassword"));
+
+			if (result != null) { //User match
+				dispatcher = req.getRequestDispatcher("registrado.jsp");
+				try {
+					req.setAttribute("Name", result.getString("USER_NAME"));
+					req.setAttribute("Surname", result.getString("USER_SURNAME"));
+					req.setAttribute("Birthdate", result.getString("USER_BIRTHDATE"));
+					req.setAttribute("Password", result.getString("USER_PASSWORD"));
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				// Save user in servlet session
+				
+				HttpSession session = req.getSession();
+
+				session.setAttribute("user", result); 
+
+				// Forward to requested URL by user
+				dispatcher.forward(req, res);				
+			}
+
+			else { // No user match
+				dispatcher = req.getRequestDispatcher("index.jsp");
+				// Forward to requested URL by user
+				dispatcher.forward(req, res);
+			}
+		}
 
 
-		if(requestURL.toString().equals(path+"registrado")) {
-			dispatcher = req.getRequestDispatcher("registrado.jsp");
-			ResultSet result = (ResultSet) context.getAttribute("User");
+		else if(requestURL.toString().equals(path+"registrado")) {
+			
 			HttpSession session = req.getSession();
+			
+			dispatcher = req.getRequestDispatcher("registrado.jsp");
+			ResultSet result = (ResultSet) session.getAttribute("user");
+			
 			
 			int id = 0;
 			
@@ -141,10 +178,27 @@ public class BNBServlet extends HttpServlet {
 			
 			
 			Registrado registradoInstance = new Registrado();
+			
+			try {
+				ut.begin();
+			} catch (NotSupportedException | SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			User user = registradoInstance.updateUserData(id, req.getParameter("name"), req.getParameter("surname"), 
-					req.getParameter("birthdate"), req.getParameter("password"), req.getParameter("password1"));
+					req.getParameter("birthdate"), req.getParameter("password"), req.getParameter("password1"), em);
 			
 			if(user!=null) {
+				
+				try {
+					ut.commit();
+				} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+						| HeuristicRollbackException | SystemException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				session.removeAttribute("user");
 				session.setAttribute("user", user);
 			}

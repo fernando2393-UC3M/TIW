@@ -4,6 +4,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
+	<%@ page contentType="text/html; charset=UTF-8" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>TIWbnb</title>
@@ -260,7 +261,7 @@
       <input type="name" id="inputName" class="form-control" placeholder="Nombre" required>
       <input type="surname" id="inputSurname" class="form-control" placeholder="Apellidos" required>
       <input type="password" id="inputPassword" class="form-control" placeholder="Establece una contraseña" required>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" id="Registrate">Registrate</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" id="Registrate">Regístrate</button>
     </form>
 
       </div>

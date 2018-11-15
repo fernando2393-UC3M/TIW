@@ -69,7 +69,7 @@ public ResultSet CheckAdmin(String input_mail, String input_password) {
 			//Once the statement is created, we need to get the user input for both user email and password
 
 			// Execute statement
-			// Here we obtain the full User table 
+			// Here we obtain the full Admin table 
 			rs = st.executeQuery("SELECT * FROM ADMIN WHERE ADMIN_EMAIL = '"+input_mail+"' AND ADMIN_PASSWORD = '"+input_password+"'");
 			
 			if (rs.next() == false){ // Empty rs check
