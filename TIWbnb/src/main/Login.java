@@ -32,7 +32,7 @@ public class Login {
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tiwbnb", "root", "admin");
 			System.out.println("Sucessful connection");
 		} catch (Exception e) {
-			System.out.println("Ertzarraon@inf.uc3m.esror when connecting to the database ");
+			System.out.println("Error when connecting to the database ");
 		}
 	}
 

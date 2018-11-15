@@ -1,1 +1,1 @@
-[[{"location":"/usr/lib/jvm/java-8-oracle","type":"JRE","hints":{}},"jre:jre:1.8.0"]]
+[[{"location":"/opt/glassfish/payara41/glassfish/modules/javax.servlet-api.jar","type":"JAR","hints":{}},"javax.servlet:javax.servlet-api:3.1.0"],[{"location":"/opt/glassfish/payara41/glassfish/modules/javax.persistence.jar","type":"JAR","hints":{}},"org.eclipse.persistence:javax.persistence:2.0.5"],[{"location":"/home/tiw/Desktop/Web-Technologies/TIWbnb","type":"PROJECT","hints":{"PROJECT_NAME":"TIWbnb"}},"ABSENT"]]

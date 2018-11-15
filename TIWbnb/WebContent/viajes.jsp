@@ -83,9 +83,13 @@
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li ><a href="index.jsp">Home</a></li>
-							<li class="active"><a href="viajes.jsp">Viajes</a></li>
-							<li ><a href="mensajes.jsp">Mensajes</a></li>                              
+							<li class="active"><a href="registrado.jsp">Home</a></li>
+							<li ><a href="viajes.jsp">Viajes</a></li>
+							<li ><a href="casa.jsp">Ofrece Alojamiento</a></li>
+							<li ><a href="renting.jsp">Mis Alojamientos</a></li>
+							<li ><a href="mensajes.jsp">Mensajes</a></li>                                
+							<li><a href="registrado.jsp">Perfil</a></li>
+							<li><a href="index.jsp">Cerrar Sesión</a></li>                        
 						</ul>
 					</nav>
 				</div>

@@ -84,9 +84,10 @@
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li class="active"><a href="admin.jsp">Home</a></li>
-							<li ><a href="#">Administrar Usuarios</a></li>
+							<li ><a href="manage_users.jsp">Administrar Usuarios</a></li>
+							<li ><a href="resultados.jsp">Administrar Alojamientos</a></li>
 							<li ><a href="mensajes.jsp">Mensajes</a></li>
-							<li><a href="index.jsp" id="Login">Cerrar sesión</a></li>                            
+							<li><a href="index.jsp" id="Login">Cerrar sesión</a></li>                      
 						</ul>
 					</nav>
 				</div>

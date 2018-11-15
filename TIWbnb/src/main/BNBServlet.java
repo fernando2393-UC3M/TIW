@@ -173,34 +173,64 @@ public class BNBServlet extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+
 				// Save user in servlet context
 				// context.setAttribute("User", result); 
+				context.setAttribute("User", result); 
 
 				// Forward to requested URL by user
 				dispatcher.forward(req, res);				
 			}
 
-			else {				
-				result = loginInstance.CheckAdmin(req.getParameter("loginEmail"), req.getParameter("loginPassword"));
-
-				if (result != null) { //Admin match
-					dispatcher = req.getRequestDispatcher("admin.jsp");
-					
-					// Save admin in servlet context
-					context.setAttribute("Admin", result); 
-					
-					// Forward to requested URL by user
-					dispatcher.forward(req, res);
-				}
-
-				else { //No match possible --> Not letting in
-					dispatcher = req.getRequestDispatcher("index.jsp");
-					// Forward to requested URL by user
-					dispatcher.forward(req, res);
-				}
-
+			else { // No user match
+				dispatcher = req.getRequestDispatcher("index.jsp");
+				// Forward to requested URL by user
+				dispatcher.forward(req, res);
 			}
+		}
+		
+		else if(requestURL.toString().equals(path+"registrado")) {
+			dispatcher = req.getRequestDispatcher("registrado.jsp");
+			ResultSet result = (ResultSet) context.getAttribute("User");
+			
+			int id = 0;
+			
+			try {
+				id = result.getInt("USER_ID");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			Registrado registradoInstance = new Registrado();
+			User user = registradoInstance.updateUserData(id, req.getParameter("name"), req.getParameter("surname"), 
+					req.getParameter("birthdate"), req.getParameter("password"), req.getParameter("password1"));
+			
+			if(user!=null) {
+				context.removeAttribute("User");
+				context.setAttribute("User", user);
+			}
+			
+			dispatcher.forward(req, res);			
+			
+		}
+
+		else if(requestURL.toString().equals(path+"casa")){
+			dispatcher = req.getRequestDispatcher("casa.jsp");
+			AddHouse houseInstance = new AddHouse();
+			String str= houseInstance.RegisterHouse(req.getParameter("houseName"), req.getParameter("housePass"));
+			System.out.println(str);
+			
+			if(str != null){
+				dispatcher = req.getRequestDispatcher("viajes.jsp");
+				dispatcher.forward(req, res);
+			}
+			else{
+				dispatcher = req.getRequestDispatcher("mensajes.jsp");
+				dispatcher.forward(req, res);
+			}
+			
 		}
 	}
 }

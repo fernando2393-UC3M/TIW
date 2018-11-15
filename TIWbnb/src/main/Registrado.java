@@ -1,14 +1,19 @@
 package main;
 
 import java.util.List;
+
 import java.util.Locale.Category;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
@@ -34,22 +39,43 @@ public class Registrado {
 	@Resource
 	UserTransaction ut;
 	
-	public void getUserData(int id) {
+	public User updateUserData(int id, String name, String surname, String birthdate, String password, String password1) {
 		
+		User user = null;
 		
-		String stringQ1 = "SELECT s FROM User s WHERE s.userId = '"+id +"'";
-		Query query1 = em.createQuery(stringQ1);
+		if(password.equals(password1)) {
+			
+			
+			user = em.find(User.class, id); //Find the proper user
+			
+			// Begin transaction (crashes here)
+			
+			try {
+				ut.begin();
+			} catch (NotSupportedException | SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			user.setUserName(name);
+			user.setUserSurname(surname);
+			user.setUserBirthdate(birthdate);
+			user.setUserPassword(password);
+			
+			em.refresh(user);
+			
+			// Commit transaction changes to DB
+			
+			try {
+				ut.commit();
+			} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+					| HeuristicRollbackException | SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 		
-		List<?> results = query1.getResultList();
-		
-		// User user = em.find("User", id);	
-		
-		User user = (User) results.get(0);
-		
-		email = user.getUserEmail();
-		name = user.getUserName();
-		surname = user.getUserSurname();
-		password = user.getUserPassword();
-		birthdate = user.getUserBirthdate();
+		return user;
 	}
 }
