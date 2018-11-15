@@ -126,6 +126,8 @@ public class BNBServlet extends HttpServlet {
 
 		String requestURL = req.getRequestURL().toString();
 		
+		//------------------------PROFILE LOGIN------------------------
+		
 		if(requestURL.toString().equals(path+"login")){
 			Login loginInstance = new Login();
 			loginInstance.openConnection();
@@ -160,6 +162,7 @@ public class BNBServlet extends HttpServlet {
 			}
 		}
 
+		//------------------------INFORMATION UPDATE------------------------
 
 		else if(requestURL.toString().equals(path+"registrado")) {
 			
@@ -219,10 +222,17 @@ public class BNBServlet extends HttpServlet {
 			dispatcher.forward(req, res);			
 			
 		}
+		
+		//------------------------PROFILE DELETION------------------------
 
 		else if(requestURL.toString().equals(path+"casa")){
+			
 			dispatcher = req.getRequestDispatcher("casa.jsp");
+			
 			AddHouse houseInstance = new AddHouse();
+			
+			houseInstance.openConnection();
+			
 			String str= houseInstance.RegisterHouse(req.getParameter("houseName"), req.getParameter("houseDesc"));
 			System.out.println(str);
 			

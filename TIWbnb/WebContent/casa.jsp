@@ -126,20 +126,20 @@
 
 														<div class="input-field">
 															<label for="name">Nombre:</label> <input type="text"
-																class="form-control" id="name" name="houseName" placeholder="Casa en Sol" />
+																class="form-control" id="name" name="houseName" value="Casa en Sol" />
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-12 mt alternate">
 														<div class="input-field">
 															<label for="desc">Descripción:</label> <input
 																type="text" class="form-control" id="desc" name="houseDesc"
-																placeholder="Casa muy luminosa..." />
+																value="Casa muy luminosa..." />
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-12 mt alternate">
 														<div class="input-field">
 															<label for="subdesc">Resumen:</label> <input
-																type="text" class="form-control" id="subdesc" />
+																type="text" class="form-control" id="subdesc" name="houseRes" value="Casa para todos"/>
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
