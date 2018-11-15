@@ -11,15 +11,12 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet Filter implementation class LogInFilter
  */
-@WebFilter(filterName= "LogInFilter",
-		   urlPatterns = {"/admin", 
-						  "/resultados", "/renting", 
-						  "/registrado", "/mensajes", 
-						  "/alojamiento", "/casa"})
+@WebFilter(urlPatterns={""})
 public class LogInFilter implements Filter {
 	
 	private FilterConfig fConfig;
@@ -45,14 +42,21 @@ public class LogInFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		ServletContext myContext = fConfig.getServletContext();
 		
 		HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 		
+        if(req.getRequestURI().equals(req.getContextPath() + "/") ||
+           req.getRequestURI().equals(req.getContextPath() + "/index")) {
+             	chain.doFilter(request, response);
+             	return;
+        }
+        
+        HttpSession session = req.getSession(false);
 		String loginURI = req.getContextPath() + "/login";
-
-        boolean loggedIn = myContext != null && myContext.getAttribute("user") != null;
+        
+        
+        boolean loggedIn = session != null && session.getAttribute("user") != null;
         boolean loginRequest = req.getRequestURI().equals(loginURI);
 
         if (loggedIn || loginRequest) {
