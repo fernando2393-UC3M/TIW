@@ -48,7 +48,7 @@ import model.User;
  * Servlet implementation class BDServlet
  */
 @WebServlet(urlPatterns = {"/index", "/admin", 
-				"/resultados", "/renting", 
+				"/resultados", "/renting", "/delete",
 				"/registrado", "/mensajes", "/login",
 				"/alojamiento", "/casa", "/viajes"})
 public class BNBServlet extends HttpServlet {
@@ -97,6 +97,9 @@ public class BNBServlet extends HttpServlet {
 		}
 		else if(requestURL.equals(path+"registrado")){
 			ReqDispatcher =req.getRequestDispatcher("registrado.jsp");		
+		}
+		else if(requestURL.equals(path+"delete")){
+			ReqDispatcher =req.getRequestDispatcher("index.jsp");		
 		}
 		else if(requestURL.equals(path+"login")){
 			ReqDispatcher =req.getRequestDispatcher("index.jsp");
@@ -209,6 +212,39 @@ public class BNBServlet extends HttpServlet {
 		}
 		
 		//------------------------PROFILE DELETION------------------------
+
+		else if(requestURL.toString().equals(path+"delete")) {
+			
+			dispatcher = req.getRequestDispatcher("index.jsp");
+
+			int id = (int) session.getAttribute("user");
+
+			DeleteUser delete = new DeleteUser();
+
+			try {
+				ut.begin();
+			} catch (NotSupportedException | SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			delete.deletion(id, em); // Deletion method
+
+			try {
+				ut.commit();
+			} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+					| HeuristicRollbackException | SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			session.removeAttribute("user"); // Remove user from session
+
+			dispatcher.forward(req, res);			
+
+		}
+		
+		//------------------------HOUSE CREATION------------------------
 
 		else if(requestURL.toString().equals(path+"casa")){
 			
