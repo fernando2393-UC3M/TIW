@@ -157,6 +157,12 @@ public class BNBServlet extends HttpServlet {
 
 				try {
 					session.setAttribute("user", result.getInt("USER_ID"));
+					session.setMaxInactiveInterval(30*60); // 30 mins
+					
+					Cookie user = new Cookie("id", Integer.toString(result.getInt("USER_ID")));
+					user.setMaxAge(30*60);
+					
+					res.addCookie(user);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
