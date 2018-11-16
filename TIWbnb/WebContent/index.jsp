@@ -70,7 +70,7 @@
 	<![endif]-->
 
 	</head>
-	<body>
+	<body onload="registered();">
 		<div id="fh5co-wrapper">
 		<div id="fh5co-page">
 
@@ -256,11 +256,11 @@
         <h1 class="h3 mb-3 font-weight-normal">Introduce tus datos</h1>
       </div>
       <div class="modal-body">
-          <form class="form-registro">
-      <input type="email" id="inputEmail" class="form-control" placeholder="Dirección de correo electrónico" required autofocus>
-      <input type="name" id="inputName" class="form-control" placeholder="Nombre" required>
-      <input type="surname" id="inputSurname" class="form-control" placeholder="Apellidos" required>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Establece una contraseña" required>
+          <form class="form-registro" ACTION="register" METHOD="POST">
+      <input type="email" id="inputEmail" name="registerEmail" class="form-control" placeholder="Dirección de correo electrónico" required autofocus>
+      <input type="name" id="inputName" name="registerName" class="form-control" placeholder="Nombre" required>
+      <input type="surname" id="inputSurname" name="registerSurname" class="form-control" placeholder="Apellidos" required>
+      <input type="password" id="inputPassword" name="registerPassword" class="form-control" placeholder="Establece una contraseña" required>
       <button class="btn btn-lg btn-primary btn-block" type="submit" id="Registrate">Regístrate</button>
     </form>
 
@@ -377,6 +377,19 @@
 
 	<!-- Main JS -->
 	<script src="js/main.js"></script>
+	
+	<script>
+		function registered(){
+			var registered = <%=request.getAttribute("Registered") %>;
+			
+			if(registered == 1){
+				alert("Usuario registrado con éxito");
+			}
+			else if (registered == 2){
+				alert("Este usuario ya existe en la base de datos");
+			}
+		}
+	</script>
 
 
     <script>

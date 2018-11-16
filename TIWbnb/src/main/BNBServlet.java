@@ -49,7 +49,7 @@ import model.User;
  */
 @WebServlet(urlPatterns = {"/index", "/admin", 
 				"/resultados", "/renting", "/delete",
-				"/registrado", "/mensajes", "/login",
+				"/registrado", "/mensajes", "/login", "/register",
 				"/alojamiento", "/casa", "/viajes"})
 public class BNBServlet extends HttpServlet {
 	
@@ -103,6 +103,9 @@ public class BNBServlet extends HttpServlet {
 		}
 		else if(requestURL.equals(path+"login")){
 			ReqDispatcher =req.getRequestDispatcher("index.jsp");
+		}
+		else if(requestURL.equals(path+"register")){
+			ReqDispatcher =req.getRequestDispatcher("registrado.jsp");
 		}
 		else if(requestURL.equals(path+"renting")){
 			ReqDispatcher =req.getRequestDispatcher("renting.jsp");					
@@ -171,6 +174,41 @@ public class BNBServlet extends HttpServlet {
 		}
 		
 		//------------------------USER REGISTRATION------------------------
+		
+		else if(requestURL.toString().equals(path+"register")) {
+			
+			dispatcher = req.getRequestDispatcher("index.jsp");
+
+			RegisterUser register = new RegisterUser();
+
+			try {
+				ut.begin();
+			} catch (NotSupportedException | SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			int registered = register.register(em, req.getParameter("registerEmail"), req.getParameter("registerName"),
+					req.getParameter("registerSurname"),req.getParameter("registerPassword")); // Deletion method
+
+			try {
+				ut.commit();
+			} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+					| HeuristicRollbackException | SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			if(registered == 1) {
+				req.setAttribute("Registered", 1);
+			}
+			else if (registered == 2) {
+				req.setAttribute("Registered", 2);
+			}
+
+			dispatcher.forward(req, res);			
+
+		}
 
 		//------------------------INFORMATION UPDATE------------------------
 
