@@ -1,8 +1,8 @@
 package main;
 
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import java.util.Locale.Category;
@@ -45,16 +45,18 @@ public class Registrado {
 			
 			
 			User user = em.find(User.class, id); //Find the proper user
-			@SuppressWarnings("deprecation")
-			Date aux = new Date(2000, 01, 01);
+			
+			// TODO: Cuidar los strings formats
+	        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			Date parsed = new Date(1970, 01, 01);
 			try {
-				aux = (Date) new SimpleDateFormat("yyyy-MM-dd").parse(birthdate);
+				parsed = format.parse(birthdate);
 			} catch (ParseException e) {
 			}
 			
 			user.setUserName(name);
 			user.setUserSurname(surname);
-			user.setUserBirthdate(aux);
+			user.setUserBirthdate(parsed);
 			user.setUserPassword(password);
 			
 			em.merge(user);
