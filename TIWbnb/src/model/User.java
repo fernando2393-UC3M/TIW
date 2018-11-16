@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
@@ -20,6 +21,10 @@ public class User implements Serializable {
 	@Column(name="USER_ID")
 	private int userId;
 
+	@Temporal(TemporalType.DATE)
+	@Column(name="USER_BIRTHDATE")
+	private Date userBirthdate;
+
 	@Column(name="USER_EMAIL")
 	private String userEmail;
 
@@ -31,9 +36,6 @@ public class User implements Serializable {
 
 	@Column(name="USER_SURNAME")
 	private String userSurname;
-	
-	@Column(name="USER_BIRTHDATE")
-	private String userBirthdate;
 
 	//bi-directional many-to-one association to Booking
 	@OneToMany(mappedBy="user")
@@ -42,6 +44,14 @@ public class User implements Serializable {
 	//bi-directional many-to-one association to Home
 	@OneToMany(mappedBy="user")
 	private List<Home> homes;
+
+	//bi-directional many-to-one association to Message
+	@OneToMany(mappedBy="user1")
+	private List<Message> messages1;
+
+	//bi-directional many-to-one association to Message
+	@OneToMany(mappedBy="user2")
+	private List<Message> messages2;
 
 	public User() {
 	}
@@ -52,6 +62,14 @@ public class User implements Serializable {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public Date getUserBirthdate() {
+		return this.userBirthdate;
+	}
+
+	public void setUserBirthdate(Date userBirthdate) {
+		this.userBirthdate = userBirthdate;
 	}
 
 	public String getUserEmail() {
@@ -84,14 +102,6 @@ public class User implements Serializable {
 
 	public void setUserSurname(String userSurname) {
 		this.userSurname = userSurname;
-	}
-	
-	public String getUserBirthdate() {
-		return this.userBirthdate;
-	}
-
-	public void setUserBirthdate(String userBirthdate) {
-		this.userBirthdate = userBirthdate;
 	}
 
 	public List<Booking> getBookings() {
@@ -136,6 +146,50 @@ public class User implements Serializable {
 		home.setUser(null);
 
 		return home;
+	}
+
+	public List<Message> getMessages1() {
+		return this.messages1;
+	}
+
+	public void setMessages1(List<Message> messages1) {
+		this.messages1 = messages1;
+	}
+
+	public Message addMessages1(Message messages1) {
+		getMessages1().add(messages1);
+		messages1.setUser1(this);
+
+		return messages1;
+	}
+
+	public Message removeMessages1(Message messages1) {
+		getMessages1().remove(messages1);
+		messages1.setUser1(null);
+
+		return messages1;
+	}
+
+	public List<Message> getMessages2() {
+		return this.messages2;
+	}
+
+	public void setMessages2(List<Message> messages2) {
+		this.messages2 = messages2;
+	}
+
+	public Message addMessages2(Message messages2) {
+		getMessages2().add(messages2);
+		messages2.setUser2(this);
+
+		return messages2;
+	}
+
+	public Message removeMessages2(Message messages2) {
+		getMessages2().remove(messages2);
+		messages2.setUser2(null);
+
+		return messages2;
 	}
 
 }

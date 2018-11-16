@@ -60,7 +60,7 @@ public class Home implements Serializable {
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="HOME_EMAIL")
+	@JoinColumn(name="HOME_USER_ID")
 	private User user;
 
 	public Home() {

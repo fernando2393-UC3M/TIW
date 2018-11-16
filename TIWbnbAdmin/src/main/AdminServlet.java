@@ -3,7 +3,17 @@ package main;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
+import javax.annotation.Resource;
+import javax.jms.ConnectionFactory;
+import javax.jms.JMSException;
+import javax.jms.Queue;
+import javax.jms.TextMessage;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -11,12 +21,31 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 
-@WebServlet(urlPatterns = {"/index", "/admin", 
-		"/resultados", "/renting", 
-		"/registrado", "/alojamiento", "/casa", "/login"})
+import model.MessagesAdmin;
+
+@WebServlet(urlPatterns = {"/admin", "/resultados", "/manage_users", "/mensajes",  "/index", "/login"})
 
 public class AdminServlet extends HttpServlet {
+	
+	/* Attributes */
+	@Resource(mappedName="tiwconnectionfactory")
+	ConnectionFactory cf;
+
+	@Resource(mappedName="tiwqueue")
+	Queue adminQueue;
+	
+	@PersistenceContext(unitName="TIWbnb")
+	private EntityManager em;
+	
+	@Resource
+	UserTransaction ut;
 	
 	String path = "http://localhost:8080/TIWbnbAdmin/";
 	
@@ -40,26 +69,37 @@ public class AdminServlet extends HttpServlet {
 		if(requestURL.toString().equals(path+"admin")){
 			ReqDispatcher =req.getRequestDispatcher("admin.jsp");
 		}
-		else if(requestURL.equals(path+"alojamiento")){
-			ReqDispatcher =req.getRequestDispatcher("alojamiento.jsp");
-		}
-		else if(requestURL.equals(path+"casa")){
-			ReqDispatcher =req.getRequestDispatcher("casa.jsp");
-		}
-		else if(requestURL.equals(path+"mensajes")){
+	
+		//------------------------READ MESSAGES------------------------
+		
+		else if(requestURL.equals(path+"mensajes")){		
+			//TODO: get adminId from session (need parameter name to access)
+			int adminId = 1;
+			List<MessagesAdmin> messageList = new ArrayList();
+			try {
+				ut.begin();
+				messageList = ReadMessages.getMessages(adminId, em, cf, adminQueue);
+				ReadMessages.setRead(adminId, em);
+				ut.commit();
+				
+			} catch (JMSException | NotSupportedException | SystemException | SecurityException | IllegalStateException | RollbackException | HeuristicMixedException | HeuristicRollbackException e) {
+				// Treat JMS/JPA Exception
+			}
 			ReqDispatcher =req.getRequestDispatcher("mensajes.jsp");
+			
+			
 		}
-		else if(requestURL.equals(path+"registrado")){
-			ReqDispatcher =req.getRequestDispatcher("registrado.jsp");		
+	
+		//------------------------END READ MESSAGES------------------------
+		
+		else if(requestURL.equals(path+"resultados")){
+			ReqDispatcher =req.getRequestDispatcher("resultados.jsp");
+		}
+		else if(requestURL.equals(path+"manage_users")){
+			ReqDispatcher =req.getRequestDispatcher("manage_users.jsp");
 		}
 		else if(requestURL.equals(path+"login")){
 			ReqDispatcher =req.getRequestDispatcher("index.jsp");
-		}
-		else if(requestURL.equals(path+"renting")){
-			ReqDispatcher =req.getRequestDispatcher("renting.jsp");					
-		}
-		else if(requestURL.equals(path+"resultados")){
-			ReqDispatcher =req.getRequestDispatcher("resultados.jsp");				
 		}
 		else {
 			ReqDispatcher =req.getRequestDispatcher("index.jsp");

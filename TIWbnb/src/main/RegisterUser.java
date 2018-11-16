@@ -1,5 +1,8 @@
 package main;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import java.util.Locale.Category;
@@ -34,11 +37,14 @@ public class RegisterUser {
 		if(userList.isEmpty()){
 			User user = new User();
 			
+			@SuppressWarnings("deprecation")
+			Date aux = new Date(1970, 01, 01);
+			
 			user.setUserEmail(email);
 			user.setUserName(name);
 			user.setUserSurname(surname);
 			user.setUserPassword(password);
-			user.setUserBirthdate("1970-01-01");
+			user.setUserBirthdate(aux);
 			
 			em.persist(user);
 			em.merge(user);
