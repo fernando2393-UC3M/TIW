@@ -79,7 +79,16 @@ public class BNBServlet extends HttpServlet {
 			ReqDispatcher =req.getRequestDispatcher("mensajes.jsp");
 		}
 		else if(requestURL.equals(path+"registrado")){
-			ReqDispatcher =req.getRequestDispatcher("registrado.jsp");		
+			int id = (int) session.getAttribute("user");
+			
+			User user = em.find(User.class, id); // Select the user after commit
+
+			req.setAttribute("Name", user.getUserName());
+			req.setAttribute("Surname", user.getUserSurname());			
+			req.setAttribute("Birthdate", (new SimpleDateFormat("yyyy-MM-dd")).format(user.getUserBirthdate()));
+			req.setAttribute("Password", user.getUserPassword());
+			
+			ReqDispatcher =req.getRequestDispatcher("registrado.jsp");	
 		}
 		else if(requestURL.equals(path+"delete")){
 			ReqDispatcher =req.getRequestDispatcher("index.jsp");		
