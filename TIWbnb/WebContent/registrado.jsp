@@ -71,7 +71,7 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 	</head>
-<body>
+<body onload="updated();">
 		<div id="fh5co-wrapper">
 		<div id="fh5co-page">
 
@@ -321,9 +321,18 @@
 	<script src="js/main.js"></script>
 	
 	<script>
-    	
-	function eraseInfo() {
-		alert("Perfil borrado. Sentimos que te vayas.");
+	
+	function updated() {
+		
+		var updated = <%=request.getAttribute("Updated")%>;
+		
+		if(updated == 1) {
+			alert("Información actualizada");
+		}
+		else if(updated == 2) {
+			alert("Las contraseñas no coinciden");
+		}
+		
 	}
 	</script>
 

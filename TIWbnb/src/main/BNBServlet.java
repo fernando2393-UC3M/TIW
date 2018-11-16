@@ -169,6 +169,8 @@ public class BNBServlet extends HttpServlet {
 				dispatcher.forward(req, res);
 			}
 		}
+		
+		//------------------------USER REGISTRATION------------------------
 
 		//------------------------INFORMATION UPDATE------------------------
 
@@ -189,7 +191,7 @@ public class BNBServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			registradoInstance.updateUserData(id, req.getParameter("name"), req.getParameter("surname"), 
+			boolean updated = registradoInstance.updateUserData(id, req.getParameter("name"), req.getParameter("surname"), 
 					req.getParameter("birthdate"), req.getParameter("password"), req.getParameter("password1"), em);			
 
 			try {
@@ -206,6 +208,13 @@ public class BNBServlet extends HttpServlet {
 			req.setAttribute("Surname", user.getUserSurname());
 			req.setAttribute("Birthdate", user.getUserBirthdate());
 			req.setAttribute("Password", user.getUserPassword());
+			
+			if(updated) {
+				req.setAttribute("Updated", 1);
+			}
+			else {
+				req.setAttribute("Updated", 2);
+			}
 
 			dispatcher.forward(req, res);			
 			

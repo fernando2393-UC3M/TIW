@@ -34,14 +34,14 @@ public class Registrado {
 	// It is needed a way of data storage of introduced user to get its information from DB
 
 	
-	public User updateUserData(int id, String name, String surname, String birthdate, String password, String password1, EntityManager em) {
+	public boolean updateUserData(int id, String name, String surname, String birthdate, String password, String password1, EntityManager em) {
 		
-		User user = null;
+		boolean updated = false;
 		
 		if(password.equals(password1)) {
 			
 			
-			user = em.find(User.class, id); //Find the proper user
+			User user = em.find(User.class, id); //Find the proper user
 			
 			user.setUserName(name);
 			user.setUserSurname(surname);
@@ -49,10 +49,11 @@ public class Registrado {
 			user.setUserPassword(password);
 			
 			em.merge(user);
-		
+			
+			updated = true;		
 			
 		}
 		
-		return user;
+		return updated;
 	}
 }
