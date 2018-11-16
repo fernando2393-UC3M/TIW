@@ -4,6 +4,7 @@ import java.io.IOException;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -21,6 +22,8 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.User;
@@ -97,7 +100,7 @@ public class BNBServlet extends HttpServlet {
 			ReqDispatcher =req.getRequestDispatcher("index.jsp");
 		}
 		else if(requestURL.equals(path+"register")){
-			ReqDispatcher =req.getRequestDispatcher("registrado.jsp");
+			ReqDispatcher =req.getRequestDispatcher("index.jsp");
 		}
 		else if(requestURL.equals(path+"renting")){
 			ReqDispatcher =req.getRequestDispatcher("renting.jsp");					
@@ -181,7 +184,6 @@ public class BNBServlet extends HttpServlet {
 			
 			dispatcher = req.getRequestDispatcher("index.jsp");
 
-			RegisterUser register = new RegisterUser();
 
 			try {
 				ut.begin();
@@ -189,9 +191,36 @@ public class BNBServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			int registered;
 
-			int registered = register.register(em, req.getParameter("registerEmail"), req.getParameter("registerName"),
-					req.getParameter("registerSurname"),req.getParameter("registerPassword")); // Deletion method
+			String queryS = "SELECT s FROM User s WHERE s.userEmail = '"+req.getParameter("registerEmail")+"'";
+			
+			Query query = em.createQuery(queryS);
+			
+			List <User> userList = query.getResultList();
+			
+			if(userList.isEmpty()){
+				User user = new User();
+				
+				@SuppressWarnings("deprecation")
+				Date aux = new Date(1970, 01, 01);
+				
+				user.setUserEmail(req.getParameter("registerEmail"));
+				user.setUserName(req.getParameter("registerName"));
+				user.setUserSurname(req.getParameter("registerSurname"));
+				user.setUserPassword(req.getParameter("registerPassword"));
+				user.setUserBirthdate(aux);
+				
+				em.persist(user);
+				em.merge(user);
+				
+				registered = 1;
+			}
+			
+			else {
+				registered = 2;		
+			}
 
 			try {
 				ut.commit();
