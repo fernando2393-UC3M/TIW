@@ -49,11 +49,13 @@ public class LogInFilter implements Filter {
         HttpSession session = req.getSession(false);
 
         String loginURI = req.getContextPath() + "/login";
+        String logoutURI = req.getContextPath() + "/logout";
         String indexURI = req.getContextPath() + "/index";
         String mainURI = req.getContextPath() + "/";
         
         boolean loggedIn = session != null && session.getAttribute("user") != null;
         boolean isLoginRequest = req.getRequestURI().equals(loginURI);
+        boolean isLogoutRequest = req.getRequestURI().equals(logoutURI);        
         boolean isIndexRequest = req.getRequestURI().equals(indexURI) || 
         						 req.getRequestURI().equals(mainURI);
         boolean isStaticResource = req.getRequestURI().startsWith(req.getContextPath() + "/css/")   ||
@@ -61,7 +63,7 @@ public class LogInFilter implements Filter {
         						   req.getRequestURI().startsWith(req.getContextPath() + "/images/")|| 
         						   req.getRequestURI().startsWith(req.getContextPath() + "/js/");
 
-        if (loggedIn || isLoginRequest || isIndexRequest || isStaticResource) {
+        if (loggedIn || isLoginRequest || isLogoutRequest || isIndexRequest || isStaticResource) {
         	// pass the request along the filter chain
             chain.doFilter(request, response);
         } else {

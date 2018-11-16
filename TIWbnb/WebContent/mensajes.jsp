@@ -92,7 +92,7 @@
 							<li ><a href="renting">Mis Alojamientos</a></li>
 							<li ><a href="mensajes">Mensajes</a></li>                                
 							<li><a href="registrado">Perfil</a></li>
-							<li><a href="index">Cerrar Sesión</a></li>                             
+							<li><a href="logout">Cerrar Sesión</a></li>                             
 						</ul>
 					</nav>
 				</div>

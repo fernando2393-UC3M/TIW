@@ -1,16 +1,8 @@
 package main;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.ArrayList;
-
-import javax.persistence.Query;
-import javax.persistence.metamodel.SetAttribute;
-import javax.persistence.EntityManagerFactory;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,20 +20,8 @@ import javax.transaction.UserTransaction;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-// To be used for Glassfish
-import java.util.Properties;
-
-import org.eclipse.persistence.config.PersistenceUnitProperties;
-
 import model.User;
 
 /**
@@ -50,9 +30,11 @@ import model.User;
 @WebServlet(urlPatterns = {"/index", "/admin", 
 				"/resultados", "/renting", "/delete",
 				"/registrado", "/mensajes", "/login", "/register",
-				"/alojamiento", "/casa", "/viajes"})
+				"/alojamiento", "/casa", "/viajes", "/logout"})
 public class BNBServlet extends HttpServlet {
 	
+	private static final long serialVersionUID = 1L;
+
 	@PersistenceContext(unitName="TIWbnb")
 	private EntityManager em;
 	
@@ -115,6 +97,10 @@ public class BNBServlet extends HttpServlet {
 		}
 		else if(requestURL.equals(path+"viajes")){
 			ReqDispatcher =req.getRequestDispatcher("viajes.jsp");
+		}
+		else if(requestURL.equals(path+"logout")){
+			doPost(req, res);
+			return;
 		} 
 		else {
 			ReqDispatcher =req.getRequestDispatcher("index.jsp");
@@ -320,5 +306,27 @@ public class BNBServlet extends HttpServlet {
 			}
 			
 		}
+		
+		//-----------------------LOGOUT-------------------------------
+		
+		else if(requestURL.toString().equals(path+"logout")) {
+			
+			req.removeAttribute("Name");
+			req.removeAttribute("Surname");
+			req.removeAttribute("Birthdate");
+			req.removeAttribute("Password");
+			
+			session = req.getSession(false);
+			
+			if(session != null) {
+				session.removeAttribute("user");
+				session.invalidate();
+			}
+			
+			dispatcher = req.getRequestDispatcher("index.jsp");
+			dispatcher.forward(req, res);
+			
+		}
+		
 	}
 }
