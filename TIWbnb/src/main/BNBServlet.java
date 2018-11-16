@@ -20,6 +20,7 @@ import javax.transaction.UserTransaction;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 
+import java.text.SimpleDateFormat;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.User;
@@ -99,7 +100,7 @@ public class BNBServlet extends HttpServlet {
 			ReqDispatcher =req.getRequestDispatcher("viajes.jsp");
 		}
 		else if(requestURL.equals(path+"logout")){
-			doPost(req, res);
+			doPost(req, res); // Special case -------------------------
 			return;
 		} 
 		else {
@@ -235,8 +236,8 @@ public class BNBServlet extends HttpServlet {
 			User user = em.find(User.class, id); // Select the user after commit
 
 			req.setAttribute("Name", user.getUserName());
-			req.setAttribute("Surname", user.getUserSurname());
-			req.setAttribute("Birthdate", user.getUserBirthdate());
+			req.setAttribute("Surname", user.getUserSurname());			
+			req.setAttribute("Birthdate", (new SimpleDateFormat("yyyy-MM-dd")).format(user.getUserBirthdate()));
 			req.setAttribute("Password", user.getUserPassword());
 			
 			if(updated) {
