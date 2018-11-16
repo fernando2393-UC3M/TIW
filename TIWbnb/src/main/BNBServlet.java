@@ -35,6 +35,8 @@ import java.util.Iterator;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 // To be used for Glassfish
@@ -249,8 +251,8 @@ public class BNBServlet extends HttpServlet {
 			User user = em.find(User.class, id); // Select the user after commit
 
 			req.setAttribute("Name", user.getUserName());
-			req.setAttribute("Surname", user.getUserSurname());
-			req.setAttribute("Birthdate", user.getUserBirthdate());
+			req.setAttribute("Surname", user.getUserSurname());			
+			req.setAttribute("Birthdate", (new SimpleDateFormat("yyyy-MM-dd")).format(user.getUserBirthdate()));
 			req.setAttribute("Password", user.getUserPassword());
 			
 			if(updated) {
