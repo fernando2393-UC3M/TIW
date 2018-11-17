@@ -61,4 +61,13 @@ public ResultSet CheckAdmin(String input_mail, String input_password) {
 		
 		return rs;		
 	}
+
+public void closeConnection() {
+	try {
+		con.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
 }

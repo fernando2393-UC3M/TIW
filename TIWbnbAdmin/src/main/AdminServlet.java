@@ -14,6 +14,7 @@ import javax.jms.Queue;
 import javax.jms.TextMessage;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -21,6 +22,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
@@ -29,8 +31,9 @@ import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
 import model.MessagesAdmin;
+import model.User;
 
-@WebServlet(urlPatterns = {"/admin", "/resultados", "/casa", "/manage_users", "/mensajes",  "/index", "/login"})
+@WebServlet(urlPatterns = {"/admin", "/resultados", "/casa", "/manage_users", "/mensajes",  "/modify", "/index", "/login"})
 
 public class AdminServlet extends HttpServlet {
 	
@@ -48,6 +51,8 @@ public class AdminServlet extends HttpServlet {
 	UserTransaction ut;
 	
 	String path = "http://localhost:8080/TIWbnbAdmin/";
+	
+	HttpSession session;
 	
 	ServletContext context;
 	
@@ -95,7 +100,10 @@ public class AdminServlet extends HttpServlet {
 		else if(requestURL.equals(path+"resultados")){
 			ReqDispatcher =req.getRequestDispatcher("resultados.jsp");
 		}
-		else if(requestURL.equals(path+"manage_users")){
+		else if(requestURL.equals(path+"modify")){
+			ReqDispatcher =req.getRequestDispatcher("manage_users.jsp");
+		}
+		else if(requestURL.equals(path+"manage_users")){			
 			ReqDispatcher =req.getRequestDispatcher("manage_users.jsp");
 		}
 		else if(requestURL.equals(path+"login")){
@@ -126,13 +134,16 @@ public class AdminServlet extends HttpServlet {
 			if (result != null) { //User match
 				dispatcher = req.getRequestDispatcher("admin.jsp");
 				
+				session = req.getSession();
+				
 				// Save user in servlet context
 				try {
-					context.setAttribute("Admin", result.getInt("ADMIN_ID"));
+					session.setAttribute("admin", result.getInt("ADMIN_ID"));
+					session.setMaxInactiveInterval(30*60); // 30 mins
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} 
+				}
 
 				// Forward to requested URL by user
 				dispatcher.forward(req, res);				
@@ -143,6 +154,36 @@ public class AdminServlet extends HttpServlet {
 				// Forward to requested URL by user
 				dispatcher.forward(req, res);
 			}
+		}
+		
+		else if (requestURL.toString().equals(path+"modify")){
+			
+			Modify modify = new Modify();
+			dispatcher = req.getRequestDispatcher("manage_users.jsp");
+			
+			try {
+				ut.begin();
+			} catch (NotSupportedException | SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			String aux = req.getParameter("inputId");
+			int id = Integer.parseInt(aux);
+			
+			modify.updateUserData(id, req.getParameter("inputName"), req.getParameter("inputSurname"), 
+					req.getParameter("inputBirthdate"), req.getParameter("inputPassword"), em);
+			
+			try {
+				ut.commit();
+			} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+					| HeuristicRollbackException | SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			dispatcher.forward(req, res);
+			
 		}
 	}
 }
