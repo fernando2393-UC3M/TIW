@@ -30,7 +30,7 @@ import javax.transaction.UserTransaction;
 
 import model.MessagesAdmin;
 
-@WebServlet(urlPatterns = {"/admin", "/resultados", "/manage_users", "/mensajes",  "/index", "/login"})
+@WebServlet(urlPatterns = {"/admin", "/resultados", "/casa", "/manage_users", "/mensajes",  "/index", "/login"})
 
 public class AdminServlet extends HttpServlet {
 	
@@ -41,7 +41,7 @@ public class AdminServlet extends HttpServlet {
 	@Resource(mappedName="tiwqueue")
 	Queue adminQueue;
 	
-	@PersistenceContext(unitName="TIWbnb")
+	@PersistenceContext(unitName="TIWbnbAdmin")
 	private EntityManager em;
 	
 	@Resource
@@ -127,7 +127,12 @@ public class AdminServlet extends HttpServlet {
 				dispatcher = req.getRequestDispatcher("admin.jsp");
 				
 				// Save user in servlet context
-				context.setAttribute("Admin", result); 
+				try {
+					context.setAttribute("Admin", result.getInt("ADMIN_ID"));
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
 
 				// Forward to requested URL by user
 				dispatcher.forward(req, res);				
