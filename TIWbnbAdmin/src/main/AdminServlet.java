@@ -33,7 +33,7 @@ import javax.transaction.UserTransaction;
 import model.MessagesAdmin;
 import model.User;
 
-@WebServlet(urlPatterns = {"/admin", "/resultados", "/casa", "/manage_users", "/mensajes",  "/modify", "/index", "/login"})
+@WebServlet(urlPatterns = {"/admin", "/resultados", "/casa", "/manage_users", "/mensajes",  "/modify", "/index", "/delete", "/login"})
 
 public class AdminServlet extends HttpServlet {
 	
@@ -156,7 +156,35 @@ public class AdminServlet extends HttpServlet {
 			}
 		}
 		
-		else if (requestURL.toString().equals(path+"modify")){
+		else if (requestURL.toString().equals(path+"delete")) {
+			Delete delete = new Delete();
+			dispatcher = req.getRequestDispatcher("manage_users.jsp");
+			
+			try {
+				ut.begin();
+			} catch (NotSupportedException | SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			String aux = req.getParameter("inputId");
+			int id = Integer.parseInt(aux);
+			
+			delete.delete(em, id);
+			
+			try {
+				ut.commit();
+			} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+					| HeuristicRollbackException | SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			dispatcher.forward(req, res);
+			
+		}
+		
+		else if (requestURL.toString().equals(path+"modify")) {
 			
 			Modify modify = new Modify();
 			dispatcher = req.getRequestDispatcher("manage_users.jsp");

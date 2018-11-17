@@ -117,6 +117,10 @@
 				<input type="date" id="inputBirthdate" name="inputBirthdate" class="form-control" placeholder="Fecha de Nacimiento" required>
 				<button class="btn btn-lg btn-primary btn-block" type="submit" id="IniciaSesion">Actualizar información</button>
 			</form>
+			<form ACTION="delete" METHOD="POST" class="form-signin">
+				<input type="number" id="inputId" name="inputId" class="form-control" placeholder="Id del usuario">
+				<button class="btn btn-lg btn-primary btn-block" type="submit" id="IniciaSesion">Eliminar usuario</button>
+			</form>
 
 			<div>
 		
