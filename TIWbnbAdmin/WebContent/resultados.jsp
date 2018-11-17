@@ -6,6 +6,14 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
 	<%@ page contentType="text/html; charset=UTF-8" %>
+	<%@ page import="java.util.List" %>
+	<%@ page import="java.util.Date" %>
+	<%@ page import="model.User" %>
+	<%@ page import="java.sql.DriverManager" %>
+	<%@ page import="java.sql.Connection" %>
+	<%@ page import="java.sql.Statement" %>
+	<%@ page import="java.sql.ResultSet" %>
+	<%@ page import="java.sql.SQLException" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>TIWbnb</title>
@@ -79,7 +87,7 @@
 			<div class="container">
 				<div class="nav-header">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-					<h1 id="fh5co-logo"><a href="index.jsp"><i class="icon-airplane"></i>TIWbnb</a></h1>
+					<h1 id="fh5co-logo"><a href="registrado.jsp"><i class="icon-airplane"></i>TIWbnb</a></h1>
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
@@ -87,7 +95,7 @@
 							<li ><a href="manage_users.jsp">Administrar Usuarios</a></li>
 							<li ><a href="resultados.jsp">Administrar Alojamientos</a></li>
 							<li ><a href="mensajes.jsp">Mensajes</a></li>
-							<li><a href="logout" id="Login">Cerrar sesión</a></li>                      
+							<li><a href="logout" id="Login">Cerrar sesión</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -96,97 +104,113 @@
 
 		<!-- end:header-top -->
 
-		<div id="fh5co-tours" class="fh5co-section-gray">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-						<h3>Listado de Alojamientos</h3>
-					</div>
-				</div>
-				<div class="row row-bottom-padded-md">
-					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
-						<div href="#"><img src="images/place-1.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-							<div class="desc">
-								<span></span>
-								<h3>Estudio en Sol</h3>
-								<span>Apartamento entero. 2 camas</span>
-								<span class="price">60€</span>
-								<a class="btn btn-primary btn-outline" style="margin-bottom: 3%;" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
-								<a class="btn btn-primary btn-outline" style="margin-bottom: 3%;" href="casa.jsp">Modificar Información <i class="icon-arrow-right22"></i></a>
-								<a onclick="removeHouse();"><b>Eliminar Alojamiento</b></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
-						<div href="#"><img src="images/place-2.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-							<div class="desc">
-								<span></span>
-								<h3>Apartamento junto a Gran Via</h3>
-								<span>Apartamento entero. 1 cama</span>
-								<span class="price">70€</span>
-								<a class="btn btn-primary btn-outline" style="margin-bottom: 3%;" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
-								<a class="btn btn-primary btn-outline" style="margin-bottom: 3%;" href="casa.jsp">Modificar Información <i class="icon-arrow-right22"></i></a>
-								<a onclick="removeHouse();"><b>Eliminar Alojamiento</b></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
-						<div href="#"><img src="images/place-3.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-							<div class="desc">
-								<span></span>
-								<h3>Piso frente al Palacio Real</h3>
-								<span>Loft entero. 2 camas</span>
-								<span class="price">80€</span>
-								<a class="btn btn-primary btn-outline" style="margin-bottom: 3%;" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
-								<a class="btn btn-primary btn-outline" style="margin-bottom: 3%;" href="casa.jsp">Modificar Información <i class="icon-arrow-right22"></i></a>
-								<a onclick="removeHouse();"><b>Eliminar Alojamiento</b></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
-						<div href="#"><img src="images/place-1.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-							<div class="desc">
-								<span></span>
-								<h3>Céntrico y tranquilo</h3>
-								<span>Apartamento entero. 2 camas</span>
-								<span class="price">65€</span>
-								<a class="btn btn-primary btn-outline" style="margin-bottom: 3%;" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
-								<a class="btn btn-primary btn-outline" style="margin-bottom: 3%;" href="casa.jsp">Modificar Información <i class="icon-arrow-right22"></i></a>
-								<a onclick="removeHouse();"><b>Eliminar Alojamiento</b></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
-						<div href="#"><img src="images/place-2.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-							<div class="desc">
-								<span></span>
-								<h3>Stunning Apartment in Sol</h3>
-								<span>Apartamento entero. 2 camas</span>
-								<span class="price">50€</span>
-								<a class="btn btn-primary btn-outline" style="margin-bottom: 3%;" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
-								<a class="btn btn-primary btn-outline" style="margin-bottom: 3%;" href="casa.jsp">Modificar Información <i class="icon-arrow-right22"></i></a>
-								<a onclick="removeHouse();"><b>Eliminar Alojamiento</b></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
-						<div href="#"><img src="images/place-3.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-							<div class="desc">
-								<span></span>
-								<h3>Pretty Apartment in Plaza Mayor</h3>
-								<span>Apartamento entero. 1 cama</span>
-								<span class="price">30€</span>
-								<a class="btn btn-primary btn-outline" style="margin-bottom: 3%;" href="alojamiento.jsp">Seleccionar <i class="icon-arrow-right22"></i></a>
-								<a class="btn btn-primary btn-outline" style="margin-bottom: 3%;" href="casa.jsp">Modificar Información <i class="icon-arrow-right22"></i></a>
-								<a onclick="removeHouse();"><b>Eliminar Alojamiento</b></a>
-							</div>
-						</div>
-					</div>
-				</div>
+			<form ACTION="modify_place" METHOD="POST" class="form-signin">
+				<input type="number" id="inputId" name="inputId" class="form-control" placeholder="Id del alojamiento">
+				<input type="text" id="inputName" name="inputName" class="form-control" placeholder="Nombre" required>
+				<input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Dirección de correo electrónico">
+				<input type="text" id="inputCity" name="inputPassword" class="form-control" placeholder="Ciudad" required>
+				<input type="text" id="inputDescriptionFull" name="inputDescriptionFull" class="form-control" placeholder="Descripción" required>
+				<input type="text" id="inputDescriptionShort" name="inputDescriptionShort" class="form-control" placeholder="Descripción corta" required>
+				<input type="text" id="inputType" name="inputType" class="form-control" placeholder="Tipo" required>
+				<input type="number" id="inputGuests" name="inputGuests" class="form-control" placeholder="Huéspedes" required>
+				<input type="text" id="inputPhotos" name="inputPhotos" class="form-control" placeholder="Fotos" required>
+				<input type="number" id="inputPriceNight" name="inputPriceNight" class="form-control" placeholder="Precio por noche" required>
+				<button class="btn btn-lg btn-primary btn-block" type="submit" id="IniciaSesion">Actualizar información</button>
+			</form>
+			<form ACTION="delete_place" METHOD="POST" class="form-signin">
+				<input type="number" id="inputId" name="inputId" class="form-control" placeholder="Id del alojamiento">
+				<button class="btn btn-lg btn-primary btn-block" type="submit" id="IniciaSesion">Eliminar alojamiento</button>
+			</form>
 
-			</div>
+			<div>
+		
+		
+		<table style="width:100%">
+			<tr>
+				<th>Home ID</th>
+				<th>Email</th>
+				<th>Name</th>
+				<th>City</th>
+			</tr>
+		
+		<%
+		
+		Connection con = null;
+		Statement st = null;
+		
+		// Open connection
+		
+		try {
+			// Load Driver
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			// Connect to the database
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tiwbnb", "root", "admin");
+			System.out.println("Sucessful connection");
+		} catch (Exception e) {
+			System.out.println("Error when connecting to the database ");
+		}
+		
+		ResultSet rs = null;
+		
+		try {
+			// Create statement
+			st =con.createStatement();
+
+			//Once the statement is created, we need to get the user input for both user email and password
+
+			// Execute statement
+			// Here we obtain the full User table
+			String query = "SELECT * FROM HOME";
+			rs = st.executeQuery(query);
+			
+		} catch (SQLException e) {
+			System.out.println("Error when opening table ");
+		}
+		
+		// List <User> userList = (List <User>) request.getAttribute("Users");
+		
+		while(rs.next()){
+			
+			out.println("<tr>");
+			out.println("<td>"+rs.getInt("HOME_ID")+"</td><td>"+rs.getString("HOME_EMAIL")+"</td><td>"+rs.getString("HOME_NAME")+"</td><td>"+rs.getString("HOME_CITY")+"</td>");
+					//"</td><td>"+rs.getString("USER_EMAIL")+"</td><td>"+rs.getString("USER_PASSWORD")+"</td><td>"+rs.getString("USER_BIRTHDATE")+"</td>");
+			out.println("</tr>");
+		}	
+		%>
+		</table>
 		</div>
-            
+
+		<!-- Update Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		        <h1 class="h3 mb-3 font-weight-normal" id="update_modal_user_title">Here should be the pk to update</h1>
+		      </div>
+
+		      <div class="modal-body">
+
+		          <form class="form-signin">
+								<input type="text" id="update_modal_user_user" class="form-control" placeholder="Username" required autofocus>
+								<input type="text" id="update_modal_user_name" class="form-control" placeholder="Name" required autofocus>
+								<input type="text" id="update_modal_user_surname" class="form-control" placeholder="Surname(s)" required autofocus>
+					      <input type="email" id="update_modal_user_email" class="form-control" placeholder="Email address" required autofocus>
+					      <input type="password" id="update_modal_user_password" class="form-control" placeholder="Password" required>
+								<button class="btn btn-lg btn-primary btn-block" type="button" id="Update">Update</button>
+		    			</form>
+
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+
+
+
 		<footer>
 			<div id="footer">
 				<div class="container">
@@ -254,7 +278,7 @@
 			</div>
 		</footer>
 
-	
+
 
 	</div>
 	<!-- END fh5co-page -->
@@ -262,7 +286,7 @@
 	</div>
 	<!-- END fh5co-wrapper -->
 
-                
+
 	<!-- jQuery -->
 
 	<script src="js/jquery.min.js"></script>
@@ -287,17 +311,56 @@
 	<!-- CS Select -->
 	<script src="js/classie.js"></script>
 	<script src="js/selectFx.js"></script>
-	
+
 	<!-- Main JS -->
 	<script src="js/main.js"></script>
 
-        
-    <script>
-		function removeHouse() {
-			alert("Esta casa ha sido eliminada.");
-		}
-    </script>
-        
+	<script>
+
+		 $(document).ready(function() {
+	  //  $('#modify').click(function() {
+				$(document).on('click', '.modify', function() {
+
+	  		var key = $(this).siblings('.user_user').text();
+				//This values should be the result of a query with the key into the db instead of a copy of the html
+				var k_name = $(this).parent().siblings('.user_name').children().children().children().text();
+				var k_surname = $(this).parent().siblings('.user_surname').children().children().children().text();
+				var k_email = $(this).parent().siblings('.user_email').children().children().children().text();
+				var k_password = $(this).parent().siblings('.user_password').children().children().children().text();
+
+				$("#updateModal").modal("show");
+//																<a class="info" class="modify">Modify Information</a>
+
+				$("#update_modal_user_title").text(key);
+				$("#update_modal_user_user").attr("placeholder", key);
+				$("#update_modal_user_name").attr("placeholder", k_name);
+				$("#update_modal_user_surname").attr("placeholder", k_surname);
+				$("#update_modal_user_email").attr("placeholder", k_email);
+				$("#update_modal_user_password").attr("placeholder", k_password);
+		 });
+
+		 $('#Update').click(function() {
+			 //SEND UPDATES TO DB
+			 alert("Updated");
+		 });
+
+	 	});
+
+
+
+	</script>
+
+
+	<script>
+
+	function deleteUser() {
+		alert("Actualmente este usuario tiene casas en alquiler");
+	}
+
+
+	</script>
+
+
 	</body>
 </html>
 

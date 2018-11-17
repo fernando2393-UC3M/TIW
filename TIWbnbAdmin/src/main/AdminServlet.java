@@ -32,7 +32,7 @@ import model.MessagesAdmin;
 @WebServlet(urlPatterns = {
 		"/admin", "/resultados", "/casa", 
 		"/manage_users", "/mensajes",  "/modify",
-		"/index", "/delete", "/login", "/logout"
+		"/index", "/delete", "/delete_place", "/login", "/logout"
 		})
 public class AdminServlet extends HttpServlet {
 	
@@ -108,6 +108,9 @@ public class AdminServlet extends HttpServlet {
 		else if(requestURL.equals(path+"modify")){
 			ReqDispatcher =req.getRequestDispatcher("manage_users.jsp");
 		}
+		else if(requestURL.equals(path+"modify_place")) {
+			ReqDispatcher =req.getRequestDispatcher("resultados.jsp");
+		}
 		else if(requestURL.equals(path+"manage_users")){			
 			ReqDispatcher =req.getRequestDispatcher("manage_users.jsp");
 		}
@@ -182,7 +185,7 @@ public class AdminServlet extends HttpServlet {
 			}
 		}
 		
-		// --------------------- DELETE CASE -------------------------------------------
+		// --------------------- DELETE USER CASE -------------------------------------------
 		
 		else if (requestURL.toString().equals(path+"delete")) {
 			Delete delete = new Delete();
@@ -212,7 +215,38 @@ public class AdminServlet extends HttpServlet {
 			
 		}
 		
-		// ------------------------- MODIFY CASE -------------------------------
+		// --------------------- DELETE PLACE CASE -------------------------------------------
+		
+		else if (requestURL.toString().equals(path+"delete_place")) {
+			DeletePlace delete = new DeletePlace();
+
+			dispatcher = req.getRequestDispatcher("resultados.jsp");
+					
+			try {
+				ut.begin();
+			} catch (NotSupportedException | SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+					
+			String aux = req.getParameter("inputId");
+			int id = Integer.parseInt(aux);
+					
+			delete.delete(em, id);
+					
+			try {
+				ut.commit();
+			} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+					| HeuristicRollbackException | SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+					
+			dispatcher.forward(req, res);
+					
+		}
+		
+		// ------------------------- MODIFY USER CASE -------------------------------
 		
 		else if (requestURL.toString().equals(path+"modify")) {
 			
