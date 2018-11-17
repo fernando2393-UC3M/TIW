@@ -184,16 +184,6 @@ public class BNBServlet extends HttpServlet {
 			
 			dispatcher = req.getRequestDispatcher("index.jsp");
 
-
-			try {
-				ut.begin();
-			} catch (NotSupportedException | SystemException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			int registered;
-
 			String queryS = "SELECT s FROM User s WHERE s.userEmail = '"+req.getParameter("registerEmail")+"'";
 			
 			Query query = em.createQuery(queryS);
@@ -201,11 +191,20 @@ public class BNBServlet extends HttpServlet {
 			List <User> userList = query.getResultList();
 			
 			if(userList.isEmpty()){
-				User user = new User();
 				
+				try {
+					ut.begin();
+				} catch (NotSupportedException | SystemException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				User user = new User();
+								
 				@SuppressWarnings("deprecation")
 				Date aux = new Date(1970, 01, 01);
 				
+//				user.setUserId(8);		Insert de ID de prueba para ver si se resuelve el problema --> Sigue devolviendo error
 				user.setUserEmail(req.getParameter("registerEmail"));
 				user.setUserName(req.getParameter("registerName"));
 				user.setUserSurname(req.getParameter("registerSurname"));
@@ -213,29 +212,23 @@ public class BNBServlet extends HttpServlet {
 				user.setUserBirthdate(aux);
 				
 				em.persist(user);
-				em.merge(user);
+//				em.flush();			Con esto se ejecutan los inserts antes del commit --> Problema con el user ID --> Devuelve error del default ID
 				
-				registered = 1;
+				try {
+					ut.commit();
+					
+				} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+						| HeuristicRollbackException | SystemException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				req.setAttribute("Registered", 1);
 			}
 			
 			else {
-				registered = 2;		
-			}
-
-			try {
-				ut.commit();
-			} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
-					| HeuristicRollbackException | SystemException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			if(registered == 1) {
-				req.setAttribute("Registered", 1);
-			}
-			else if (registered == 2) {
 				req.setAttribute("Registered", 2);
 			}
+			
 
 			dispatcher.forward(req, res);			
 
