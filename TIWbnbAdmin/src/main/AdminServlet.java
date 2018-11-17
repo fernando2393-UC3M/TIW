@@ -5,20 +5,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
 import javax.annotation.Resource;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
 import javax.jms.Queue;
-import javax.jms.TextMessage;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,30 +28,38 @@ import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
 import model.MessagesAdmin;
-import model.User;
 
-@WebServlet(urlPatterns = {"/admin", "/resultados", "/casa", "/manage_users", "/mensajes",  "/modify", "/index", "/delete", "/login"})
-
+@WebServlet(urlPatterns = {
+		"/admin", "/resultados", "/casa", 
+		"/manage_users", "/mensajes",  "/modify",
+		"/index", "/delete", "/login", "/logout"
+		})
 public class AdminServlet extends HttpServlet {
 	
-	/* Attributes */
-	@Resource(mappedName="tiwconnectionfactory")
-	ConnectionFactory cf;
+	private static final long serialVersionUID = 6176032171079275384L;
 
-	@Resource(mappedName="tiwqueue")
-	Queue adminQueue;
-	
 	@PersistenceContext(unitName="TIWbnbAdmin")
-	private EntityManager em;
+	protected EntityManager em;
 	
 	@Resource
-	UserTransaction ut;
+	private UserTransaction ut;
 	
 	String path = "http://localhost:8080/TIWbnbAdmin/";
+		
+	ServletContext context;
 	
 	HttpSession session;
+
+	/* Attributes */
+	//@Resource(mappedName="tiwconnectionfactory")
+	@Resource
+	ConnectionFactory cf;
+
+	//@Resource(mappedName="tiwqueue")
+	//@Resource
+	Queue adminQueue;
 	
-	ServletContext context;
+	
 	
 	public void init() {
 
@@ -80,7 +85,7 @@ public class AdminServlet extends HttpServlet {
 		else if(requestURL.equals(path+"mensajes")){		
 			//TODO: get adminId from session (need parameter name to access)
 			int adminId = 1;
-			List<MessagesAdmin> messageList = new ArrayList();
+			List<MessagesAdmin> messageList = new ArrayList<MessagesAdmin>();
 			try {
 				ut.begin();
 				messageList = ReadMessages.getMessages(adminId, em, cf, adminQueue);
@@ -109,6 +114,24 @@ public class AdminServlet extends HttpServlet {
 		else if(requestURL.equals(path+"login")){
 			ReqDispatcher =req.getRequestDispatcher("index.jsp");
 		}
+		
+		// --------------------------------- LOGOUT CASE -----------------------
+		
+		else if (requestURL.toString().equals(path+"logout")) {
+					
+			session = req.getSession(false);
+					
+			if(session != null) {
+				session.removeAttribute("admin");
+				session.invalidate();
+			}
+					
+			ReqDispatcher = req.getRequestDispatcher("index.jsp");
+			ReqDispatcher.forward(req, res);
+		}
+		
+		// ----------------------------------------------------------------------
+		
 		else {
 			ReqDispatcher =req.getRequestDispatcher("index.jsp");
 		}
@@ -116,15 +139,13 @@ public class AdminServlet extends HttpServlet {
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
 
 		// Here we get the current URL requested by the user
-
 		String requestURL = req.getRequestURL().toString();
 
-		// Login case
+		// ------------------------ LOGIN CASE ------------------------------------------
 
 		if(requestURL.toString().equals(path+"login")){
 			Login loginInstance = new Login();
@@ -140,6 +161,11 @@ public class AdminServlet extends HttpServlet {
 				try {
 					session.setAttribute("admin", result.getInt("ADMIN_ID"));
 					session.setMaxInactiveInterval(30*60); // 30 mins
+					
+					Cookie admin = new Cookie("id", Integer.toString(result.getInt("ADMIN_ID")));
+					admin.setMaxAge(30*60);
+					
+					res.addCookie(admin);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -155,6 +181,8 @@ public class AdminServlet extends HttpServlet {
 				dispatcher.forward(req, res);
 			}
 		}
+		
+		// --------------------- DELETE CASE -------------------------------------------
 		
 		else if (requestURL.toString().equals(path+"delete")) {
 			Delete delete = new Delete();
@@ -184,6 +212,8 @@ public class AdminServlet extends HttpServlet {
 			
 		}
 		
+		// ------------------------- MODIFY CASE -------------------------------
+		
 		else if (requestURL.toString().equals(path+"modify")) {
 			
 			Modify modify = new Modify();
@@ -212,6 +242,8 @@ public class AdminServlet extends HttpServlet {
 			
 			dispatcher.forward(req, res);
 			
+		} else {
+			dispatcher.forward(req, res);
 		}
 	}
 }

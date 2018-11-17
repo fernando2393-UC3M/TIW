@@ -80,10 +80,11 @@ public class BNBServlet extends HttpServlet {
 
 		String requestURL = req.getRequestURL().toString();
 
-		if(requestURL.toString().equals(path+"admin")){
-			ReqDispatcher =req.getRequestDispatcher("admin.jsp");
-		}
-		else if(requestURL.equals(path+"alojamiento")){
+//		if(requestURL.toString().equals(path+"admin")){
+//			ReqDispatcher =req.getRequestDispatcher("admin.jsp");
+//		}
+//		else 
+		if(requestURL.equals(path+"alojamiento")){
 			ReqDispatcher =req.getRequestDispatcher("alojamiento.jsp");
 		}
 		else if(requestURL.equals(path+"casa")){
