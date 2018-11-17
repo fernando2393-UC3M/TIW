@@ -125,6 +125,15 @@
 			<div>
 		
 		
+		<table style="width:100%">
+			<tr>
+				<th>User ID</th>
+				<th>Name</th>
+				<th>Surname</th>
+				<th>Email</th>
+				<th>Password</th>
+				<th>Birth date</th>
+			</tr>
 		
 		<%
 		
@@ -164,14 +173,13 @@
 		
 		while(rs.next()){
 			
-			out.println("<p>");
-			out.println("User ID: "+rs.getInt("USER_ID")+" User name: "+rs.getString("USER_NAME")+" User surname: "+rs.getString("USER_SURNAME")+
-					" User email: "+rs.getString("USER_EMAIL")+" User password: "+rs.getString("USER_PASSWORD")+" User birthdate: "+rs.getString("USER_BIRTHDATE"));
-			out.println("</p>");
+			out.println("<tr>");
+			out.println("<td>"+rs.getInt("USER_ID")+"</td><td>"+rs.getString("USER_NAME")+"</td><td>"+rs.getString("USER_SURNAME")+
+					"</td><td>"+rs.getString("USER_EMAIL")+"</td><td>"+rs.getString("USER_PASSWORD")+"</td><td>"+rs.getString("USER_BIRTHDATE")+"</td>");
+			out.println("</tr>");
 		}	
-		
 		%>
-		
+		</table>
 		</div>
 
 		<!-- Update Modal -->
