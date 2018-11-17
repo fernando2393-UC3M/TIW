@@ -1,6 +1,7 @@
 package main;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ import model.MessagesAdmin;
 
 @WebServlet(urlPatterns = {
 		"/admin", "/resultados", "/casa", 
-		"/manage_users", "/mensajes",  "/modify",
+		"/manage_users", "/mensajes",  "/modify_place",
 		"/index", "/delete", "/delete_place", "/login", "/logout"
 		})
 public class AdminServlet extends HttpServlet {
@@ -276,6 +277,56 @@ public class AdminServlet extends HttpServlet {
 			
 			dispatcher.forward(req, res);
 			
+		} 
+		
+		// ------------------------- MODIFY PLACE CASE -------------------------------
+		
+		else if (requestURL.toString().equals(path+"modify_place")) {
+					
+			ModifyPlace modify = new ModifyPlace();
+			dispatcher = req.getRequestDispatcher("resultados.jsp");
+					
+			try {
+				ut.begin();
+			} catch (NotSupportedException | SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+					
+			String aux = "";
+			int id = Integer.parseInt(req.getParameter("inputId"));
+			
+			aux = req.getParameter("inputGuests");
+			int inputGuests = Integer.parseInt(aux);
+			
+			aux = req.getParameter("inputPriceNight");
+			
+			BigDecimal inputPriceNight = new BigDecimal(aux.replaceAll(",",""));
+					
+			modify.updatePlaceData(
+					id, 
+					req.getParameter("inputAvDateFin"), 
+					req.getParameter("inputAvDateInit"), 
+					req.getParameter("inputCity"),
+					req.getParameter("inputDescriptionFull"),
+					req.getParameter("inputDescriptionShort"),
+					inputGuests,
+					req.getParameter("inputName"),
+					req.getParameter("inputPhotos"),
+					inputPriceNight,
+					req.getParameter("inputType"),
+					em);
+					
+			try {
+				ut.commit();
+			} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+					| HeuristicRollbackException | SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+					
+			dispatcher.forward(req, res);
+					
 		} else {
 			dispatcher.forward(req, res);
 		}
