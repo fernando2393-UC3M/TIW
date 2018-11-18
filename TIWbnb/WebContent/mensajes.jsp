@@ -95,11 +95,7 @@
 							<li ><a href="renting">Mis Alojamientos</a></li>
 							<li ><a href="mensajes">Mensajes</a></li>                                
 							<li><a href="registrado">Perfil</a></li>
-<<<<<<< HEAD
 							<li><a href="logout">Cerrar Sesión</a></li>
-=======
-							<li><a href="logout">Cerrar Sesión</a></li>                             
->>>>>>> e707763f84c0472188ad892338406b9bf8785576
 						</ul>
 					</nav>
 				</div>
@@ -138,30 +134,32 @@
 										<%
 										List<model.Message> messageList = (List<model.Message>) session.getAttribute("UserMessages"); 
 										
-										for(model.Message obj: messageList){
-											%> <tr> <%
-											if(obj.getMessageRead() == false){
-												%> <tr data-status="no-leido" class="no-leido"> <%
-											}
-											else{
-												%> <tr data-status="leido" class="leido"> <%
-											}
-											%>
-											<td>
-											<div class="media">
-												<h4 class="title"> <%= obj.getUser1().getUserEmail() %>
-												</h4>
-											</div>
-											</td>
-											<td>      
-											<div class="media">
-												<p class="summary"><%= obj.getMessageContent() %></p>
-												<p class="meta"><%= (new SimpleDateFormat("yyyy-MM-dd")).format(obj.getMessageDate())  %></p>                                                
-											</div>
-											</td>
-											</tr> 
-											<%
-										}								
+										if(messageList != null){
+											for(model.Message obj: messageList){
+												%> <tr> <%
+												if(obj.getMessageRead() == false){
+													%> <tr data-status="no-leido" class="no-leido"> <%
+												}
+												else{
+													%> <tr data-status="leido" class="leido"> <%
+												}
+												%>
+												<td>
+												<div class="media">
+													<h4 class="title"> <%= obj.getUser1().getUserEmail() %>
+													</h4>
+												</div>
+												</td>
+												<td>      
+												<div class="media">
+													<p class="summary"><%= obj.getMessageContent() %></p>
+													<p class="meta"><%= (new SimpleDateFormat("yyyy-MM-dd")).format(obj.getMessageDate())  %></p>                                                
+												</div>
+												</td>
+												</tr> 
+												<%
+											}	
+										}							
 										%>                                       
 									</tbody>
 								</table>
@@ -175,30 +173,32 @@
 										<%
 										List<model.MessagesAdmin> adminList = (List<model.MessagesAdmin>) session.getAttribute("AdminMessages");
 
-										for(model.MessagesAdmin obj: adminList){										
-											%> <tr> <%
-											if(obj.getMessageRead() == false){
-												%> <tr data-status="no-leido" class="no-leido"> <%
-											}
-											else{
-												%> <tr data-status="leido" class="leido"> <%
-											}
-											%>
-											<td>
-											<div class="media">
-												<h4 class="title"> <%= obj.getAdmin().getAdminEmail() %>
-												</h4>
-											</div>
-											</td>
-											<td>      
-											<div class="media">
-												<p class="summary"><%= obj.getMessageContent() %></p>
-												<p class="meta"><%= (new SimpleDateFormat("yyyy-MM-dd")).format(obj.getMessageDate())  %></p>                                                
-											</div>
-											</td>
-											</tr> 
-											<%
-										}								
+										if(adminList != null){
+											for(model.MessagesAdmin obj: adminList){										
+												%> <tr> <%
+												if(obj.getMessageRead() == false){
+													%> <tr data-status="no-leido" class="no-leido"> <%
+												}
+												else{
+													%> <tr data-status="leido" class="leido"> <%
+												}
+												%>
+												<td>
+												<div class="media">
+													<h4 class="title"> <%= obj.getAdmin().getAdminEmail() %>
+													</h4>
+												</div>
+												</td>
+												<td>      
+												<div class="media">
+													<p class="summary"><%= obj.getMessageContent() %></p>
+													<p class="meta"><%= (new SimpleDateFormat("yyyy-MM-dd")).format(obj.getMessageDate())  %></p>                                                
+												</div>
+												</td>
+												</tr> 
+												<%
+											}	
+										}
 										%>                                       
 									</tbody>
 								</table>

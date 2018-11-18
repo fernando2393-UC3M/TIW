@@ -87,17 +87,11 @@
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-<<<<<<< HEAD
-							<li ><a href="index.jsp">Home</a></li>
-							<li ><a href="viajes.jsp">Viajes</a></li>
-							<li class="active" ><a href="mensajes.jsp">Mensajes</a></li>                              
-=======
 							<li class="active"><a href="admin.jsp">Home</a></li>
 							<li ><a href="manage_users.jsp">Administrar Usuarios</a></li>
 							<li ><a href="resultados.jsp">Administrar Alojamientos</a></li>
 							<li ><a href="mensajes.jsp">Mensajes</a></li>
-							<li><a href="logout" id="Login">Cerrar sesión</a></li>                         
->>>>>>> e707763f84c0472188ad892338406b9bf8785576
+							<li><a href="logout" id="Login">Cerrar sesión</a></li> 
 						</ul>
 					</nav>
 				</div>
@@ -136,29 +130,31 @@
 										<%
 										List<model.MessagesAdmin> adminList = (List<model.MessagesAdmin>) session.getAttribute("AdminMessages");
 
-										for(model.MessagesAdmin obj: adminList){												
-											%> <tr> <%
-											if(obj.getMessageRead() == false){
-												%> <tr data-status="no-leido" class="no-leido"> <%
+										if(adminList != null){
+											for(model.MessagesAdmin obj: adminList){												
+												%> <tr> <%
+												if(obj.getMessageRead() == false){
+													%> <tr data-status="no-leido" class="no-leido"> <%
+												}
+												else{
+													%> <tr data-status="leido" class="leido"> <%
+												}
+												%>
+												<td>
+												<div class="media">
+													<h4 class="title"> <%= obj.getUser().getUserEmail() %>
+													</h4>
+												</div>
+												</td>
+												<td>      
+												<div class="media">
+													<p class="summary"><%= obj.getMessageContent() %></p>
+													<p class="meta"><%= (new SimpleDateFormat("yyyy-MM-dd")).format(obj.getMessageDate())  %></p>                                                
+												</div>
+												</td>
+												</tr> 
+												<%
 											}
-											else{
-												%> <tr data-status="leido" class="leido"> <%
-											}
-											%>
-											<td>
-											<div class="media">
-												<h4 class="title"> <%= obj.getUser().getUserEmail() %>
-												</h4>
-											</div>
-											</td>
-											<td>      
-											<div class="media">
-												<p class="summary"><%= obj.getMessageContent() %></p>
-												<p class="meta"><%= (new SimpleDateFormat("yyyy-MM-dd")).format(obj.getMessageDate())  %></p>                                                
-											</div>
-											</td>
-											</tr> 
-											<%
 										}								
 										%>                                       
 									</tbody>

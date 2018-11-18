@@ -104,43 +104,41 @@ public class BNBServlet extends HttpServlet {
 		else if(requestURL.equals(path+"casa")){
 			ReqDispatcher =req.getRequestDispatcher("casa.jsp");
 		}
-else if(requestURL.equals(path+"mensajes")){
+		else if(requestURL.equals(path+"mensajes")){
 			
 			//------------------------READ MESSAGES------------------------
 					
-				// Get userId from session (need parameter name to access)
-				int userId = (Integer) session.getAttribute("user"); 
-				
-				try {
-					ut.begin();
-					List<model.Message> messageList;
-					messageList = ReadMessages.getMessages(userId, em, cf, queue);
-					ReadMessages.setRead(userId, em);
-					ut.commit();
+			// Get userId from session (need parameter name to access)
+			int userId = (Integer) session.getAttribute("user"); 
+			
+			try {
+				ut.begin();
+				List<model.Message> messageList;
+				messageList = ReadMessages.getMessages(userId, em, cf, queue);
+				ReadMessages.setRead(userId, em);
+				ut.commit();
 
-					ut.begin();
-					List<MessagesAdmin> messageAdminList;
-					messageAdminList = ReadMessages.getMessagesAdmin(userId, em, cf, queue);
-					ReadMessages.setRead(userId, em);
-					ut.commit();
-					
-					// TODO Save messages in user session
-					if(messageList.size() > 0)
-						session.setAttribute("UserMessages", messageList); 
-					
-					// TODO Save admin messages in user session
-					if(messageAdminList.size() > 0)
-						session.setAttribute("AdminMessages", messageAdminList); 
-					
-				} catch (JMSException | NotSupportedException | SystemException | SecurityException | IllegalStateException | RollbackException | HeuristicMixedException | HeuristicRollbackException e) {
-					// Treat JMS/JPA Exception
-				}
-				ReqDispatcher =req.getRequestDispatcher("mensajes.jsp");
+				ut.begin();
+				List<MessagesAdmin> messageAdminList;
+				messageAdminList = ReadMessages.getMessagesAdmin(userId, em, cf, queue);
+				ReadMessages.setRead(userId, em);
+				ut.commit();
 				
+				// TODO Save messages in user session
+				if(messageList.size() > 0)
+					session.setAttribute("UserMessages", messageList); 
+				
+				// TODO Save admin messages in user session
+				if(messageAdminList.size() > 0)
+					session.setAttribute("AdminMessages", messageAdminList); 
+				
+			} catch (JMSException | NotSupportedException | SystemException | SecurityException | IllegalStateException | RollbackException | HeuristicMixedException | HeuristicRollbackException e) {
+				// Treat JMS/JPA Exception
+			}
+			ReqDispatcher =req.getRequestDispatcher("mensajes.jsp");				
 		
 			//------------------------END READ MESSAGES------------------------
 			
-			ReqDispatcher =req.getRequestDispatcher("mensajes.jsp");
 		}
 		else if(requestURL.equals(path+"registrado")){
 			int id = (int) session.getAttribute("user");

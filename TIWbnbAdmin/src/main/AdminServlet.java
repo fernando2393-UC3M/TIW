@@ -82,7 +82,7 @@ public class AdminServlet extends HttpServlet {
 		else if(requestURL.equals(path+"mensajes")){		
 			//TODO: get adminId from session (need parameter name to access)
 			int adminId = 1;
-			List<MessagesAdmin> messageList = new ArrayList<MessagesAdmin>();
+			List<MessagesAdmin> messageList = null;
 			try {
 				ut.begin();
 				//List<MessagesAdmin> messageList;
@@ -92,7 +92,7 @@ public class AdminServlet extends HttpServlet {
 				
 				// TODO Save messages in user session
 				if(messageList.size() > 0)
-					session.setAttribute("Admin", messageList.get(0)); 
+					session.setAttribute("AdminMessages", messageList); 
 				
 			} catch (JMSException | NotSupportedException | SystemException | SecurityException | IllegalStateException | RollbackException | HeuristicMixedException | HeuristicRollbackException e) {
 				// Treat JMS/JPA Exception
