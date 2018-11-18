@@ -8,6 +8,15 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
 	<%@ page contentType="text/html; charset=UTF-8" %>
+	<%@ page import="java.util.List" %>
+	<%@ page import="java.util.Date" %>
+	<%@ page import="model.User" %>
+	<%@ page import="java.sql.DriverManager" %>
+	<%@ page import="java.sql.Connection" %>
+	<%@ page import="java.sql.Statement" %>
+	<%@ page import="java.sql.ResultSet" %>
+	<%@ page import="java.sql.SQLException" %>
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>TIWbnb</title>
@@ -86,12 +95,11 @@
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li ><a href="registrado.jsp">Home</a></li>
-							<li class="active"><a href="#">Administrar Usuarios</a></li>
-							<li ><a href="#">Administrar Alojamientos</a></li>
-							<li ><a href="mensajes.jsp">Mensajes</a></li>
-							<li><a href="registrado.jsp">Perfil</a></li>
-							<li><a href="index.jsp">Cerrar Sesión</a></li>
+							<li class="active"><a href="admin.jsp">Home</a></li>
+							<li ><a href="manage_users.jsp">Administrar Usuarios</a></li>
+							<li ><a href="resultados.jsp">Administrar Alojamientos</a></li>
+							<li ><a href="mensajes">Mensajes</a></li>
+							<li><a href="logout" id="Login">Cerrar sesión</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -100,147 +108,78 @@
 
 		<!-- end:header-top -->
 
-		<div class="fh5co-hero">
-			<div class="fh5co-overlay"></div>
-			<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_5.jpg);">
-				<div class="desc">
-					<div class="container">
-						<div class="row">
-							<div class="col-sm-6 col-md-6">
-								<!-- <a href="index.jsp" id="main-logo">Travel</a> -->
-								<div class="tabulation animate-box">
+			<form ACTION="modify" METHOD="POST" class="form-signin">
+				<input type="number" id="inputId" name="inputId" class="form-control" placeholder="Id del usuario">
+				<input type="text" id="inputName" name="inputName" class="form-control" placeholder="Nombre" required>
+				<input type="text" id="inputSurname" name="inputSurname" class="form-control" placeholder="Apellidos" required>
+				<input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Dirección de correo electrónico">
+				<input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Contraseña" required>
+				<input type="date" id="inputBirthdate" name="inputBirthdate" class="form-control" placeholder="Fecha de Nacimiento" required>
+				<button class="btn btn-lg btn-primary btn-block" type="submit" id="IniciaSesion">Actualizar información</button>
+			</form>
+			<form ACTION="delete" METHOD="POST" class="form-signin">
+				<input type="number" id="inputId" name="inputId" class="form-control" placeholder="Id del usuario">
+				<button class="btn btn-lg btn-primary btn-block" type="submit" id="IniciaSesion">Eliminar usuario</button>
+			</form>
 
-								  <!-- Nav tabs -->
-								   <ul class="nav nav-tabs" role="tablist">
-								      <li role="presentation" class="active">
-								      </li>
-								   </ul>
+			<div>
+		
+		
+		<table style="width:100%">
+			<tr>
+				<th>User ID</th>
+				<th>Name</th>
+				<th>Surname</th>
+				<th>Email</th>
+				<th>Password</th>
+				<th>Birth date</th>
+			</tr>
+		
+		<%
+		
+		Connection con = null;
+		Statement st = null;
+		
+		// Open connection
+		
+		try {
+			// Load Driver
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			// Connect to the database
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tiwbnb", "root", "admin");
+			System.out.println("Sucessful connection");
+		} catch (Exception e) {
+			System.out.println("Error when connecting to the database ");
+		}
+		
+		ResultSet rs = null;
+		
+		try {
+			// Create statement
+			st =con.createStatement();
 
-								   <!-- Tab panes -->
-									<div class="tab-content">
-									 <div role="tabpanel" class="tab-pane active" id="users">
-									 	<div class="row">
-													<div class="col-xxs-12 col-xs-12 mt">
-															<div class="input-field">
-																<label class="user_user">USER 1</label>
-																<br>
-																<a class="modify">Modify Information</a>
-																<br>
-															</div>
+			//Once the statement is created, we need to get the user input for both user email and password
 
-															<br>
-
-															<div class="user_name">
-																<div class="col-xxs-12 col-xs-12 mt">
-																	<label class="user_label_name">Name:</label><p ><font color="black">John</font></p><%--Real info must be retrieved from db--%>
-																</div>
-															</div>
-
-															<div class="user_surname">
-																<div class="col-xxs-12 col-xs-12 mt">
-																	<label class="user_label_surname">Surname:</label>
-																	<p><font color="black">Doe</font></p>
-																</div>
-															</div>
-
-															<div class="user_email">
-																<div class="col-xxs-12 col-xs-12 mt">
-																	<label class="user_label_email">Email:</label>
-																	<p><font color="black">johndoenotfake@lvd.com</font>
-																	</p>
-																</div>
-															</div>
-
-															<div class="user_password">
-																<div class="col-xxs-12 col-xs-12 mt">
-																	<label class="user_label_password">Password:</label>
-																	<p><font color="black">adromicfs</font>
-																	</p>
-																</div>
-															</div>
-
-														</div>
-
-												<div class="col-xs-12">
-													<input type="button" class="btn btn-primary btn-block" value="Eliminar Usuario" onclick="deleteUser()">
-												</div>
-                    </div>
-				           </div>
-								 </div>
-								</div>
-							</div>
-
-							<div class="col-sm-6 col-md-6">
-								<!-- <a href="index.jsp" id="main-logo">Travel</a> -->
-								<div class="tabulation animate-box">
-
-								  <!-- Nav tabs -->
-								   <ul class="nav nav-tabs" role="tablist">
-								      <li role="presentation" class="active">
-								      </li>
-								   </ul>
-
-								   <!-- Tab panes -->
-									<div class="tab-content">
-									 <div role="tabpanel" class="tab-pane active" id="users">
-									 	<div class="row">
-													<div class="col-xxs-12 col-xs-12 mt">
-															<div class="input-field">
-																<label class="user_user">USER 2</label>
-																<br>
-																<a class="modify">Modify Information</a>
-																<br>
-															</div>
-
-															<br>
-
-															<div class="user_name">
-																<div class="col-xxs-12 col-xs-12 mt">
-																	<label class="user_label_name">Name:</label><p ><font color="black">Donald</font></p><%--Real info must be retrieved from db--%>
-																</div>
-															</div>
-
-															<div class="user_surname">
-																<div class="col-xxs-12 col-xs-12 mt">
-																	<label class="user_label_surname">Surname:</label>
-																	<p><font color="black">Tramp</font></p>
-																</div>
-															</div>
-
-															<div class="user_email">
-																<div class="col-xxs-12 col-xs-12 mt">
-																	<label class="user_label_email">Email:</label>
-																	<p><font color="black">dtramp@lvd.com</font>
-																	</p>
-																</div>
-															</div>
-
-															<div class="user_password">
-																<div class="col-xxs-12 col-xs-12 mt">
-																	<label class="user_label_password">Password:</label>
-																	<p><font color="black">nukethewhales</font>
-																	</p>
-																</div>
-															</div>
-
-														</div>
-
-												<div class="col-xs-12">
-													<input type="button" class="btn btn-primary btn-block" value="Eliminar Usuario" onclick="deleteUser()">
-												</div>
-                    </div>
-				           </div>
-								 </div>
-								</div>
-							</div>
-
-
-
-						</div>
-					</div>
-				</div>
-			</div>
-
+			// Execute statement
+			// Here we obtain the full User table
+			String query = "SELECT * FROM USER";
+			rs = st.executeQuery(query);
+			
+		} catch (SQLException e) {
+			System.out.println("Error when opening table ");
+		}
+		
+		// List <User> userList = (List <User>) request.getAttribute("Users");
+		
+		while(rs.next()){
+			
+			out.println("<tr>");
+			out.println("<td>"+rs.getInt("USER_ID")+"</td><td>"+rs.getString("USER_NAME")+"</td><td>"+rs.getString("USER_SURNAME")+
+					"</td><td>"+rs.getString("USER_EMAIL")+"</td><td>"+rs.getString("USER_PASSWORD")+"</td><td>"+rs.getString("USER_BIRTHDATE")+"</td>");
+			out.println("</tr>");
+		}	
+		%>
+		</table>
 		</div>
 
 		<!-- Update Modal -->

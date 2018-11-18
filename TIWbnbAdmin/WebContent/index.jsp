@@ -83,9 +83,7 @@
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li class="active"><a href="index.jsp">Home</a></li>
-							<li ><a href="viajes.jsp">Viajes</a></li>
-							<li ><a href="mensajes.jsp">Mensajes</a></li>
-							<li><a href="#" id="Registro">Regí­strate</a></li>
+							<!-- <li><a href="#" id="Registro">Regí­strate</a></li>-->
 							<li><a href="#" id="Login">Inicia sesión</a></li>
 						</ul>
 					</nav>
@@ -105,102 +103,11 @@
 								<!-- <a href="index.jsp" id="main-logo">Travel</a> -->
 								<div class="tabulation animate-box">
 
-								  <!-- Nav tabs -->
-								   <ul class="nav nav-tabs" role="tablist">
-								      <li role="presentation" class="active">
-								    	   <a href="#alojamientos" aria-controls="alojamientos" role="tab" data-toggle="tab">Alojamientos</a>
-								      </li>
-								   </ul>
-
-								   <!-- Tab panes -->
-									<div class="tab-content">
-									 <div role="tabpanel" class="tab-pane active" id="hotels">
-									 	<div class="row">
-											<div class="col-xxs-12 col-xs-12 mt">
-												<div class="input-field">
-													<label for="from">Ciudad:</label>
-													<input type="text" class="form-control" id="from-place" placeholder="Madrid, SPAIN"/>
-												</div>
-											</div>
-											<div class="col-xxs-12 col-xs-6 mt alternate">
-												<div class="input-field">
-													<label for="date-start">Ida:</label>
-													<input type="text" class="form-control" id="date-start" placeholder="mm/dd/yyyy"/>
-												</div>
-											</div>
-											<div class="col-xxs-12 col-xs-6 mt alternate">
-												<div class="input-field">
-													<label for="date-end">Vuelta:</label>
-													<input type="text" class="form-control" id="date-end" placeholder="mm/dd/yyyy"/>
-												</div>
-											</div>
-
-											<div class="col-sm-12 mt">
-												<section>
-													<label for="class">Precio</label>
-													<select class="cs-select cs-skin-border">
-														<option value="" disabled selected>Hasta 35€</option>
-														<option value="P1">Hasta 35€</option>
-														<option value="P2">36€ - 69€</option>
-														<option value="P3">70€ - 130€</option>
-														<option value="P4">131€ o más</option>
-													</select>
-												</section>
-											</div>
-
-        									<div class="col-sm-12 mt">
-												<section>
-													<label for="class">Tipo de alojamiento</label>
-													<select class="cs-select cs-skin-border">
-														<option value="" disabled selected>Alojamiento entero</option>
-														<option value="entero">Alojamiento entero</option>
-														<option value="privada">Habitación privada</option>
-														<option value="compartida">Habitación compartida</option>
-													</select>
-												</section>
-											</div>
-
-											<div class="col-xxs-12 col-xs-6 mt">
-												<section>
-													<label for="class">Adultos:</label>
-													<select class="cs-select cs-skin-border">
-														<option value="" disabled selected>1</option>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-													</select>
-												</section>
-											</div>
-											<div class="col-xxs-12 col-xs-6 mt">
-												<section>
-													<label for="class">Niños:</label>
-													<select class="cs-select cs-skin-border">
-														<option value="" disabled selected>1</option>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-													</select>
-												</section>
-											</div>
-											<div class="col-xs-12">
-												<input type="submit" class="btn btn-primary btn-block" value="Buscar">
-											</div>
-                                        </div>
-				                    </div>
-								 </div>
-
-
 								</div>
 							</div>
 							<div class="desc2 animate-box">
 								<div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1">
-									<h3>TIWbnb</h3>
-									<h2>Planea tu estancia</h2>
-									<h3>Escoge entre miles de alojamientos disponibles</h3>
-									<p>Desde <span class="price">35€</span> por noche</p>
-									<!-- <p><a class="btn btn-primary btn-lg" href="#">Get Started</a></p> -->
+									<h1 style="color: white">TIWbnb: Administrator Site</h1>
 								</div>
 							</div>
 						</div>
@@ -223,21 +130,20 @@
         <h1 class="h3 mb-3 font-weight-normal">Iniciar sesión para continuar</h1>
       </div>
       <div class="modal-body">
-          <form class="form-signin">
-      <input type="email" id="loginEmail" class="form-control" placeholder="Dirección de correo electrónico" required autofocus>
-      <input type="password" id="loginPassword" class="form-control" placeholder="Contraseña" required>
+          <form class="form-signin" METHOD="POST" ACTION="login">
+      <input type="email" id="loginEmail" name="loginEmail" class="form-control" placeholder="Dirección de correo electrónico" required autofocus>
+      <input type="password" id="loginPassword" name="loginPassword" class="form-control" placeholder="Contraseña" required>
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Recordarme
         </label>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="button" id="IniciaSesion"  onclick="admin()">Inicia sesión</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" id="IniciaSesion">Inicia sesión</button>
     </form>
 
       </div>
 
       <div class="modal-footer">
-        <p class="text-center">¿No tienes cuenta?<a href="index.jsp">  Regístrate</a></p>
         <p class="text-center"><a href="index.jsp"> Atrás </a></p>
       </div>
 
@@ -394,20 +300,6 @@
               $("#loginModal").modal("show");
            });
 
-    </script>
-    
-    <script>
-    function admin(){
-    	var mail = document.getElementById("loginEmail").value;
-    	var password = document.getElementById("loginPassword").value;
-    	
-    	if (mail === "admin@tiw.com" && password === "admin") {
-    		window.location.href = "admin.jsp";
-    	}
-    	else {
-    		window.location.href = "registrado.jsp";
-    	}
-    }
     </script>
 
 	</body>

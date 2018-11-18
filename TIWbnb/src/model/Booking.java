@@ -24,7 +24,7 @@ public class Booking implements Serializable {
 	private int bookingCardNum;
 
 	@Column(name="BOOKING_CONFIRMED")
-	private byte bookingConfirmed;
+	private boolean bookingConfirmed;
 
 	@Column(name="BOOKING_CV2")
 	private int bookingCv2;
@@ -40,15 +40,15 @@ public class Booking implements Serializable {
 	@Column(name="BOOKING_EXP_CODE")
 	private String bookingExpCode;
 
-	//bi-directional many-to-one association to User
-	@ManyToOne
-	@JoinColumn(name="BOOKING_USER_ID")
-	private User user;
-
 	//bi-directional many-to-one association to Home
 	@ManyToOne
 	@JoinColumn(name="BOOKING_HOME_ID")
 	private Home home;
+
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="BOOKING_USER_ID")
+	private User user;
 
 	public Booking() {
 	}
@@ -69,11 +69,11 @@ public class Booking implements Serializable {
 		this.bookingCardNum = bookingCardNum;
 	}
 
-	public byte getBookingConfirmed() {
+	public boolean getBookingConfirmed() {
 		return this.bookingConfirmed;
 	}
 
-	public void setBookingConfirmed(byte bookingConfirmed) {
+	public void setBookingConfirmed(boolean bookingConfirmed) {
 		this.bookingConfirmed = bookingConfirmed;
 	}
 
@@ -109,20 +109,20 @@ public class Booking implements Serializable {
 		this.bookingExpCode = bookingExpCode;
 	}
 
-	public User getUser() {
-		return this.user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	public Home getHome() {
 		return this.home;
 	}
 
 	public void setHome(Home home) {
 		this.home = home;
+	}
+
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

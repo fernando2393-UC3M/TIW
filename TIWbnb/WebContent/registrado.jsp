@@ -71,7 +71,7 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 	</head>
-<body>
+<body onload="updated();">
 		<div id="fh5co-wrapper">
 		<div id="fh5co-page">
 
@@ -79,17 +79,17 @@
 			<div class="container">
 				<div class="nav-header">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-					<h1 id="fh5co-logo"><a href="index.jsp"><i class="icon-airplane"></i>TIWbnb</a></h1>
+					<h1 id="fh5co-logo"><a href="index"><i class="icon-airplane"></i>TIWbnb</a></h1>
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li class="active"><a href="registrado.jsp">Home</a></li>
-							<li ><a href="viajes.jsp">Viajes</a></li>
-							<li ><a href="casa.jsp">Ofrece Alojamiento</a></li>
-							<li ><a href="renting.jsp">Mis Alojamientos</a></li>
-							<li ><a href="mensajes.jsp">Mensajes</a></li>                                
-							<li><a href="registrado.jsp">Perfil</a></li>
-							<li><a href="index.jsp">Cerrar Sesión</a></li>
+							<li class="active"><a href="index">Home</a></li>
+							<li ><a href="viajes">Viajes</a></li>
+							<li ><a href="casa">Ofrece Alojamiento</a></li>
+							<li ><a href="renting">Mis Alojamientos</a></li>
+							<li ><a href="mensajes">Mensajes</a></li>                                
+							<li><a href="registrado">Perfil</a></li>
+							<li><a href="logout">Cerrar Sesión</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -105,7 +105,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-sm-5 col-md-5">
-								<!-- <a href="index.jsp" id="main-logo">Travel</a> -->
+								<!-- <a href="index" id="main-logo">Travel</a> -->
 								<div class="tabulation animate-box">
 
 								  <!-- Nav tabs -->
@@ -117,44 +117,46 @@
 
 								   <!-- Tab panes -->
 									<div class="tab-content">
-									 <div role="tabpanel" class="tab-pane active" id="hotels">
+									 <div role="tabpanel" class="tab-pane active">
+									 <form class="form-signin" METHOD="POST" ACTION="registrado" >
 									 	<div class="row">
 													<div class="col-xxs-12 col-xs-12 mt">
 														<div class="input-field">
 															<label for="name">Nombre:</label> <input type="text"
-																class="form-control" id="name" placeholder="John" />
+																class="form-control" id="name" name="name" value="<%=request.getAttribute("Name")%>" />
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-12 mt alternate">
 														<div class="input-field">
 															<label for="surname">Apellidos:</label> <input
-																type="text" class="form-control" id="surname"
-																placeholder="Doe" />
+																type="text" class="form-control" id="surname" name="surname"
+																value="<%=request.getAttribute("Surname")%>" /> 
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-12 mt alternate">
 														<div class="input-field">
 															<label for="birthdate">Fecha de Nacimiento:</label> <input
-																type="date" class="form-control" id="birthdate" />
+																type="date" class="form-control" id="birthdate" name="birthdate" value="<%=request.getAttribute("Birthdate")%>"/>
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="psw">Nueva Contraseña:</label> <input
-																type="password" class="form-control" id="psw" />
+																type="password" class="form-control" id="psw" name="password" value="<%=request.getAttribute("Password")%>"/>
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="psw1">Reintroduce Contraseña:</label> <input
-																type="password" class="form-control" id="psw1"/>
+																type="password" class="form-control" id="psw1" name="password1"/>
 														</div>
 													</div>                                            
 
 											<div class="col-xs-12">
-												<input type="button" class="btn btn-primary btn-block" value="Actualizar Información" onclick="savedInfo()">
+												<input type="submit" class="btn btn-primary btn-block" value="Actualizar Información">
 											</div>
                                         </div>
+                                        </form>
 				                    </div>
 								 </div>
 
@@ -167,7 +169,7 @@
 							
 							
 							<div class="col-sm-5 col-sm-push-2 col-md-5 col-md-push-2">
-								<!-- <a href="index.jsp" id="main-logo">Travel</a> -->
+								<!-- <a href="index" id="main-logo">Travel</a> -->
 								<div class="tabulation animate-box">
 
 								  <!-- Nav tabs -->
@@ -190,7 +192,9 @@
                                     
 
 											<div class="col-xs-12">
-												<input type="button" class="btn btn-primary btn-block" value="Eliminar Perfil" onclick="eraseInfo()">
+											<form ACTION="delete" METHOD="POST">
+												<input type="submit" class="btn btn-primary btn-block" value="Eliminar Perfil">
+											</form>
 											</div>
                                         </div>
 				                    </div>
@@ -318,12 +322,17 @@
 	
 	<script>
 	
-	function savedInfo() {
-		alert("Información actualizada con éxito.");
-	}
-	
-	function eraseInfo() {
-		alert("Perfil borrado. Sentimos que te vayas.");
+	function updated() {
+		
+		var updated = <%=request.getAttribute("Updated")%>;
+		
+		if(updated == 1) {
+			alert("Información actualizada");
+		}
+		else if(updated == 2) {
+			alert("Las contraseñas no coinciden");
+		}
+		
 	}
 	</script>
 

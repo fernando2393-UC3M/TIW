@@ -3,9 +3,18 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <%@page import="java.math.BigDecimal"%>
+<html class="no-js"> <!--<![endif]-->
 	<head>
-	<%@ page contentType="text/html; charset=UTF-8" %>
+			<%@ page contentType="text/html; charset=UTF-8" %>
+	<%@ page import="java.util.List" %>
+	<%@ page import="java.util.Date" %>
+	<%@ page import="model.Home" %>
+	<%@ page import="java.sql.DriverManager" %>
+	<%@ page import="java.sql.Connection" %>
+	<%@ page import="java.sql.Statement" %>
+	<%@ page import="java.sql.ResultSet" %>
+	<%@ page import="java.sql.SQLException" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>TIWbnb</title>
@@ -79,15 +88,32 @@
 			<div class="container">
 				<div class="nav-header">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-					<h1 id="fh5co-logo"><a href="index.jsp"><i class="icon-airplane"></i>TIWbnb</a></h1>
+					<h1 id="fh5co-logo"><a href="index"><i class="icon-airplane"></i>TIWbnb</a></h1>
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li class="active"><a href="index.jsp">Home</a></li>
-							<li ><a href="viajes.jsp">Viajes</a></li>
-							<li ><a href="mensajes.jsp">Mensajes</a></li>                                                                              							
-							<li><a href="#" id="Registro">Regístrate</a></li>                            
-							<li><a href="#" id="Login">Inicia sesión</a></li>                            
+						
+						<%
+						
+						if(session.getAttribute("user") != null) {
+							
+							out.println("<li class=\"active\"><a href=\"index\">Home</a></li><li ><a href=\"viajes\">Viajes</a></li><li ><a href=\"casa\">Ofrece Alojamiento</a></li><li ><a href=\"renting\">Mis Alojamientos</a></li><li ><a href=\"mensajes\">Mensajes</a></li><li><a href=\"registrado\">Perfil</a></li><li><a href=\"logout\">Cerrar Sesión</a></li>");
+							
+						}
+						
+						%>
+						
+						<%
+						
+						if(session.getAttribute("user") == null) {
+							
+							out.println("<li class=\"active\"><a href=\"index\">Home</a></li>");       
+							
+						}
+						
+						%>
+						
+                     
 						</ul>
 					</nav>
 				</div>
@@ -100,32 +126,78 @@
 			<div class="container">
 		
 				<div class="row">
-					<div class="col-md-12 animate-box">
-						<h2 class="heading-title">Estudio en Sol</h2>
-					</div>
-					<div class="col-md-6 animate-box">
-                        <span class="description">
-						<p>Estudio en Sol es un acogedor alojamiento en pleno centro de Madrid, donde en cada esquina se encuentra la diversión debido a los innumerables bares, restaurantes, tiendas y mercados de la zona.
-						El apartamento cuenta con cocina americana, wifi gratis en todas las zonas, televisión, horno y microondas, lavadora, secador de pelo, cafetera y tostadora. Se facilitan sÃ¡banas y toallas a la llegada.</p> 
-                        </span>
-                        <table class="table">
-                            <tbody>
-                                <tr>                                
-                                    <th scope="row">Anfitrión:</th>
-                                    <td><span class="host">Pepe</span></td>
-                                </tr>
-                                
-                                <tr>                                
-                                        <th scope="row">Precio:</th>
-                                    <td><span class="price">30€</span></td>
-                                </tr>
-                                <tr>
-                                        <th scope="row">Nº Camas:</th>
-                                        <td><span class="beds">2</span></td>
-                                </tr>
-                                <tr>
-                                        <th scope="row">Tipo Alojamiento:</th>
-                                        <td><span class="type">Alojamiento Entero</span></td>
+				
+				<%
+								String idInt = request.getParameter("homeId");
+								int id = Integer.parseInt(idInt);
+								
+								Connection con = null;
+								Statement st = null;
+								
+								// Open connection
+								
+								try {
+									// Load Driver
+									Class.forName("com.mysql.jdbc.Driver").newInstance();
+									// Connect to the database
+									con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tiwbnb", "root", "admin");
+									System.out.println("Sucessful connection");
+								} catch (Exception e) {
+									System.out.println("Error when connecting to the database ");
+								}
+								
+								ResultSet rs = null;
+								
+								try {
+									// Create statement
+									st =con.createStatement();
+
+									//Once the statement is created, we need to get the user input for both user email and password
+
+									// Execute statement
+									// Here we obtain the full User table
+									String query = "SELECT * FROM HOME WHERE HOME_ID = '"+id+"'";
+									rs = st.executeQuery(query);
+									
+								} catch (SQLException e) {
+									System.out.println("Error when opening table ");
+								}
+								
+								String name ="";
+								String desc ="";
+								BigDecimal price = null;
+								int guests = 0;
+								String type = "";
+								
+								while(rs.next()) {
+									name = rs.getString("HOME_NAME");
+									desc = rs.getString("HOME_DESCRIPTION_FULL");
+									price = rs.getBigDecimal("HOME_PRICE_NIGHT");
+									guests = rs.getInt("HOME_GUESTS");
+									type = rs.getString("HOME_TYPE");
+								}
+								
+								
+								out.println("<div class=\"col-md-12 animate-box\">");
+								out.println("<h2 class=\"heading-title\">"+name+"</h2>");
+								out.println("</div>");
+								out.println("<div class=\"col-md-12 animate-box\">");
+								out.println("<div class=\"col-md-6 animate-box\">");
+								out.println("<span class=\"description\">");
+								out.println("<p>"+desc+"</p>");
+								out.println("</span>");
+								out.println("<table class=\"table\">");
+								out.println("<tbody>");
+								out.println("<tr>");
+								out.println("<th scope=\"row\">Precio:</th>");
+								out.println("<td><span class=\"price\">"+price+"€</span></td></tr><tr>");                                   
+	                            out.println("<th scope=\"row\">Nº Camas:</th>");
+	                            out.println("<td><span class=\"beds\">"+guests+"</span></td></tr><tr>");
+	                            out.println("<th scope=\"row\">Tipo Alojamiento:</th>");
+								out.println("<td><span class=\"type\">"+type+"</span></td>");	                                        
+	                                        
+								
+							%>
                                 </tr>                                
                             </tbody>
                         </table>

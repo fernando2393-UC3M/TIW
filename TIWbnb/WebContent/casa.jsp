@@ -14,12 +14,12 @@
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FREEHTML5.CO" />
 
-  <!-- 
+  <!--
 	//////////////////////////////////////////////////////
 
-	FREE HTML5 TEMPLATE 
+	FREE HTML5 TEMPLATE
 	DESIGNED & DEVELOPED by FREEHTML5.CO
-		
+
 	Website: 		http://freehtml5.co/
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
@@ -43,7 +43,7 @@
 	<link rel="shortcut icon" href="favicon.ico">
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
-	
+
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -59,7 +59,7 @@
 	<!-- CS Select -->
 	<link rel="stylesheet" href="css/cs-select.css">
 	<link rel="stylesheet" href="css/cs-skin-border.css">
-	
+
 	<link rel="stylesheet" href="css/style.css">
 
 	<link rel="stylesheet" href="css/messaging.css">
@@ -79,16 +79,17 @@
 			<div class="container">
 				<div class="nav-header">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-					<h1 id="fh5co-logo"><a href="index.jsp"><i class="icon-airplane"></i>TIWbnb</a></h1>
+					<h1 id="fh5co-logo"><a href="index"><i class="icon-airplane"></i>TIWbnb</a></h1>
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li class="active"><a href="registrado.jsp">Home</a></li>
-							<li ><a href="viajes.jsp">Viajes</a></li>
-							<li ><a href="renting.jsp">Mis Alojamientos</a></li>
-							<li ><a href="mensajes.jsp">Mensajes</a></li>                                
-							<li><a href="registrado.jsp">Perfil</a></li>
-							<li><a href="index.jsp">Cerrar Sesión</a></li>
+							<li class="active"><a href="index">Home</a></li>
+							<li ><a href="viajes">Viajes</a></li>
+							<li ><a href="casa">Ofrece Alojamiento</a></li>
+							<li ><a href="renting">Mis Alojamientos</a></li>
+							<li ><a href="mensajes">Mensajes</a></li>                                
+							<li><a href="registrado">Perfil</a></li>
+							<li><a href="logout">Cerrar Sesión</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -96,7 +97,7 @@
 		</header>
 
 		<!-- end:header-top -->
-	
+
 		<div class="fh5co-hero">
 			<div class="fh5co-overlay"></div>
 			<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_5.jpg);">
@@ -104,7 +105,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-sm-7 col-md-7">
-								<!-- <a href="index.jsp" id="main-logo">Travel</a> -->
+								<!-- <a href="index" id="main-logo">Travel</a> -->
 								<div class="tabulation animate-box">
 
 								  <!-- Nav tabs -->
@@ -117,31 +118,42 @@
 								   <!-- Tab panes -->
 									<div class="tab-content">
 									 <div role="tabpanel" class="tab-pane active" id="hotels">
+									 <form class="form-signin" METHOD="POST" ACTION="casa">
 									 	<div class="row">
 													<div class="col-xxs-12 col-xs-12 mt">
+
+
+
 														<div class="input-field">
 															<label for="name">Nombre:</label> <input type="text"
-																class="form-control" id="name" placeholder="Casa en Sol" />
+																class="form-control" id="name" name="houseName" value="Casa en Sol" />
+														</div>
+													</div>
+													<div class="col-xxs-12 col-xs-12 mt alternate">
+														<div class="input-field">
+															<label for="desc">Ciudad:</label> <input
+																type="text" class="form-control" id="desc" name="houseCity"
+																value="Madrid" />
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-12 mt alternate">
 														<div class="input-field">
 															<label for="desc">Descripción:</label> <input
-																type="text" class="form-control" id="desc"
-																placeholder="Casa muy luminosa..." />
+																type="text" class="form-control" id="desc" name="houseDesc"
+																value="Casa muy luminosa..." />
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-12 mt alternate">
 														<div class="input-field">
 															<label for="subdesc">Resumen:</label> <input
-																type="text" class="form-control" id="subdesc" />
+																type="text" class="form-control" id="subdesc" name="houseSubDesc" value="Casa para todos"/>
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 														<label for="type">Tipo de Alojamiento:</label>
 														<font color="black">
-															<select id="type">
+															<select id="type" name="houseType">
 																<option value="apartment">Apartamento</option>
 																<option value="private">Habitación Privada</option>
 															</select>
@@ -151,38 +163,41 @@
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="guests">Número de Huéspedes:</label> <input
-																type="number" class="form-control" id="guests"/>
+																type="number" class="form-control" id="guests" name="guests"/>
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="picture">Foto:</label> <input
-																type="file" class="form-control" id="picture" accept="image/*"/>
+																type="file" name="photo" class="form-control" id="picture" accept="image/*"/>
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="price">Precio por Noche:</label> <input
-																type="number" class="form-control" id="price" placeholder="40€"/>
+																type="number" class="form-control" id="price" name="inputPriceNight" placeholder="40€"/>
 														</div>
-													</div>         
+													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="date0">Fecha Inicial:</label> <input
-																type="date" class="form-control" id="date0"/>
+																type="date" name="iDate" class="form-control" id="date0"/>
 														</div>
-													</div>            
+													</div>
+													<!-- <form class="form-signin" METHOD="POST" ACTION="casa"> -->
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="date1">Fecha Final:</label> <input
-																type="date" class="form-control" id="date1"/>
+																type="date" name="fDate" class="form-control" id="date1"/>
 														</div>
-													</div>                                               
+													</div>
 
 											<div class="col-xs-12">
-												<input type="button" class="btn btn-primary btn-block" value="Registrar Alojamiento" onclick="savedInfo()">
+												<input type="submit" name="submitHouse" class="btn btn-primary btn-block" value="Registrar Alojamiento">
 											</div>
-                                        </div>
+										<!-- </form> -->
+										</form>
+                  </div>
 				                    </div>
 								 </div>
 
@@ -194,8 +209,8 @@
 				</div>
 			</div>
 
-		</div>                   
-            
+		</div>
+
 		<footer>
 			<div id="footer">
 				<div class="container">
@@ -263,7 +278,7 @@
 			</div>
 		</footer>
 
-	
+
 
 	</div>
 	<!-- END fh5co-page -->
@@ -271,7 +286,7 @@
 	</div>
 	<!-- END fh5co-wrapper -->
 
-                
+
 	<!-- jQuery -->
 
 	<script src="js/jquery.min.js"></script>
@@ -296,16 +311,16 @@
 	<!-- CS Select -->
 	<script src="js/classie.js"></script>
 	<script src="js/selectFx.js"></script>
-	
+
 	<!-- Main JS -->
 	<script src="js/main.js"></script>
-	
+
 	<script>
 	function savedInfo() {
 		alert("Alojamiento registrado con éxito.");
 	}
 	</script>
 
-        
+
 	</body>
 </html>
