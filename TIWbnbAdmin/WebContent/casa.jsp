@@ -86,7 +86,7 @@
 							<li class="active"><a href="admin.jsp">Home</a></li>
 							<li ><a href="manage_users.jsp">Administrar Usuarios</a></li>
 							<li ><a href="resultados.jsp">Administrar Alojamientos</a></li>
-							<li ><a href="mensajes.jsp">Mensajes</a></li>
+							<li ><a href="mensajes">Mensajes</a></li>
 							<li><a href="logout" id="Login">Cerrar sesión</a></li>
 						</ul>
 					</nav>

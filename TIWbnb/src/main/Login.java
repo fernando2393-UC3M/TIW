@@ -58,31 +58,6 @@ public class Login {
 		return rs;		
 	}
 	
-public ResultSet CheckAdmin(String input_mail, String input_password) {
-		
-		ResultSet rs = null;
-		
-		try {
-			// Create statement
-			st =con.createStatement();
-
-			//Once the statement is created, we need to get the user input for both user email and password
-
-			// Execute statement
-			// Here we obtain the full Admin table 
-			rs = st.executeQuery("SELECT * FROM ADMIN WHERE ADMIN_EMAIL = '"+input_mail+"' AND ADMIN_PASSWORD = '"+input_password+"'");
-			
-			if (rs.next() == false){ // Empty rs check
-				rs = null;
-			}
-	
-
-		} catch (SQLException e) {
-			System.out.println("Error when opening table ");
-		}
-		
-		return rs;		
-	}
 
 public void closeConnection() {
 	try {

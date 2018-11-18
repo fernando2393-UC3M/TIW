@@ -32,7 +32,7 @@ import model.MessagesAdmin;
 
 @WebServlet(urlPatterns = {
 		"/admin", "/resultados", "/casa", 
-		"/manage_users", "/mensajes",  "/modify_place",
+		"/manage_users", "/mensajes", "/modify", "/modify_place",
 		"/index", "/delete", "/delete_place", "/login", "/logout"
 		})
 public class AdminServlet extends HttpServlet {
@@ -52,15 +52,11 @@ public class AdminServlet extends HttpServlet {
 	HttpSession session;
 
 	/* Attributes */
-	//@Resource(mappedName="tiwconnectionfactory")
-	@Resource
+	@Resource(mappedName="tiwconnectionfactory")
 	ConnectionFactory cf;
 
-	//@Resource(mappedName="tiwqueue")
-	//@Resource
-	Queue adminQueue;
-	
-	
+	@Resource(mappedName="tiwqueue")
+	Queue adminQueue;	
 	
 	public void init() {
 
@@ -84,14 +80,20 @@ public class AdminServlet extends HttpServlet {
 		//------------------------READ MESSAGES------------------------
 		
 		else if(requestURL.equals(path+"mensajes")){		
-			//TODO: get adminId from session (need parameter name to access)
-			int adminId = 1;
-			List<MessagesAdmin> messageList = new ArrayList<MessagesAdmin>();
+			//Get adminId from session (need parameter name to access)
+			int adminId = (Integer) session.getAttribute("admin"); 
+			
+			List<MessagesAdmin> messageList = null;
 			try {
 				ut.begin();
+				//List<MessagesAdmin> messageList;
 				messageList = ReadMessages.getMessages(adminId, em, cf, adminQueue);
 				ReadMessages.setRead(adminId, em);
 				ut.commit();
+				
+				// Save messages in user session
+				if(messageList.size() > 0)
+					session.setAttribute("AdminMessages", messageList); 
 				
 			} catch (JMSException | NotSupportedException | SystemException | SecurityException | IllegalStateException | RollbackException | HeuristicMixedException | HeuristicRollbackException e) {
 				// Treat JMS/JPA Exception
@@ -219,7 +221,6 @@ public class AdminServlet extends HttpServlet {
 		// --------------------- DELETE PLACE CASE -------------------------------------------
 		
 		else if (requestURL.toString().equals(path+"delete_place")) {
-			DeletePlace delete = new DeletePlace();
 
 			dispatcher = req.getRequestDispatcher("resultados.jsp");
 					
@@ -230,10 +231,10 @@ public class AdminServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 					
-			String aux = req.getParameter("inputId");
+			String aux = req.getParameter("homeId");
 			int id = Integer.parseInt(aux);
 					
-			delete.delete(em, id);
+			DeletePlace.delete(em, id);
 					
 			try {
 				ut.commit();

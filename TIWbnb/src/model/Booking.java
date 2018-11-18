@@ -24,7 +24,7 @@ public class Booking implements Serializable {
 	private int bookingCardNum;
 
 	@Column(name="BOOKING_CONFIRMED")
-	private byte bookingConfirmed;
+	private boolean bookingConfirmed;
 
 	@Column(name="BOOKING_CV2")
 	private int bookingCv2;
@@ -69,11 +69,11 @@ public class Booking implements Serializable {
 		this.bookingCardNum = bookingCardNum;
 	}
 
-	public byte getBookingConfirmed() {
+	public boolean getBookingConfirmed() {
 		return this.bookingConfirmed;
 	}
 
-	public void setBookingConfirmed(byte bookingConfirmed) {
+	public void setBookingConfirmed(boolean bookingConfirmed) {
 		this.bookingConfirmed = bookingConfirmed;
 	}
 

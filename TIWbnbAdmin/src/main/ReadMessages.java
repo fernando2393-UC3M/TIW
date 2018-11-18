@@ -44,8 +44,9 @@ public class ReadMessages {
 		
 		/* Query messages from DB */
 		Query query = em.createQuery(
-			      "SELECT * FROM ADMIN_MESSAGES " +
-			      "WHERE MESSAGE_ADMIN_ID = :p");
+			      "SELECT a "
+			      + " FROM MessagesAdmin a " +
+			      " WHERE a.messageId = :p");
 		@SuppressWarnings("rawtypes")
 		List results = query.setParameter("p", adminId).getResultList();
 		
@@ -75,7 +76,7 @@ public class ReadMessages {
 			_connection = cf.createConnection();
 			_session= _connection.createSession(false, javax.jms.TopicSession.AUTO_ACKNOWLEDGE);
 
-			String selector = "sentTo = '" + adminId + "' AND admin = 'true'";
+			String selector = "sentTo = '" + adminId + "' AND admin = 'toAdmin'";
 			MessageConsumer consumer = _session.createConsumer(adminQueue, selector);
 			
 			_connection.start();
@@ -83,7 +84,7 @@ public class ReadMessages {
 			 * Used this approach as messages will only be received when loading the page
 			 */
 			message = consumer.receive(500);
-			while(message.propertyExists("sendBy")){
+			while(message != null){
 				ret.add(message);
 				message = consumer.receive(500);
 				
@@ -104,8 +105,8 @@ public class ReadMessages {
 		ret.setUser(user);
 		ret.setMessageContent(msg.getText());
 		ret.setMessageDate(new Date(msg.getJMSTimestamp()));
-		ret.setMessageFromAdmin((byte) 0);
-		ret.setMessageRead((byte) 0);
+		ret.setMessageFromAdmin(false);
+		ret.setMessageRead(false);
 		  
 		return ret;
 	}
@@ -113,11 +114,15 @@ public class ReadMessages {
 	/* Sets all unread messages to read in DB
 	 * Assumes a transaction commit afterwards
 	 */
-	public static void setRead(int adminId, EntityManager em){
+	public static void setRead(int adminId, EntityManager em){		
+		Admin admin = em.find(Admin.class, adminId);
+		
 		Query query = em.createQuery(
-			      "UPDATE ADMIN_MESSAGES SET MESSAGE_READ = TRUE " +
-			      "WHERE MESSAGE_ADMIN_ID = :p");
-		query.setParameter("p", adminId).executeUpdate();
+			      "UPDATE MessagesAdmin m "
+			      + " SET m.messageRead = :b " +
+			      " WHERE m.admin = :p"
+			      + " AND m.messageFromAdmin = :f ");
+		query.setParameter("b", true).setParameter("p", admin).setParameter("f", false).executeUpdate();
 	}
 	
 	/* Inserts messages into DB

@@ -14,9 +14,11 @@
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FREEHTML5.CO" />
 
+	<!-- Imports -->
+	<%@ page import="java.util.List,java.text.SimpleDateFormat" %>
+	
   <!-- 
 	//////////////////////////////////////////////////////
-
 	FREE HTML5 TEMPLATE 
 	DESIGNED & DEVELOPED by FREEHTML5.CO
 		
@@ -24,7 +26,6 @@
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
 	Facebook: 		https://www.facebook.com/fh5co
-
 	//////////////////////////////////////////////////////
 	 -->
 
@@ -87,10 +88,10 @@
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li class="active"><a href="admin.jsp">Home</a></li>
-							<li ><a href="manage_users.jsp">Administrar Usuarios</a></li>
-							<li ><a href="resultados.jsp">Administrar Alojamientos</a></li>
-							<li ><a href="mensajes.jsp">Mensajes</a></li>
-							<li><a href="logout" id="Login">Cerrar sesión</a></li>                         
+							<li ><a href="manage_users">Administrar Usuarios</a></li>
+							<li ><a href="resultados">Administrar Alojamientos</a></li>
+							<li ><a href="mensajes">Mensajes</a></li>
+							<li><a href="logout" id="Login">Cerrar sesión</a></li> 
 						</ul>
 					</nav>
 				</div>
@@ -120,112 +121,59 @@
 									<button type="button" class="btn btn-default btn-filter" data-target="all">Todos</button>
 								</div>
 							</div>
+							
+							<!-- Print Admin Messages -->
+										
 							<div class="table-container">
 								<table class="table table-filter">
 									<tbody>
-										<tr data-status="no-leido" class="no-leido">
-											<td>
-												<a href="javascript:;" class="star">
-													<i class="glyphicon glyphicon-star"></i>
-												</a>
-											</td>
-											<td>
+										<%
+										List<model.MessagesAdmin> adminList = (List<model.MessagesAdmin>) session.getAttribute("AdminMessages");
+
+										if(adminList != null){
+											for(model.MessagesAdmin obj: adminList){												
+												%> <tr> <%
+												if(obj.getMessageRead() == false){
+													%> <tr data-status="no-leido" class="no-leido"> <%
+												}
+												else{
+													%> <tr data-status="leido" class="leido"> <%
+												}
+												%>
+												<td>
 												<div class="media">
-													<h4 class="title">
-																User Identifier
+													<h4 class="title"> <%= obj.getUser().getUserEmail() %>
 													</h4>
 												</div>
-											</td>                                        
-											<td>      
-													<div class="media">
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-														<p class="meta">Febrero 13, 2018</p>                                                
-													</div>
-											</td>
-										</tr>    
-										<tr data-status="no-leido" class="no-leido">
-											<td>
-												<a href="javascript:;" class="star">
-													<i class="glyphicon glyphicon-star"></i>
-												</a>
-											</td>
-											<td>
+												</td>
+												<td>      
 												<div class="media">
-													<h4 class="title">
-																User Identifier
-													</h4>
+													<p class="summary"><%= obj.getMessageContent() %></p>
+													<p class="meta"><%= (new SimpleDateFormat("yyyy-MM-dd")).format(obj.getMessageDate())  %></p>                                                
 												</div>
-											</td>                                        
-											<td>      
-													<div class="media">
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-														<p class="meta">Febrero 13, 2018</p>                                                
-													</div>
-											</td>
-										</tr>    
-										<tr data-status="leido" class="leido">
-											<td>
-												<a href="javascript:;" class="star">
-													<i class="glyphicon glyphicon-star"></i>
-												</a>
-											</td>
-											<td>
-												<div class="media">
-													<h4 class="title">
-																User Identifier
-													</h4>
-												</div>
-											</td>                                        
-											<td>      
-													<div class="media">
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-														<p class="meta">Febrero 13, 2018</p>                                                
-													</div>
-											</td>
-										</tr> 
-										<tr data-status="leido" class="leido">
-											<td>
-												<a href="javascript:;" class="star">
-													<i class="glyphicon glyphicon-star"></i>
-												</a>
-											</td>
-											<td>
-												<div class="media">
-													<h4 class="title">
-																User Identifier
-													</h4>
-												</div>
-											</td>                                        
-											<td>      
-													<div class="media">
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-														<p class="meta">Febrero 13, 2018</p>                                                
-													</div>
-											</td>
-										</tr>    
-										<tr data-status="leido" class="leido">
-											<td>
-												<a href="javascript:;" class="star">
-													<i class="glyphicon glyphicon-star"></i>
-												</a>
-											</td>
-											<td>
-												<div class="media">
-													<h4 class="title">
-																User Identifier
-													</h4>
-												</div>
-											</td>                                        
-											<td>      
-													<div class="media">
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-														<p class="meta">Febrero 13, 2018</p>                                                
-													</div>
-											</td>
-										</tr>                                        
+												</td>
+												</tr> 
+												<%
+											}
+										}								
+										%>                                       
 									</tbody>
 								</table>
 							</div>
+							
+							<!-- Send Message -->
+							
+							<div class="modal-body">
+							<p><b>Send a message to another user.</b></p>
+				         	<form class="form-sendmsg" METHOD="POST" ACTION="SendMessage">
+					     	<input type="email" id="receiver" name="receiver" placeholder="Email">
+							<button type="submit" formmethod="post">Send Message</button>
+							<textarea id="message" class="text" rows="4" cols="50" name="message" >Enter text here...</textarea>
+							</form>
+					      	</div>
+					
+							<!-- end:Send Message -->
+							
 						</div>
 					</div>
 				</div>
@@ -346,12 +294,9 @@
 
      <script type="text/javascript">
         $(document).ready(function () {
-
 	$('.star').on('click', function () {
       $(this).toggleClass('star-checked');
     });
-
-
     $('.btn-filter').on('click', function () {
       var $target = $(this).data('target');
       if ($target != 'all') {
@@ -361,10 +306,8 @@
         $('.table tr').css('display', 'none').fadeIn('slow');
       }
     });
-
  });
 </script>
         
 	</body>
 </html>
-
