@@ -21,7 +21,7 @@ CREATE TABLE USER (
 );
 
 CREATE TABLE ADMIN (
-  ADMIN_ID INT NOT NULL,
+  ADMIN_ID INT NOT NULL AUTO_INCREMENT,
   ADMIN_EMAIL VARCHAR(25) NOT NULL,
   ADMIN_PASSWORD VARCHAR(20) NOT NULL,
   CONSTRAINT PK_ADMIN PRIMARY KEY (ADMIN_ID),
@@ -52,7 +52,7 @@ CREATE TABLE BOOKING (
   BOOKING_HOME_ID INT NOT NULL,
   BOOKING_DATE_IN DATE NOT NULL,
   BOOKING_DATE_OUT DATE NOT NULL,
-  BOOKING_CARD_NUM INT(16) NOT NULL,
+  BOOKING_CARD_NUM BIGINT(16) NOT NULL,
   BOOKING_EXP_CODE VARCHAR(6) NOT NULL,
   BOOKING_CV2 INT(3) NOT NULL,
   BOOKING_CONFIRMED BOOLEAN NOT NULL,
@@ -93,7 +93,7 @@ INSERT INTO `USER` VALUES (4, 'guille@ibm.com', 'Guille', 'Surname', 'guille', '
 INSERT INTO `USER` VALUES (5, 'example@ibm.com', 'dummy', 'Insert', 'secret', '2017-06-15');
 INSERT INTO `USER` VALUES (6, 'example@amazon.com', 'user', 'Surname', 'user', '2011-09-19');
 
-INSERT INTO `ADMIN` VALUE (1, 'sysadmin', 'admin');
+INSERT INTO `ADMIN` VALUE (1, 'admin', 'admin');
 INSERT INTO `ADMIN` VALUE (2, 'ibm', 'admin');
 INSERT INTO `ADMIN` VALUE (3, 'tzarraon@inf.uc3m.es', 'admin');
 
@@ -103,3 +103,11 @@ INSERT INTO `HOME` VALUE (2, 'Condo', 'mail@ibm.com', 'NY', 'Full Description', 
 'pri', 1, 'path/image/condo', 70, '20180101', '20181231');
 INSERT INTO `HOME` VALUE (3, 'Suite', 'mail@redsys.es', 'Madrid', 'Full Description', 'Short Description', 
 'apt', 3, 'path/image/suite', 1337.70, '20180101', '20181231');
+
+INSERT INTO `MESSAGES` VALUE (1, 2, 1, "Sample message", 20181231, true);
+INSERT INTO `MESSAGES` VALUE (2, 1, 2, "Random Reply", 20181231, true);
+INSERT INTO `MESSAGES_ADMIN` VALUE (1, 1, 1, "Ticket to admin", 20181231, true, false);
+INSERT INTO `MESSAGES_ADMIN` VALUE (2, 1, 1, "Response to ticket", 20181231, true, true);
+
+INSERT INTO `BOOKING` VALUE (1, 1, 2, 20181231, 20181231, 1234567890123456, 102019, 333, false);
+INSERT INTO `BOOKING` VALUE (2, 1, 2, 20191231, 20191231, 1234567890123456, 102019, 333, false);

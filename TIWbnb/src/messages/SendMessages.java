@@ -8,16 +8,13 @@ import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
 
-import model.Admin;
-import model.User;
-
 public class SendMessages {
 	
-	/* Obtains a message from an admin to an user
-	 * Receives Admin, User
+	/* Send a message from an admin to an user
+	 * Receives Sender and Receiver Users
 	 * Needs Connection Factory and Queue
 	 */
-	public static void sendMessage(User sender, User receiver, String content, ConnectionFactory cf, Queue queue) throws JMSException{
+	public static void sendMessage(int sender, int receiver, String content, ConnectionFactory cf, Queue queue) throws JMSException{
 		Connection _connection = null;
 		Session _session;
 
@@ -28,8 +25,8 @@ public class SendMessages {
 			MessageProducer producer = _session.createProducer(queue);
 
 			Message message = _session.createTextMessage(content);
-			message.setStringProperty("sentTo", ""+receiver.getUserId());
-			message.setStringProperty("sentBy", ""+sender.getUserId());
+			message.setStringProperty("sentTo", ""+receiver);
+			message.setStringProperty("sentBy", ""+sender);
 			message.setStringProperty("admin", "no");
 			
 			producer.send(message);	
@@ -47,7 +44,7 @@ public class SendMessages {
 	 * Receives Admin, User
 	 * Needs Connection Factory and Queue
 	 */
-	public static void sendMessageAdmin(Admin admin, User user, String content, ConnectionFactory cf, Queue queue) throws JMSException{
+	public static void sendMessageAdmin(int admin, int user, String content, ConnectionFactory cf, Queue queue) throws JMSException{
 		Connection _connection = null;
 		Session _session;
 
@@ -58,8 +55,8 @@ public class SendMessages {
 			MessageProducer producer = _session.createProducer(queue);
 
 			Message message = _session.createTextMessage(content);
-			message.setStringProperty("sentTo", ""+admin.getAdminId());
-			message.setStringProperty("sentBy", ""+user.getUserId());
+			message.setStringProperty("sentTo", ""+admin);
+			message.setStringProperty("sentBy", ""+user);
 			message.setStringProperty("admin", "toAdmin");
 			
 			producer.send(message);	
@@ -72,4 +69,20 @@ public class SendMessages {
             }
         }
 	}
+
+	/* Send a message with a booking request to another user
+	 * Receives Sender and Receiver Users
+	 * Needs Queue and QueueSession
+	 */
+	public static void sendTransaction(int sender, int receiver, String content, Queue queue, Session session) throws JMSException{
+
+		MessageProducer producer = session.createProducer(queue);
+
+		Message message = session.createTextMessage(content);
+		message.setStringProperty("sentTo", ""+receiver);
+		message.setStringProperty("sentBy", ""+sender);
+		message.setStringProperty("admin", "booking");
+		
+		producer.send(message);
+	}	
 }

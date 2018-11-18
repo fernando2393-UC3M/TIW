@@ -94,7 +94,7 @@
 							<li class="active"><a href="admin.jsp">Home</a></li>
 							<li ><a href="manage_users.jsp">Administrar Usuarios</a></li>
 							<li ><a href="resultados.jsp">Administrar Alojamientos</a></li>
-							<li ><a href="mensajes.jsp">Mensajes</a></li>
+							<li ><a href="mensajes">Mensajes</a></li>
 							<li><a href="logout" id="Login">Cerrar sesión</a></li>
 						</ul>
 					</nav>
@@ -118,7 +118,7 @@
 				<button class="btn btn-lg btn-primary btn-block" type="submit" id="IniciaSesion">Actualizar información</button>
 			</form>
 			<form ACTION="delete_place" METHOD="POST" class="form-signin">
-				<input type="number" id="inputId" name="inputId" class="form-control" placeholder="Id del alojamiento">
+				<input type="number" id="homeId" name="homeId" class="form-control" placeholder="Id del alojamiento">
 				<button class="btn btn-lg btn-primary btn-block" type="submit" id="IniciaSesion">Eliminar alojamiento</button>
 			</form>
 
@@ -176,6 +176,8 @@
 					//"</td><td>"+rs.getString("USER_EMAIL")+"</td><td>"+rs.getString("USER_PASSWORD")+"</td><td>"+rs.getString("USER_BIRTHDATE")+"</td>");
 			out.println("</tr>");
 		}	
+		
+		con.close();
 		%>
 		</table>
 		</div>

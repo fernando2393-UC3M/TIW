@@ -32,7 +32,7 @@ import model.MessagesAdmin;
 
 @WebServlet(urlPatterns = {
 		"/admin", "/resultados", "/casa", 
-		"/manage_users", "/mensajes",  "/modify_place",
+		"/manage_users", "/mensajes", "/modify", "/modify_place",
 		"/index", "/delete", "/delete_place", "/login", "/logout"
 		})
 public class AdminServlet extends HttpServlet {
@@ -80,8 +80,9 @@ public class AdminServlet extends HttpServlet {
 		//------------------------READ MESSAGES------------------------
 		
 		else if(requestURL.equals(path+"mensajes")){		
-			//TODO: get adminId from session (need parameter name to access)
-			int adminId = 1;
+			//Get adminId from session (need parameter name to access)
+			int adminId = (Integer) session.getAttribute("admin"); 
+			
 			List<MessagesAdmin> messageList = null;
 			try {
 				ut.begin();
@@ -90,7 +91,7 @@ public class AdminServlet extends HttpServlet {
 				ReadMessages.setRead(adminId, em);
 				ut.commit();
 				
-				// TODO Save messages in user session
+				// Save messages in user session
 				if(messageList.size() > 0)
 					session.setAttribute("AdminMessages", messageList); 
 				
@@ -220,7 +221,6 @@ public class AdminServlet extends HttpServlet {
 		// --------------------- DELETE PLACE CASE -------------------------------------------
 		
 		else if (requestURL.toString().equals(path+"delete_place")) {
-			DeletePlace delete = new DeletePlace();
 
 			dispatcher = req.getRequestDispatcher("resultados.jsp");
 					
@@ -231,10 +231,10 @@ public class AdminServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 					
-			String aux = req.getParameter("inputId");
+			String aux = req.getParameter("homeId");
 			int id = Integer.parseInt(aux);
 					
-			delete.delete(em, id);
+			DeletePlace.delete(em, id);
 					
 			try {
 				ut.commit();
