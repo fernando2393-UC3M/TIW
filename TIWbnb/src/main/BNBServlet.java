@@ -135,6 +135,18 @@ public class BNBServlet extends HttpServlet {
 				ReadMessages.setRead(userId, em);
 				ut.commit();
 				
+				/* Query messages from DB */
+				Query query = em.createQuery(
+					      "SELECT b "
+					      + " FROM Booking b "
+					      + " JOIN b.home h "
+					      + " JOIN h.user u " +
+					      " WHERE u.userId = :p "
+					      + " AND b.bookingConfirmed = :c");
+					      
+				@SuppressWarnings({ "unchecked" })
+				List<Booking> bookingList = query.setParameter("p", userId).setParameter("c", false).getResultList();
+				
 				// Save messages in user session
 				if(messageList.size() > 0)
 					session.setAttribute("UserMessages", messageList); 
@@ -142,6 +154,9 @@ public class BNBServlet extends HttpServlet {
 				// Save admin messages in user session
 				if(messageAdminList.size() > 0)
 					session.setAttribute("AdminMessages", messageAdminList); 
+				
+				if(bookingList.size() > 0)
+					session.setAttribute("bookingList", bookingList); 
 				
 			} catch (JMSException | NotSupportedException | SystemException | SecurityException | IllegalStateException | RollbackException | HeuristicMixedException | HeuristicRollbackException e) {
 				// Treat JMS/JPA Exception

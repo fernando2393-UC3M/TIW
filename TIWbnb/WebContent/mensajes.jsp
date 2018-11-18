@@ -89,7 +89,7 @@
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li class="active"><a href="registrado">Home</a></li>
+							<li class="active"><a href="index">Home</a></li>
 							<li ><a href="viajes">Viajes</a></li>
 							<li ><a href="casa">Ofrece Alojamiento</a></li>
 							<li ><a href="renting">Mis Alojamientos</a></li>
@@ -127,8 +127,8 @@
 							</div>
 							
 							<!-- Print Messages -->
-										
 							<div class="table-container">
+							<p><b>User Messages</b></p>
 								<table class="table table-filter">
 									<tbody>
 										<%
@@ -165,9 +165,9 @@
 								</table>
 							</div>
 							
-							<!-- Print Admin Messages -->
-										
+							<!-- Print Admin Messages -->									
 							<div class="table-container">
+							<p><b>Admin Messages</b></p>
 								<table class="table table-filter">
 									<tbody>
 										<%
@@ -202,7 +202,33 @@
 										%>                                       
 									</tbody>
 								</table>
-							</div>
+							</div>	
+							
+							<!-- Bookings Pending -->
+							<div class="table-container">
+							<p><b>Pending Bookings</b></p>
+								<table class="table table-filter">
+									<tbody>
+										<%
+										List<model.Booking> bookingList = (List<model.Booking>) session.getAttribute("bookingList");
+//TODO:
+										if(bookingList != null){
+											for(model.Booking obj: bookingList){										
+												%> <tr>
+												<td>User <%= obj.getUser().getUserEmail() %> wants to book your home <%= obj.getHome().getHomeName() %>.</td>
+												<td>From dates <%= obj.getBookingDateIn() %> to <%= obj.getBookingDateIn() %>.</td>
+												<td><button type="submit" formmethod="post">Accept</button></td>
+												<td><button type="submit" formmethod="post">Reject</button></td>
+												</tr> 
+												<%
+											}	
+										}
+										%>                                       
+									</tbody>
+									
+									
+								</table>
+							</div>	
 														
 							<!-- Send Message -->
 							
