@@ -52,12 +52,14 @@ public class LogInFilter implements Filter {
         String logoutURI = req.getContextPath() + "/logout";
         String indexURI = req.getContextPath() + "/index";
         String registerURI = req.getContextPath() + "/register";
+        String resultadosURI = req.getContextPath() + "/resultados";
         String mainURI = req.getContextPath() + "/";
         
         boolean loggedIn = session != null && session.getAttribute("user") != null;
         boolean isLoginRequest = req.getRequestURI().equals(loginURI);
         boolean isLogoutRequest = req.getRequestURI().equals(logoutURI);
         boolean isRegisterRequest = req.getRequestURI().equals(registerURI);
+        boolean isResultadosRequest = req.getRequestURI().equals(resultadosURI);
         boolean isIndexRequest = req.getRequestURI().equals(indexURI) || 
         						 req.getRequestURI().equals(mainURI);
         boolean isStaticResource = req.getRequestURI().startsWith(req.getContextPath() + "/css/")   ||
@@ -65,7 +67,7 @@ public class LogInFilter implements Filter {
         						   req.getRequestURI().startsWith(req.getContextPath() + "/images/")|| 
         						   req.getRequestURI().startsWith(req.getContextPath() + "/js/");
 
-        if (loggedIn || isLoginRequest || isLogoutRequest || isIndexRequest || isRegisterRequest || isStaticResource) {
+        if (loggedIn || isLoginRequest || isLogoutRequest || isIndexRequest || isResultadosRequest || isRegisterRequest || isStaticResource) {
         	// pass the request along the filter chain
             chain.doFilter(request, response);
         } else {

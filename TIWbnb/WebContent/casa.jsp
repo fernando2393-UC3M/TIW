@@ -131,6 +131,13 @@
 													</div>
 													<div class="col-xxs-12 col-xs-12 mt alternate">
 														<div class="input-field">
+															<label for="desc">Ciudad:</label> <input
+																type="text" class="form-control" id="desc" name="houseCity"
+																value="Madrid" />
+														</div>
+													</div>
+													<div class="col-xxs-12 col-xs-12 mt alternate">
+														<div class="input-field">
 															<label for="desc">Descripción:</label> <input
 																type="text" class="form-control" id="desc" name="houseDesc"
 																value="Casa muy luminosa..." />
@@ -139,14 +146,14 @@
 													<div class="col-xxs-12 col-xs-12 mt alternate">
 														<div class="input-field">
 															<label for="subdesc">Resumen:</label> <input
-																type="text" class="form-control" id="subdesc" name="houseRes" value="Casa para todos"/>
+																type="text" class="form-control" id="subdesc" name="houseSubDesc" value="Casa para todos"/>
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 														<label for="type">Tipo de Alojamiento:</label>
 														<font color="black">
-															<select id="type">
+															<select id="type" name="houseType">
 																<option value="apartment">Apartamento</option>
 																<option value="private">Habitación Privada</option>
 															</select>
@@ -156,32 +163,32 @@
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="guests">Número de Huéspedes:</label> <input
-																type="number" class="form-control" id="guests"/>
+																type="number" class="form-control" id="guests" name="guests"/>
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="picture">Foto:</label> <input
-																type="file" class="form-control" id="picture" accept="image/*"/>
+																type="file" name="photo" class="form-control" id="picture" accept="image/*"/>
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="price">Precio por Noche:</label> <input
-																type="number" class="form-control" id="price" placeholder="40€"/>
+																type="number" class="form-control" id="price" name="inputPriceNight" placeholder="40€"/>
 														</div>
 													</div>
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="date0">Fecha Inicial:</label> <input
-																type="date" class="form-control" id="date0"/>
+																type="date" name="iDate" class="form-control" id="date0"/>
 														</div>
 													</div>
 													<!-- <form class="form-signin" METHOD="POST" ACTION="casa"> -->
 													<div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="date1">Fecha Final:</label> <input
-																type="date" class="form-control" id="date1"/>
+																type="date" name="fDate" class="form-control" id="date1"/>
 														</div>
 													</div>
 

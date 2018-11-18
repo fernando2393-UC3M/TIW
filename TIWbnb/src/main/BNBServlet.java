@@ -2,6 +2,10 @@ package main;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 777d21c81f416afa847d35900d903fffdd062959
 import javax.annotation.Resource;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -34,9 +38,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import messages.ReadMessages;
+<<<<<<< HEAD
 import messages.SendMessages;
 import model.Admin;
 import model.Booking;
+=======
+>>>>>>> 777d21c81f416afa847d35900d903fffdd062959
 import model.Home;
 import model.MessagesAdmin;
 import model.User;
@@ -386,6 +393,10 @@ public class BNBServlet extends HttpServlet {
 				
 				String iDate = req.getParameter("iDate");
 				String fDate = req.getParameter("fDate");
+<<<<<<< HEAD
+=======
+
+>>>>>>> 777d21c81f416afa847d35900d903fffdd062959
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				java.util.Date parsedIDate = new Date(1970, 01, 01);
 				java.util.Date parsedFDate = new Date(1970, 01, 01);
@@ -408,6 +419,10 @@ public class BNBServlet extends HttpServlet {
 				home.setHomePriceNight(inputPriceNight);
 				home.setHomeAvDateInit(parsedIDate);
 				home.setHomeAvDateFin(parsedFDate);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 777d21c81f416afa847d35900d903fffdd062959
 				persist(home);
 				
 				
