@@ -1,12 +1,21 @@
 
 <!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
 	<%@ page contentType="text/html; charset=UTF-8" %>
-	<meta charset="utf-8">
+	<%@ page import="java.util.List" %>
+	<%@ page import="java.util.Date" %>
+	<%@ page import="model.User" %>
+	<%@ page import="java.sql.DriverManager" %>
+	<%@ page import="java.sql.Connection" %>
+	<%@ page import="java.sql.Statement" %>
+	<%@ page import="java.sql.ResultSet" %>
+	<%@ page import="java.sql.SQLException" %>	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>TIWbnb</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -110,72 +119,60 @@
 					</div>
 				</div>
 				<div class="row row-bottom-padded-md">
-					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
-						<div href="#"><img src="images/place-1.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-							<div class="desc">
-								<span></span>
-								<h3>Estudio en Sol</h3>
-								<span>Apartamento entero. 2 camas</span>
-                                <span>Fechas: 1/12/2016 hasta 5/12/2016</span>                
-								<a class="btn btn-primary btn-outline" href="#">Más Info <i class="icon-arrow-right22"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
-						<div href="#"><img src="images/place-2.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-							<div class="desc">
-								<span></span>
-								<h3>Apartamento junto a Gran Via</h3>
-								<span>Apartamento entero. 1 cama</span>
-                                <span>Fechas: 1/12/2016 hasta 5/12/2016</span>       
-								<a class="btn btn-primary btn-outline" href="#">Más Info<i class="icon-arrow-right22"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
-						<div href="#"><img src="images/place-3.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-							<div class="desc">
-								<span></span>
-								<h3>Piso frente al Palacio Real</h3>
-								<span>Loft entero. 2 camas</span>
-                                <span>Fechas: 1/12/2016 hasta 5/12/2016</span>       
-								<a class="btn btn-primary btn-outline" href="#">Más Info <i class="icon-arrow-right22"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
-						<div href="#"><img src="images/place-1.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-							<div class="desc">
-								<span></span>
-								<h3>Céntrico y tranquilo</h3>
-								<span>Apartamento entero. 2 camas</span>
-                                <span>Fechas: 1/12/2016 hasta 5/12/2016</span>       
-								<a class="btn btn-primary btn-outline" href="#">Más Info <i class="icon-arrow-right22"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
-						<div href="#"><img src="images/place-2.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-							<div class="desc">
-								<span></span>
-								<h3>Stunning Apartment in Sol</h3>
-								<span>Apartamento entero. 2 camas</span>
-                                <span>Fechas: 1/12/2016 hasta 5/12/2016</span>       
-								<a class="btn btn-primary btn-outline" href="#">Más Info <i class="icon-arrow-right22"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
-						<div href="#"><img src="images/place-3.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-							<div class="desc">
-								<span></span>
-								<h3>Pretty Apartment in Plaza Mayor</h3>
-								<span>Apartamento entero. 1 cama</span>
-                                <span>Fechas: 1/12/2016 hasta 5/12/2016</span>       
-								<a class="btn btn-primary btn-outline" href="#">Más Info <i class="icon-arrow-right22"></i></a>
-							</div>
-						</div>
-					</div>
+				<%
+		
+		Connection con = null;
+		Statement st = null;
+		
+		// Open connection
+		
+		try {
+			// Load Driver
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			// Connect to the database
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tiwbnb", "root", "admin");
+			System.out.println("Sucessful connection");
+		} catch (Exception e) {
+			System.out.println("Error when connecting to the database ");
+		}
+		
+		ResultSet rs = null;
+		
+		try {
+			// Create statement
+			st =con.createStatement();
+
+			//Once the statement is created, we need to get the user input for both user email and password
+
+			// Execute statement
+			int userID = (Integer)session.getAttribute("user");
+			String query = "SELECT * FROM BOOKING INNER JOIN HOME ON BOOKING.BOOKING_HOME_ID=HOME.HOME_ID WHERE BOOKING_USER_ID =" + userID;
+			rs = st.executeQuery(query);
+			
+		} catch (SQLException e) {
+			System.out.println("Error when opening table ");
+		}
+		
+		// List <User> userList = (List <User>) request.getAttribute("Users");
+		
+		while(rs.next()){
+			
+			out.println("<div class=\"col-md-4 col-sm-6 fh5co-tours animate-box\" data-animate-effect=\"fadeIn\">");
+			out.println("<div href=\"#\"><img src=\"" + rs.getString("HOME_PHOTOS") + "\" alt=\"Free HTML5 Website Template by FreeHTML5.co\" class=\"img-responsive\">");
+			out.println("<div class=\"desc\">");
+			
+			out.println("<span></span>");
+			out.println("<h3>" + rs.getString("HOME_NAME") + "</h3>");
+			out.println("<span>" + rs.getString("HOME_DESCRIPTION_SHORT") + "</span>");
+			out.println("<span>Booking id: " + rs.getInt("BOOKING_ID") +"</span>");
+			out.println("<a class=\"btn btn-primary btn-outline\" href=\"#\">Más Info <i class=\"icon-arrow-right22\"></i></a>");
+
+			out.println("</div>");
+			out.println("</div>");
+			out.println("</div>");
+		}	
+		%>
+					
 				</div>
 
      

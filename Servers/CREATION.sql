@@ -52,7 +52,7 @@ CREATE TABLE BOOKING (
   BOOKING_HOME_ID INT NOT NULL,
   BOOKING_DATE_IN DATE NOT NULL,
   BOOKING_DATE_OUT DATE NOT NULL,
-  BOOKING_CARD_NUM INT(16) NOT NULL,
+  BOOKING_CARD_NUM VARCHAR(16) NOT NULL,
   BOOKING_EXP_CODE VARCHAR(6) NOT NULL,
   BOOKING_CV2 INT(3) NOT NULL,
   BOOKING_CONFIRMED BOOLEAN NOT NULL,
@@ -98,8 +98,68 @@ INSERT INTO `ADMIN` VALUE (2, 'ibm', 'admin');
 INSERT INTO `ADMIN` VALUE (3, 'tzarraon@inf.uc3m.es', 'admin');
 
 INSERT INTO `HOME` VALUE (1, 'Loft', 'mail@ibm.com', 'Madrid', 'Full Description', 'Short Description', 
-'apt', 5, 'path/image/loft', 420, '20180101', '20181231');
+'apt', 5, 'images/place-1.jpg', 420, '20180101', '20181231');
 INSERT INTO `HOME` VALUE (2, 'Condo', 'mail@ibm.com', 'NY', 'Full Description', 'Short Description', 
-'pri', 1, 'path/image/condo', 70, '20180101', '20181231');
+'pri', 1, 'images/place-2.jpg', 70, '20180101', '20181231');
 INSERT INTO `HOME` VALUE (3, 'Suite', 'mail@redsys.es', 'Madrid', 'Full Description', 'Short Description', 
-'apt', 3, 'path/image/suite', 1337.70, '20180101', '20181231');
+'apt', 3, 'images/place-3.jpg', 1337.70, '20180101', '20181231');
+
+INSERT INTO `BOOKING` VALUE (
+  1,
+  1,
+  1,
+  '20180101',
+  '20180102',
+  4848111122223333,
+  '11/19',
+  987,
+  TRUE
+);
+
+INSERT INTO `BOOKING` VALUE (
+  2,
+  3,
+  1,
+  '20180101',
+  '20180102',
+  4848111122223333,
+  '11/19',
+  987,
+  TRUE
+);
+
+INSERT INTO `BOOKING` VALUE (
+  3,
+  3,
+  2,
+  '20180101',
+  '20180102',
+  4848111122223333,
+  '11/19',
+  987,
+  TRUE
+);
+
+INSERT INTO `BOOKING` VALUE (
+  4,
+  1,
+  3,
+  '20180101',
+  '20180102',
+  4848111122223333,
+  '11/19',
+  987,
+  TRUE
+);
+
+INSERT INTO `BOOKING` VALUE (
+  5,
+  1,
+  2,
+  '20180101',
+  '20180102',
+  4848111122223333,
+  '11/19',
+  987,
+  TRUE
+);
