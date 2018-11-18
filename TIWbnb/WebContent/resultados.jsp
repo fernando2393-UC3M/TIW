@@ -155,7 +155,7 @@
 					out.println("<h3>"+rs.getString("HOME_NAME")+"</h3>");
 					out.println("<span>"+rs.getString("HOME_DESCRIPTION_FULL")+"</span>");
 					out.println("<span class=\"price\">"+rs.getBigDecimal("HOME_PRICE_NIGHT")+"€"+"</span>");
-					out.println("<a class=\"btn btn-primary btn-outline\" href=\"alojamiento\">Seleccionar <i class=\"icon-arrow-right22\"></i></a>");
+					out.println("<a class=\"btn btn-primary btn-outline\" href=\"alojamiento?homeId="+rs.getInt("HOME_ID")+"\">Seleccionar <i class=\"icon-arrow-right22\"></i></a>");
 					out.println("</div>");
 					out.println("</div>");
 					out.println("</div>");					
