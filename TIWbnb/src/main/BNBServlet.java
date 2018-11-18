@@ -28,14 +28,11 @@ import java.util.List;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-<<<<<<< HEAD
 
 import java.util.List;
 import java.sql.Date;
 import messages.ReadMessages;
 import model.MessagesAdmin;
-=======
->>>>>>> e707763f84c0472188ad892338406b9bf8785576
 import model.User;
 import javax.jms.JMSException;
 
@@ -55,15 +52,12 @@ public class BNBServlet extends HttpServlet {
 	
 	@Resource
 	private UserTransaction ut;
-<<<<<<< HEAD
 	
 	@Resource(mappedName="tiwconnectionfactory")
 	ConnectionFactory cf;
 
 	@Resource(mappedName="tiwqueue")
 	Queue queue;
-=======
->>>>>>> e707763f84c0472188ad892338406b9bf8785576
 	
 	String path = "http://localhost:8080/TIWbnb/";
 	
