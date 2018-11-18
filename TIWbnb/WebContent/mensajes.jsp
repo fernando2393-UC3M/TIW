@@ -14,6 +14,9 @@
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FREEHTML5.CO" />
 
+	<!-- Imports -->
+	<%@ page import="java.util.List,java.text.SimpleDateFormat" %>
+
   <!-- 
 	//////////////////////////////////////////////////////
 
@@ -92,7 +95,7 @@
 							<li ><a href="renting">Mis Alojamientos</a></li>
 							<li ><a href="mensajes">Mensajes</a></li>                                
 							<li><a href="registrado">Perfil</a></li>
-							<li><a href="index">Cerrar Sesión</a></li>                             
+							<li><a href="logout">Cerrar Sesión</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -122,120 +125,109 @@
 									<button type="button" class="btn btn-default btn-filter" data-target="all">Todos</button>
 								</div>
 							</div>
+							
+							<!-- Print Messages -->
+										
 							<div class="table-container">
 								<table class="table table-filter">
 									<tbody>
-										<tr data-status="no-leido" class="no-leido">
+										<%
+										List<model.Message> messageList = (List<model.Message>) session.getAttribute("UserMessages"); 
+										
+										for(model.Message obj: messageList){
+											%> <tr> <%
+											if(obj.getMessageRead() == false){
+												%> <tr data-status="no-leido" class="no-leido"> <%
+											}
+											else{
+												%> <tr data-status="leido" class="leido"> <%
+											}
+											%>
 											<td>
-												<a href="javascript:;" class="star">
-													<i class="glyphicon glyphicon-star"></i>
-												</a>
+											<div class="media">
+												<h4 class="title"> <%= obj.getUser1().getUserEmail() %>
+												</h4>
+											</div>
 											</td>
-											<td>
-												<div class="media">
-													<h4 class="title">
-																User Identifier
-													</h4>
-												</div>
-											</td>                                        
 											<td>      
-													<div class="media">
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-														<p class="meta">Febrero 13, 2018</p>                                                
-													</div>
+											<div class="media">
+												<p class="summary"><%= obj.getMessageContent() %></p>
+												<p class="meta"><%= (new SimpleDateFormat("yyyy-MM-dd")).format(obj.getMessageDate())  %></p>                                                
+											</div>
 											</td>
-										</tr>    
-										<tr data-status="no-leido" class="no-leido">
-											<td>
-												<a href="javascript:;" class="star">
-													<i class="glyphicon glyphicon-star"></i>
-												</a>
-											</td>
-											<td>
-												<div class="media">
-													<h4 class="title">
-																User Identifier
-													</h4>
-												</div>
-											</td>                                        
-											<td>      
-													<div class="media">
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-														<p class="meta">Febrero 13, 2018</p>                                                
-													</div>
-											</td>
-										</tr>    
-										<tr data-status="leido" class="leido">
-											<td>
-												<a href="javascript:;" class="star">
-													<i class="glyphicon glyphicon-star"></i>
-												</a>
-											</td>
-											<td>
-												<div class="media">
-													<h4 class="title">
-																User Identifier
-													</h4>
-												</div>
-											</td>                                        
-											<td>      
-													<div class="media">
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-														<p class="meta">Febrero 13, 2018</p>                                                
-													</div>
-											</td>
-										</tr> 
-										<tr data-status="leido" class="leido">
-											<td>
-												<a href="javascript:;" class="star">
-													<i class="glyphicon glyphicon-star"></i>
-												</a>
-											</td>
-											<td>
-												<div class="media">
-													<h4 class="title">
-																User Identifier
-													</h4>
-												</div>
-											</td>                                        
-											<td>      
-													<div class="media">
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-														<p class="meta">Febrero 13, 2018</p>                                                
-													</div>
-											</td>
-										</tr>    
-										<tr data-status="leido" class="leido">
-											<td>
-												<a href="javascript:;" class="star">
-													<i class="glyphicon glyphicon-star"></i>
-												</a>
-											</td>
-											<td>
-												<div class="media">
-													<h4 class="title">
-																User Identifier
-													</h4>
-												</div>
-											</td>                                        
-											<td>      
-													<div class="media">
-														<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-														<p class="meta">Febrero 13, 2018</p>                                                
-													</div>
-											</td>
-										</tr>                                        
+											</tr> 
+											<%
+										}								
+										%>                                       
 									</tbody>
 								</table>
 							</div>
+							
+							<!-- Print Admin Messages -->
+										
+							<div class="table-container">
+								<table class="table table-filter">
+									<tbody>
+										<%
+										List<model.MessagesAdmin> adminList = (List<model.MessagesAdmin>) session.getAttribute("AdminMessages");
+
+										for(model.MessagesAdmin obj: adminList){										
+											%> <tr> <%
+											if(obj.getMessageRead() == false){
+												%> <tr data-status="no-leido" class="no-leido"> <%
+											}
+											else{
+												%> <tr data-status="leido" class="leido"> <%
+											}
+											%>
+											<td>
+											<div class="media">
+												<h4 class="title"> <%= obj.getAdmin().getAdminEmail() %>
+												</h4>
+											</div>
+											</td>
+											<td>      
+											<div class="media">
+												<p class="summary"><%= obj.getMessageContent() %></p>
+												<p class="meta"><%= (new SimpleDateFormat("yyyy-MM-dd")).format(obj.getMessageDate())  %></p>                                                
+											</div>
+											</td>
+											</tr> 
+											<%
+										}								
+										%>                                       
+									</tbody>
+								</table>
+							</div>
+														
+							<!-- Send Message -->
+							
+							<div class="modal-body">
+							<p><b>Send a message to another user.</b></p>
+				         	<form class="form-sendmsg" METHOD="POST" ACTION="SendMessage">
+					     	<input type="email" id="receiver" name="receiver" placeholder="Email">
+							<button type="submit" formmethod="post">Send Message</button>
+							<textarea id="message" class="text" rows="4" cols="50" name="message" >Enter text here...</textarea>
+							</form>
+					      	</div>
+					      	<br>
+							<div class="modal-body">
+							<p><b>Send a message to an admin.</b></p>
+				         	<form class="form-sendmsg" METHOD="POST" ACTION="SendMessageAdmin">
+							<textarea id="message" class="text" rows="4" cols="50" name="message" >Enter text here...</textarea>
+							<button type="submit" formmethod="post">Send Message</button>
+							</form>
+					      	</div>
+					
+							<!-- end:Send Message -->
+							
 						</div>
 					</div>
 				</div>
 			</div>
+			
 		</div>
 	</div>
-	 
-
 		
             <footer>
 			<div id="footer">

@@ -27,4 +27,21 @@ persistence.xml (TIWbnb):
 	
 	
 Database name in SPS (JPA Connection): TIWMySQL
+
+JMS: default configurations from aulaglobal
+@Resource(mappedName="tiwconnectionfactory")
+ConnectionFactory cf;
+
+@Resource(mappedName="tiwqueue")
+Queue queue;
+
+Extra info:
+Users
+1	mail@ibm.com 	secret
+2	mail@redsys.es	password
+
+Admins
+1	sysadmin				admin
+2	ibm						admin
+3	tzarraon@inf.uc3m.es	admin
 	

@@ -1,17 +1,12 @@
 package main;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.ArrayList;
-
-import javax.persistence.Query;
-import javax.persistence.metamodel.SetAttribute;
-import javax.persistence.EntityManagerFactory;
 import javax.annotation.Resource;
+import javax.jms.ConnectionFactory;
+import javax.jms.Queue;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -28,23 +23,16 @@ import javax.transaction.UserTransaction;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.Statement;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-// To be used for Glassfish
-import java.util.Properties;
 
-import org.eclipse.persistence.config.PersistenceUnitProperties;
-
+import java.util.List;
+import java.sql.Date;
+import messages.ReadMessages;
+import model.MessagesAdmin;
 import model.User;
+import javax.jms.JMSException;
 
 /**
  * Servlet implementation class BDServlet
@@ -52,20 +40,39 @@ import model.User;
 @WebServlet(urlPatterns = {"/index", "/admin", 
 				"/resultados", "/renting", "/delete",
 				"/registrado", "/mensajes", "/login", "/register",
-				"/alojamiento", "/casa", "/viajes"})
+				"/alojamiento", "/casa", "/viajes", "/logout"})
 public class BNBServlet extends HttpServlet {
 	
+	private static final long serialVersionUID = 1L;
+
 	@PersistenceContext(unitName="TIWbnb")
-	private EntityManager em;
+	protected EntityManager em;
 	
 	@Resource
-	UserTransaction ut;
+	private UserTransaction ut;
+	
+	@Resource(mappedName="tiwconnectionfactory")
+	ConnectionFactory cf;
+
+	@Resource(mappedName="tiwqueue")
+	Queue queue;
 	
 	String path = "http://localhost:8080/TIWbnb/";
 	
 	ServletContext context;
 	
 	HttpSession session;
+	
+	public void persist(Object entity) {
+		try {
+			ut.begin();
+			em.persist(entity);
+			ut.commit();
+		} catch (SecurityException | IllegalStateException | NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException  e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -85,20 +92,65 @@ public class BNBServlet extends HttpServlet {
 
 		String requestURL = req.getRequestURL().toString();
 
-		if(requestURL.toString().equals(path+"admin")){
-			ReqDispatcher =req.getRequestDispatcher("admin.jsp");
-		}
-		else if(requestURL.equals(path+"alojamiento")){
+//		if(requestURL.toString().equals(path+"admin")){
+//			ReqDispatcher =req.getRequestDispatcher("admin.jsp");
+//		}
+//		else 
+		if(requestURL.equals(path+"alojamiento")){
 			ReqDispatcher =req.getRequestDispatcher("alojamiento.jsp");
 		}
 		else if(requestURL.equals(path+"casa")){
 			ReqDispatcher =req.getRequestDispatcher("casa.jsp");
 		}
-		else if(requestURL.equals(path+"mensajes")){
+else if(requestURL.equals(path+"mensajes")){
+			
+			//------------------------READ MESSAGES------------------------
+					
+				// Get userId from session (need parameter name to access)
+				int userId = (Integer) session.getAttribute("user"); 
+				
+				try {
+					ut.begin();
+					List<model.Message> messageList;
+					messageList = ReadMessages.getMessages(userId, em, cf, queue);
+					ReadMessages.setRead(userId, em);
+					ut.commit();
+
+					ut.begin();
+					List<MessagesAdmin> messageAdminList;
+					messageAdminList = ReadMessages.getMessagesAdmin(userId, em, cf, queue);
+					ReadMessages.setRead(userId, em);
+					ut.commit();
+					
+					// TODO Save messages in user session
+					if(messageList.size() > 0)
+						session.setAttribute("UserMessages", messageList); 
+					
+					// TODO Save admin messages in user session
+					if(messageAdminList.size() > 0)
+						session.setAttribute("AdminMessages", messageAdminList); 
+					
+				} catch (JMSException | NotSupportedException | SystemException | SecurityException | IllegalStateException | RollbackException | HeuristicMixedException | HeuristicRollbackException e) {
+					// Treat JMS/JPA Exception
+				}
+				ReqDispatcher =req.getRequestDispatcher("mensajes.jsp");
+				
+		
+			//------------------------END READ MESSAGES------------------------
+			
 			ReqDispatcher =req.getRequestDispatcher("mensajes.jsp");
 		}
 		else if(requestURL.equals(path+"registrado")){
-			ReqDispatcher =req.getRequestDispatcher("registrado.jsp");		
+			int id = (int) session.getAttribute("user");
+						
+			User user = em.find(User.class, id); // Select the user after commit
+
+			req.setAttribute("Name", user.getUserName());
+			req.setAttribute("Surname", user.getUserSurname());			
+			req.setAttribute("Birthdate", (new SimpleDateFormat("yyyy-MM-dd")).format(user.getUserBirthdate()));
+			req.setAttribute("Password", user.getUserPassword());
+			
+			ReqDispatcher =req.getRequestDispatcher("registrado.jsp");	
 		}
 		else if(requestURL.equals(path+"delete")){
 			ReqDispatcher =req.getRequestDispatcher("index.jsp");		
@@ -107,7 +159,7 @@ public class BNBServlet extends HttpServlet {
 			ReqDispatcher =req.getRequestDispatcher("index.jsp");
 		}
 		else if(requestURL.equals(path+"register")){
-			ReqDispatcher =req.getRequestDispatcher("registrado.jsp");
+			ReqDispatcher =req.getRequestDispatcher("index.jsp");
 		}
 		else if(requestURL.equals(path+"renting")){
 			ReqDispatcher =req.getRequestDispatcher("renting.jsp");					
@@ -117,6 +169,10 @@ public class BNBServlet extends HttpServlet {
 		}
 		else if(requestURL.equals(path+"viajes")){
 			ReqDispatcher =req.getRequestDispatcher("viajes.jsp");
+		}
+		else if(requestURL.equals(path+"logout")){
+			doPost(req, res); // Special case -------------------------
+			return;
 		} 
 		else {
 			ReqDispatcher =req.getRequestDispatcher("index.jsp");
@@ -186,33 +242,34 @@ public class BNBServlet extends HttpServlet {
 		else if(requestURL.toString().equals(path+"register")) {
 			
 			dispatcher = req.getRequestDispatcher("index.jsp");
-
-			RegisterUser register = new RegisterUser();
-
-			try {
-				ut.begin();
-			} catch (NotSupportedException | SystemException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int registered = register.register(em, req.getParameter("registerEmail"), req.getParameter("registerName"),
-					req.getParameter("registerSurname"),req.getParameter("registerPassword")); // Deletion method
-
-			try {
-				ut.commit();
-			} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
-					| HeuristicRollbackException | SystemException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			
-			if(registered == 1) {
+			String queryS = "SELECT s FROM User s WHERE s.userEmail = '"+req.getParameter("registerEmail")+"'";
+			Query query = em.createQuery(queryS);
+			List <User> userList = query.getResultList();
+			
+			if(userList.isEmpty()){
+				
+				User user = new User();
+								
+				@SuppressWarnings("deprecation")
+				Date aux = new Date(1970, 01, 01);
+				
+				// User id automatically generated by MySQL
+				user.setUserEmail(req.getParameter("registerEmail"));
+				user.setUserName(req.getParameter("registerName"));
+				user.setUserSurname(req.getParameter("registerSurname"));
+				user.setUserPassword(req.getParameter("registerPassword"));
+				user.setUserBirthdate(aux);
+				
+				persist(user);
+				
 				req.setAttribute("Registered", 1);
 			}
-			else if (registered == 2) {
+			
+			else {
 				req.setAttribute("Registered", 2);
 			}
+			
 
 			dispatcher.forward(req, res);			
 
@@ -322,5 +379,27 @@ public class BNBServlet extends HttpServlet {
 			}
 			
 		}
+		
+		//-----------------------LOGOUT-------------------------------
+		
+		else if(requestURL.toString().equals(path+"logout")) {
+			
+			req.removeAttribute("Name");
+			req.removeAttribute("Surname");
+			req.removeAttribute("Birthdate");
+			req.removeAttribute("Password");
+			
+			session = req.getSession(false);
+			
+			if(session != null) {
+				session.removeAttribute("user");
+				session.invalidate();
+			}
+			
+			dispatcher = req.getRequestDispatcher("index.jsp");
+			dispatcher.forward(req, res);
+			
+		}
+		
 	}
 }

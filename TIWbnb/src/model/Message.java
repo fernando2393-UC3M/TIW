@@ -29,7 +29,7 @@ public class Message implements Serializable {
 	private Date messageDate;
 
 	@Column(name="MESSAGE_READ")
-	private byte messageRead;
+	private boolean messageRead;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
@@ -68,11 +68,11 @@ public class Message implements Serializable {
 		this.messageDate = messageDate;
 	}
 
-	public byte getMessageRead() {
+	public boolean getMessageRead() {
 		return this.messageRead;
 	}
 
-	public void setMessageRead(byte messageRead) {
+	public void setMessageRead(boolean messageRead) {
 		this.messageRead = messageRead;
 	}
 
