@@ -38,6 +38,7 @@ import model.MessagesAdmin;
 public class AdminServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 6176032171079275384L;
+<<<<<<< HEAD
 
 	@PersistenceContext(unitName="TIWbnbAdmin")
 	protected EntityManager em;
@@ -56,6 +57,31 @@ public class AdminServlet extends HttpServlet {
 	ConnectionFactory cf;
 
 	@Resource(mappedName="tiwqueue")
+	Queue adminQueue;
+	
+	
+=======
+
+	@PersistenceContext(unitName="TIWbnbAdmin")
+	protected EntityManager em;
+	
+	@Resource
+	private UserTransaction ut;
+	
+	String path = "http://localhost:8080/TIWbnbAdmin/";
+		
+	ServletContext context;
+>>>>>>> e707763f84c0472188ad892338406b9bf8785576
+	
+	HttpSession session;
+
+	/* Attributes */
+	//@Resource(mappedName="tiwconnectionfactory")
+	@Resource
+	ConnectionFactory cf;
+
+	//@Resource(mappedName="tiwqueue")
+	//@Resource
 	Queue adminQueue;
 	
 	
@@ -84,6 +110,10 @@ public class AdminServlet extends HttpServlet {
 		else if(requestURL.equals(path+"mensajes")){		
 			//TODO: get adminId from session (need parameter name to access)
 			int adminId = 1;
+<<<<<<< HEAD
+=======
+			List<MessagesAdmin> messageList = new ArrayList<MessagesAdmin>();
+>>>>>>> e707763f84c0472188ad892338406b9bf8785576
 			try {
 				ut.begin();
 				List<MessagesAdmin> messageList;

@@ -87,9 +87,17 @@
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
+<<<<<<< HEAD
 							<li ><a href="index.jsp">Home</a></li>
 							<li ><a href="viajes.jsp">Viajes</a></li>
 							<li class="active" ><a href="mensajes.jsp">Mensajes</a></li>                              
+=======
+							<li class="active"><a href="admin.jsp">Home</a></li>
+							<li ><a href="manage_users.jsp">Administrar Usuarios</a></li>
+							<li ><a href="resultados.jsp">Administrar Alojamientos</a></li>
+							<li ><a href="mensajes.jsp">Mensajes</a></li>
+							<li><a href="logout" id="Login">Cerrar sesión</a></li>                         
+>>>>>>> e707763f84c0472188ad892338406b9bf8785576
 						</ul>
 					</nav>
 				</div>

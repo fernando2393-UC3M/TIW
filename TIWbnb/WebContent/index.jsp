@@ -258,8 +258,8 @@
       <div class="modal-body">
           <form class="form-registro" ACTION="register" METHOD="POST">
       <input type="email" id="inputEmail" name="registerEmail" class="form-control" placeholder="Dirección de correo electrónico" required autofocus>
-      <input type="name" id="inputName" name="registerName" class="form-control" placeholder="Nombre" required>
-      <input type="surname" id="inputSurname" name="registerSurname" class="form-control" placeholder="Apellidos" required>
+      <input type="text" id="inputName" name="registerName" class="form-control" placeholder="Nombre" required>
+      <input type="text" id="inputSurname" name="registerSurname" class="form-control" placeholder="Apellidos" required>
       <input type="password" id="inputPassword" name="registerPassword" class="form-control" placeholder="Establece una contraseña" required>
       <button class="btn btn-lg btn-primary btn-block" type="submit" id="Registrate">Regístrate</button>
     </form>

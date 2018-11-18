@@ -95,7 +95,11 @@
 							<li ><a href="renting">Mis Alojamientos</a></li>
 							<li ><a href="mensajes">Mensajes</a></li>                                
 							<li><a href="registrado">Perfil</a></li>
+<<<<<<< HEAD
 							<li><a href="logout">Cerrar Sesión</a></li>
+=======
+							<li><a href="logout">Cerrar Sesión</a></li>                             
+>>>>>>> e707763f84c0472188ad892338406b9bf8785576
 						</ul>
 					</nav>
 				</div>
