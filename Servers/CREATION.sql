@@ -97,9 +97,9 @@ INSERT INTO `ADMIN` VALUE (1, 'sysadmin', 'admin');
 INSERT INTO `ADMIN` VALUE (2, 'ibm', 'admin');
 INSERT INTO `ADMIN` VALUE (3, 'tzarraon@inf.uc3m.es', 'admin');
 
-INSERT INTO `HOME` VALUE (1, 'Loft', 'mail@ibm.com', 'Madrid', 'Full Description', 'Short Description', 
+INSERT INTO `HOME` VALUE (1, 'Loft Espacioso', 'mail@ibm.com', 'Madrid', 'Loft grande espacioso en el centro de Madrid', 'Short Description', 
 'apt', 5, 'path/image/loft', 420, '20180101', '20181231');
-INSERT INTO `HOME` VALUE (2, 'Condo', 'mail@ibm.com', 'NY', 'Full Description', 'Short Description', 
+INSERT INTO `HOME` VALUE (2, 'Chalet Pequeño', 'mail@ibm.com', 'NY', 'Chalet pequeño en pleno Manhattan', 'Short Description', 
 'pri', 1, 'path/image/condo', 70, '20180101', '20181231');
-INSERT INTO `HOME` VALUE (3, 'Suite', 'mail@redsys.es', 'Madrid', 'Full Description', 'Short Description', 
+INSERT INTO `HOME` VALUE (3, 'Suite', 'mail@redsys.es', 'Madrid', 'Suite en el centro de la capital', 'Short Description', 
 'apt', 3, 'path/image/suite', 1337.70, '20180101', '20181231');
