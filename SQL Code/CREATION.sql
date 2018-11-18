@@ -35,7 +35,7 @@ CREATE TABLE HOME (
   HOME_CITY VARCHAR(25) NOT NULL,
   HOME_DESCRIPTION_FULL VARCHAR(200) NOT NULL,
   HOME_DESCRIPTION_SHORT VARCHAR(50) NOT NULL,
-  HOME_TYPE VARCHAR(3) NOT NULL,
+  HOME_TYPE VARCHAR(20) NOT NULL,
   HOME_GUESTS INT(3) NOT NULL,
   HOME_PHOTOS VARCHAR(45),
   HOME_PRICE_NIGHT DECIMAL(6,2) NOT NULL,
@@ -98,11 +98,11 @@ INSERT INTO `ADMIN` VALUE (2, 'ibm', 'admin');
 INSERT INTO `ADMIN` VALUE (3, 'tzarraon@inf.uc3m.es', 'admin');
 
 INSERT INTO `HOME` VALUE (1, 'Loft Espacioso', 'mail@ibm.com', 'Madrid', 'Loft grande espacioso en el centro de Madrid', 'Short Description', 
-'apt', 5, 'path/image/loft', 420, '20180101', '20181231');
-INSERT INTO `HOME` VALUE (2, 'Chalet Pequeño', 'mail@ibm.com', 'NY', 'Chalet pequeño en pleno Manhattan', 'Short Description', 
-'pri', 1, 'path/image/condo', 70, '20180101', '20181231');
+'Apartamento', 5, 'path/image/loft', 420, '20180101', '20181231');
+INSERT INTO `HOME` VALUE (2, 'Chalet Bonito', 'mail@ibm.com', 'NY', 'Chalet bonito en pleno Manhattan', 'Short Description', 
+'Privado', 1, 'path/image/condo', 70, '20180101', '20181231');
 INSERT INTO `HOME` VALUE (3, 'Suite', 'mail@redsys.es', 'Madrid', 'Suite en el centro de la capital', 'Short Description', 
-'apt', 3, 'path/image/suite', 1337.70, '20180101', '20181231');
+'Apartamento', 3, 'path/image/suite', 1337.70, '20180101', '20181231');
 
 INSERT INTO `MESSAGES` VALUE (1, 2, 1, "Sample message", 20181231, true);
 INSERT INTO `MESSAGES` VALUE (2, 1, 2, "Random Reply", 20181231, true);

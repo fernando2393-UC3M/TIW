@@ -84,7 +84,7 @@
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li class="active"><a href="registrado">Home</a></li>
+							<li class="active"><a href="index">Home</a></li>
 							<li ><a href="viajes">Viajes</a></li>
 							<li ><a href="casa">Ofrece Alojamiento</a></li>
 							<li ><a href="renting">Mis Alojamientos</a></li>

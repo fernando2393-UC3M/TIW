@@ -91,11 +91,26 @@
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li class="active"><a href="index">Home</a></li>
-							<li ><a href="viajes">Viajes</a></li>
-							<li ><a href="mensajes">Mensajes</a></li>                              
-							<li><a href="#" id="Registro">Regístrate</a></li>                            
-							<li><a href="#" id="Login">Inicia sesión</a></li>                            
+						<%
+						
+						if(session.getAttribute("user") != null) {
+							
+							out.println("<li class=\"active\"><a href=\"index\">Home</a></li><li ><a href=\"viajes\">Viajes</a></li><li ><a href=\"casa\">Ofrece Alojamiento</a></li><li ><a href=\"renting\">Mis Alojamientos</a></li><li ><a href=\"mensajes\">Mensajes</a></li><li><a href=\"registrado\">Perfil</a></li><li><a href=\"logout\">Cerrar Sesión</a></li>");
+							
+						}
+						
+						%>
+						
+						<%
+						
+						if(session.getAttribute("user") == null) {
+							
+							out.println("<li class=\"active\"><a href=\"index\">Home</a></li><li><a href=\"#\" id=\"Registro\">Regístrate</a></li><li><a href=\"#\" id=\"Login\">Inicia sesión</a></li>");       
+							
+						}
+						
+						%>
+						
 						</ul>
 					</nav>
 				</div>
@@ -155,7 +170,7 @@
 					out.println("<h3>"+rs.getString("HOME_NAME")+"</h3>");
 					out.println("<span>"+rs.getString("HOME_DESCRIPTION_FULL")+"</span>");
 					out.println("<span class=\"price\">"+rs.getBigDecimal("HOME_PRICE_NIGHT")+"€"+"</span>");
-					out.println("<a class=\"btn btn-primary btn-outline\" href=\"alojamiento\">Seleccionar <i class=\"icon-arrow-right22\"></i></a>");
+					out.println("<a class=\"btn btn-primary btn-outline\" href=\"alojamiento?homeId="+rs.getInt("HOME_ID")+"\">Seleccionar <i class=\"icon-arrow-right22\"></i></a>");
 					out.println("</div>");
 					out.println("</div>");
 					out.println("</div>");					
