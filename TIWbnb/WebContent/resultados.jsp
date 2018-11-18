@@ -105,7 +105,7 @@
 						
 						if(session.getAttribute("user") == null) {
 							
-							out.println("<li class=\"active\"><a href=\"index\">Home</a></li><li><a href=\"#\" id=\"Registro\">Regístrate</a></li><li><a href=\"#\" id=\"Login\">Inicia sesión</a></li>");       
+							out.println("<li class=\"active\"><a href=\"index\">Home</a></li>");       
 							
 						}
 						
