@@ -97,11 +97,11 @@ INSERT INTO `ADMIN` VALUE (1, 'admin', 'admin');
 INSERT INTO `ADMIN` VALUE (2, 'ibm', 'admin');
 INSERT INTO `ADMIN` VALUE (3, 'tzarraon@inf.uc3m.es', 'admin');
 
-INSERT INTO `HOME` VALUE (1, 'Loft Espacioso', 'mail@ibm.com', 'Madrid', 'Loft grande espacioso en el centro de Madrid', 'Short Description', 
+INSERT INTO `HOME` VALUE (1, 'Loft Espacioso', 'mail@ibm.com', 'Madrid', 'Loft grande espacioso en el centro de Madrid', 'Loft en Madrid', 
 'Apartamento', 5, 'path/image/loft', 420, '20180101', '20181231');
-INSERT INTO `HOME` VALUE (2, 'Chalet Bonito', 'mail@ibm.com', 'NY', 'Chalet bonito en pleno Manhattan', 'Short Description', 
+INSERT INTO `HOME` VALUE (2, 'Chalet Bonito', 'mail@ibm.com', 'NY', 'Chalet bonito en pleno Manhattan', 'Chalet en NY', 
 'Privado', 1, 'path/image/condo', 70, '20180101', '20181231');
-INSERT INTO `HOME` VALUE (3, 'Suite', 'mail@redsys.es', 'Madrid', 'Suite en el centro de la capital', 'Short Description', 
+INSERT INTO `HOME` VALUE (3, 'Suite', 'mail@redsys.es', 'Madrid', 'Suite en el centro de la capital', 'Suite en Madrid', 
 'Apartamento', 3, 'path/image/suite', 1337.70, '20180101', '20181231');
 
 INSERT INTO `MESSAGES` VALUE (1, 2, 1, "Sample message", 20181231, true);
